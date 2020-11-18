@@ -41,8 +41,8 @@ class MainViewController: UIViewController {
     }
     
     @objc func rightBarButtonTapped() {
-        let viewModel = ChapterViewModel(dependency: .default)
-        let second = ChapterViewController(viewModel: viewModel)
+        let viewModel = BookViewModel(dependency: .default)
+        let second = BookViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(second, animated: true)
     }
 }

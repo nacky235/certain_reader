@@ -25,6 +25,7 @@
 		689BE1DE25652E62003D668B /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1DA25652E62003D668B /* BookViewController.swift */; };
 		689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1DB25652E62003D668B /* BookViewModel.swift */; };
 		689BE1E025652E62003D668B /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689BE1DC25652E62003D668B /* BookViewController.xib */; };
+		689BE1E82565D9F2003D668B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1E72565D9F2003D668B /* Book.swift */; };
 		68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */; };
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
@@ -75,6 +76,7 @@
 		689BE1DA25652E62003D668B /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		689BE1DB25652E62003D668B /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
 		689BE1DC25652E62003D668B /* BookViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookViewController.xib; sourceTree = "<group>"; };
+		689BE1E72565D9F2003D668B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModelProtocol.swift; sourceTree = "<group>"; };
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				6889C1B62560C4E0001263BD /* Chapter.swift */,
 				68EF8D492563E37F0099504E /* ChapterJSON.swift */,
 				68EF8D4E256498C90099504E /* chapters.json */,
+				689BE1E72565D9F2003D668B /* Book.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				689BE1E82565D9F2003D668B /* Book.swift in Sources */,
 				6889C1A02560C3E3001263BD /* MainViewController.swift in Sources */,
 				68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */,
 				68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */,
