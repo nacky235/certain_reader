@@ -5,7 +5,6 @@ class MainViewController: UIViewController {
     public let viewModel: MainViewModelProtocol
 
     private var cancellables = Set<AnyCancellable>()
-    var addBtn: UIBarButtonItem!
 
     init(viewModel: MainViewModelProtocol) {
         self.viewModel = viewModel
@@ -19,6 +18,10 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Main"
+
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(rightBarButtonTapped))
+        navigationItem.rightBarButtonItem = rightBarButtonItem
 
         viewModel.command
             .receive(on: RunLoop.main)
@@ -35,20 +38,9 @@ class MainViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-
-        self.title = "Main"
-
-                // addBtnを設置
-        addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onClick))
-                self.navigationItem.rightBarButtonItem = addBtn
-        
-        
-        
-        
     }
     
-    
-    @objc func onClick() {
+    @objc func rightBarButtonTapped() {
         let viewModel = ChapterViewModel(dependency: .default)
         let second = ChapterViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(second, animated: true)

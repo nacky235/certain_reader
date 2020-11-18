@@ -4,8 +4,12 @@ import UIKit
 class ChapterViewController: UIViewController {
     public let viewModel: ChapterViewModelProtocol
     
-    @IBOutlet weak var tableView: UITableView!
-    var fetchBtn: UIBarButtonItem!
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
+    }
     
     private var cancellables = Set<AnyCancellable>()
 
@@ -21,10 +25,8 @@ class ChapterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        tableView.dataSource = self
-        tableView.delegate = self
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -42,21 +44,14 @@ class ChapterViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-
         viewModel.chapters
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
-        
-        fetchBtn = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
-        self.navigationItem.rightBarButtonItem = fetchBtn
-        
-        
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
-        
+
+        viewModel.fetch()
     }
     
     func transition(selectedRow: Int) -> Void {
@@ -68,11 +63,9 @@ class ChapterViewController: UIViewController {
     @objc func fetch() {
         viewModel.fetch()
     }
-    
 }
 
 extension ChapterViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.chapters.value.count
     }
@@ -82,17 +75,11 @@ extension ChapterViewController: UITableViewDataSource {
         cell.textLabel?.text = viewModel.chapters.value[indexPath.row].title
         return cell
     }
-
 }
 
 extension ChapterViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.transition(chapter: viewModel.chapters.value[indexPath.row])
-        
         transition(selectedRow: indexPath.row)
-        print("OK")
-        
     }
 }
 

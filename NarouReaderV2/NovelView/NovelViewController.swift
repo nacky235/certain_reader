@@ -2,11 +2,10 @@ import Combine
 import UIKit
 
 class NovelViewController: UIViewController {
-    public let viewModel: NovelViewModelProtocol
-    
-    
-    @IBOutlet weak var textField: UITextView!
-    
+    private let viewModel: NovelViewModelProtocol
+
+    @IBOutlet private weak var textField: UITextView!
+
     private var cancellables = Set<AnyCancellable>()
 
     init(viewModel: NovelViewModelProtocol) {
@@ -37,8 +36,6 @@ class NovelViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-
-        // Do any additional setup after loading the view.
         
         viewModel.chapter
             .receive(on: RunLoop.main)
@@ -47,6 +44,4 @@ class NovelViewController: UIViewController {
             }
             .store(in: &cancellables)
     }
-    
-    
 }

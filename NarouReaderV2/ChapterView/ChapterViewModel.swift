@@ -2,26 +2,6 @@ import Combine
 import UIKit
 
 final class ChapterViewModel: ChapterViewModelProtocol {
-    func transition(chapter: Chapter) {
-        
-    }
-    
-    func show(chapter: [Chapter]) {
-        
-    }
-    
-    
-    var chapters = CurrentValueSubject<[Chapter], Never>([])
-    
-    func fetch() {
-        loadChapters { chapters in
-            self.chapters.send(chapters)
-        }
-        
-    }
-    
-    
-    
     struct Dependency {
         // Add dependencies here.
 
@@ -35,12 +15,16 @@ final class ChapterViewModel: ChapterViewModelProtocol {
     // Output
 
     let command = PassthroughSubject<ChapterCommand, Never>()
+    let chapters = CurrentValueSubject<[Chapter], Never>([])
 
-    private var cancellables = Set<AnyCancellable>()
+    private let cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
 
     init(dependency: Dependency) {
         self.dependency = dependency
+    }
+
+    func fetch() {
         loadChapters { chapters in
             self.chapters.send(chapters)
         }

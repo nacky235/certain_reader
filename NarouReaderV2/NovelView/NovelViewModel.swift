@@ -1,14 +1,6 @@
 import Combine
 
 final class NovelViewModel: NovelViewModelProtocol {
-    var chapter: CurrentValueSubject<Chapter, Never>
-    
-    init(dependency: Dependency, chapter: Chapter) {
-        self.chapter = CurrentValueSubject<Chapter, Never>(chapter)
-        self.dependency = dependency
-    }
-    
-    
     struct Dependency {
         // Add dependencies here.
 
@@ -22,11 +14,13 @@ final class NovelViewModel: NovelViewModelProtocol {
     // Output
 
     let command = PassthroughSubject<NovelCommand, Never>()
-    
+    let chapter: CurrentValueSubject<Chapter, Never>
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
-
    
-    
+    init(dependency: Dependency, chapter: Chapter) {
+        self.chapter = CurrentValueSubject<Chapter, Never>(chapter)
+        self.dependency = dependency
+    }
 }
