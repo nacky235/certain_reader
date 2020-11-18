@@ -7,6 +7,5 @@ public enum NovelCommand {
 
 protocol NovelViewModelProtocol {
     var command: PassthroughSubject<NovelCommand, Never> { get }
-    var chapter: CurrentValueSubject<Chapter, Never> { get set }
-    
+    var chapter: CurrentValueSubject<Chapter, Never> { get }
 }
