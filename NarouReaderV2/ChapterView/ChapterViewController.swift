@@ -5,6 +5,8 @@ class ChapterViewController: UIViewController {
     public let viewModel: ChapterViewModelProtocol
     
     @IBOutlet weak var tableView: UITableView!
+    var fetchBtn: UIBarButtonItem!
+    
     private var cancellables = Set<AnyCancellable>()
 
     init(viewModel: ChapterViewModelProtocol) {
@@ -48,6 +50,10 @@ class ChapterViewController: UIViewController {
             }
             .store(in: &cancellables)
         
+        fetchBtn = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
+        self.navigationItem.rightBarButtonItem = fetchBtn
+        
+        
         tableView.frame = view.bounds
         view.addSubview(tableView)
         
@@ -59,6 +65,9 @@ class ChapterViewController: UIViewController {
         navigationController?.pushViewController(second, animated: true)
     }
     
+    @objc func fetch() {
+        viewModel.fetch()
+    }
     
 }
 
