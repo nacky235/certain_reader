@@ -11,6 +11,6 @@ struct Book: Identifiable, Equatable, Codable {
     var id: String
     var title: String
     var author: String
-    var genere: String
+    var genre: String
     var subgenre: String
 }
