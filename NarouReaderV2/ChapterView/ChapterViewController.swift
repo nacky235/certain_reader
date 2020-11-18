@@ -65,12 +65,12 @@ class ChapterViewController: UIViewController {
 extension ChapterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return viewModel.chapters.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "aaa"
+        cell.textLabel?.text = viewModel.chapters.value[indexPath.row].title
         return cell
     }
 

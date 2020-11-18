@@ -43,7 +43,7 @@ class NovelViewController: UIViewController {
         viewModel.chapter
             .receive(on: RunLoop.main)
             .sink { [weak self] ch in
-//                self?.textField?.text = ch.content
+                self?.textField?.text = ch.content
             }
             .store(in: &cancellables)
     }

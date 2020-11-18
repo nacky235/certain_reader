@@ -25,10 +25,8 @@
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
 		68EF8D402563439E0099504E /* NovelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D3C2563439E0099504E /* NovelViewController.xib */; };
-		68EF8D452563DD4B0099504E /* ParsingJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D442563DD4B0099504E /* ParsingJSON.swift */; };
 		68EF8D4A2563E37F0099504E /* ChapterJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D492563E37F0099504E /* ChapterJSON.swift */; };
 		68EF8D4F256498C90099504E /* chapters.json in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D4E256498C90099504E /* chapters.json */; };
-		68EF8D5425649BD40099504E /* chapters2.json in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D5325649BD40099504E /* chapters2.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +71,8 @@
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
 		68EF8D3C2563439E0099504E /* NovelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelViewController.xib; sourceTree = "<group>"; };
-		68EF8D442563DD4B0099504E /* ParsingJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingJSON.swift; sourceTree = "<group>"; };
 		68EF8D492563E37F0099504E /* ChapterJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterJSON.swift; sourceTree = "<group>"; };
 		68EF8D4E256498C90099504E /* chapters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chapters.json; sourceTree = "<group>"; };
-		68EF8D5325649BD40099504E /* chapters2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chapters2.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,9 +178,7 @@
 		6889C1B22560C4BA001263BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				68EF8D5325649BD40099504E /* chapters2.json */,
 				6889C1B62560C4E0001263BD /* Chapter.swift */,
-				68EF8D442563DD4B0099504E /* ParsingJSON.swift */,
 				68EF8D492563E37F0099504E /* ChapterJSON.swift */,
 				68EF8D4E256498C90099504E /* chapters.json */,
 			);
@@ -306,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6889C1AE2560C485001263BD /* ChapterViewController.xib in Resources */,
-				68EF8D5425649BD40099504E /* chapters2.json in Resources */,
 				685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */,
 				6889C1A22560C3E3001263BD /* MainViewController.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
@@ -343,7 +336,6 @@
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
 				68EF8D4A2563E37F0099504E /* ChapterJSON.swift in Sources */,
 				6889C19F2560C3E3001263BD /* MainViewModelProtocol.swift in Sources */,
-				68EF8D452563DD4B0099504E /* ParsingJSON.swift in Sources */,
 				6889C1A12560C3E3001263BD /* MainViewModel.swift in Sources */,
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,

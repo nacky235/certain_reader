@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
         addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onClick))
                 self.navigationItem.rightBarButtonItem = addBtn
         
-        loadJSON()
+        
         
     }
     

@@ -11,7 +11,7 @@ import Foundation
     
     func loadChapters() -> [Chapter] {
         /// ①プロジェクト内にある"chapters.json"ファイルのパス取得
-        guard let url = Bundle.main.url(forResource: "chapters2", withExtension: "json") else {
+        guard let url = Bundle.main.url(forResource: "chapters", withExtension: "json") else {
             fatalError("ファイルが見つからない")
         }
          
