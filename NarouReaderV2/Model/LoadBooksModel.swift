@@ -7,10 +7,10 @@
 
 import Foundation
 
-func loadBooks(completion: @escaping (([Chapter]) -> Void)) {
-    let url = URL(string: "https://5f45f1b4e165a60016ba9147.mockapi.io/api/v1/chapters")!
+func loadBooks(completion: @escaping (([Book]) -> Void)) {
+    let url = URL(string: "https://5f45f1b4e165a60016ba9147.mockapi.io/api/v1/books")!
     let urlRequest = URLRequest(url: url)
-    var chapters: [Chapter] = []
+    var books: [Book] = []
     
     let decoder = JSONDecoder()
     
@@ -27,9 +27,9 @@ func loadBooks(completion: @escaping (([Chapter]) -> Void)) {
         }
         
         do {
-            chapters = try decoder.decode([Chapter].self, from: data)
-            print(chapters)
-            completion(chapters)
+            books = try decoder.decode([Book].self, from: data)
+            print(books)
+            completion(books)
         } catch let error {
             print("Error = \(error)")
         }
