@@ -26,11 +26,12 @@
 		689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1DB25652E62003D668B /* BookViewModel.swift */; };
 		689BE1E025652E62003D668B /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689BE1DC25652E62003D668B /* BookViewController.xib */; };
 		689BE1E82565D9F2003D668B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1E72565D9F2003D668B /* Book.swift */; };
+		689BE1ED2565DB86003D668B /* LoadBooksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1EC2565DB86003D668B /* LoadBooksModel.swift */; };
+		689BE1F52565DBD7003D668B /* LoadChaptersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1F42565DBD7003D668B /* LoadChaptersModel.swift */; };
 		68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */; };
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
 		68EF8D402563439E0099504E /* NovelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D3C2563439E0099504E /* NovelViewController.xib */; };
-		68EF8D4A2563E37F0099504E /* ChapterJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D492563E37F0099504E /* ChapterJSON.swift */; };
 		68EF8D4F256498C90099504E /* chapters.json in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D4E256498C90099504E /* chapters.json */; };
 /* End PBXBuildFile section */
 
@@ -77,11 +78,12 @@
 		689BE1DB25652E62003D668B /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
 		689BE1DC25652E62003D668B /* BookViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookViewController.xib; sourceTree = "<group>"; };
 		689BE1E72565D9F2003D668B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		689BE1EC2565DB86003D668B /* LoadBooksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadBooksModel.swift; sourceTree = "<group>"; };
+		689BE1F42565DBD7003D668B /* LoadChaptersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChaptersModel.swift; sourceTree = "<group>"; };
 		68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModelProtocol.swift; sourceTree = "<group>"; };
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
 		68EF8D3C2563439E0099504E /* NovelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelViewController.xib; sourceTree = "<group>"; };
-		68EF8D492563E37F0099504E /* ChapterJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterJSON.swift; sourceTree = "<group>"; };
 		68EF8D4E256498C90099504E /* chapters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chapters.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,9 +192,10 @@
 			isa = PBXGroup;
 			children = (
 				6889C1B62560C4E0001263BD /* Chapter.swift */,
-				68EF8D492563E37F0099504E /* ChapterJSON.swift */,
 				68EF8D4E256498C90099504E /* chapters.json */,
 				689BE1E72565D9F2003D668B /* Book.swift */,
+				689BE1EC2565DB86003D668B /* LoadBooksModel.swift */,
+				689BE1F42565DBD7003D668B /* LoadChaptersModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,13 +363,14 @@
 				689BE1DE25652E62003D668B /* BookViewController.swift in Sources */,
 				685076E72560C2EB00766490 /* AppDelegate.swift in Sources */,
 				689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */,
+				689BE1ED2565DB86003D668B /* LoadBooksModel.swift in Sources */,
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
-				68EF8D4A2563E37F0099504E /* ChapterJSON.swift in Sources */,
 				6889C19F2560C3E3001263BD /* MainViewModelProtocol.swift in Sources */,
 				6889C1A12560C3E3001263BD /* MainViewModel.swift in Sources */,
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,
 				6889C1B72560C4E0001263BD /* Chapter.swift in Sources */,
+				689BE1F52565DBD7003D668B /* LoadChaptersModel.swift in Sources */,
 				68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */,
 				689BE1DD25652E62003D668B /* BookViewModelProtocol.swift in Sources */,
 			);
