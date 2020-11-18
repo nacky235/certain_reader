@@ -2,15 +2,21 @@ import Combine
 import UIKit
 
 final class ChapterViewModel: ChapterViewModelProtocol {
+    func transition(chapter: Chapter) {
+        
+    }
+    
     func show(chapter: [Chapter]) {
         
     }
     
     
-    var chapters = CurrentValueSubject<[Chapter], Never>(loadChapters())
+    var chapters = CurrentValueSubject<[Chapter], Never>([])
     
     func fetch() {
-        
+        loadChapters { chapters in
+            self.chapters.send(chapters)
+        }
         
     }
     
@@ -35,6 +41,9 @@ final class ChapterViewModel: ChapterViewModelProtocol {
 
     init(dependency: Dependency) {
         self.dependency = dependency
+        loadChapters { chapters in
+            self.chapters.send(chapters)
+        }
     }
 }
 

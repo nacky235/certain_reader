@@ -13,6 +13,6 @@ protocol ChapterViewModelProtocol {
     func fetch()
     func show(chapter: [Chapter])
     
-//    func transition(chapter: chapters.value)
+    func transition(chapter: Chapter)
 }
 

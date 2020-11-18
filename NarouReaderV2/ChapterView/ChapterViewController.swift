@@ -50,7 +50,7 @@ class ChapterViewController: UIViewController {
         
         tableView.frame = view.bounds
         view.addSubview(tableView)
-        viewModel.fetch()
+        
     }
     
     func transition(selectedRow: Int) -> Void {
@@ -79,7 +79,7 @@ extension ChapterViewController: UITableViewDataSource {
 extension ChapterViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        viewModel.transition(chapter: viewModel.chapters.value[indexPath.row])
+        viewModel.transition(chapter: viewModel.chapters.value[indexPath.row])
         
         transition(selectedRow: indexPath.row)
         print("OK")

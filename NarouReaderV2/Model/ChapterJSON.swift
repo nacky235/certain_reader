@@ -8,38 +8,42 @@
 import Foundation
 
 
+
     
-    func loadChapters() -> [Chapter] {
-        /// ①プロジェクト内にある"chapters.json"ファイルのパス取得
-        guard let url = Bundle.main.url(forResource: "chapters", withExtension: "json") else {
-            fatalError("ファイルが見つからない")
-        }
-         
-        /// ②employees.jsonの内容をData型プロパティに読み込み
-        guard let data = try? Data(contentsOf: url) else {
-            fatalError("ファイル読み込みエラー")
-        }
-         
-        /// ③JSONデコード処理
-        let decoder = JSONDecoder()
+
+func loadChapters(completion: @escaping (([Chapter]) -> Void)) {
+    let url = URL(string: "https://5f45f1b4e165a60016ba9147.mockapi.io/api/v1/chapters")!
+    let urlRequest = URLRequest(url: url)
+    var chapters: [Chapter] = []
+    
+    let decoder = JSONDecoder()
+    
+    let session = URLSession.shared
+    let task = session.dataTask(with: urlRequest) {
+        data, urlResponse, error in
         
+        guard let data = data else { return }
+        do {
+            let object = try JSONSerialization.jsonObject(with: data, options: [])
+            print(object)
+        } catch let error {
+            print(error)
+        }
         
         do {
-            _ = try decoder.decode([Chapter].self, from: data)
+            chapters = try decoder.decode([Chapter].self, from: data)
+            print(chapters)
+            completion(chapters)
         } catch let error {
             print("Error = \(error)")
         }
         
-        guard let chapters = try? decoder.decode([Chapter].self, from: data) else {
-            fatalError("JOSN読み込みエラー")
-        }
-        /// ④データ確認
-        for chapter in chapters {
-            print(chapter)
-        }
-        
-        return chapters
+
     }
+    
+    task.resume()
+    
+}
     
     
 
