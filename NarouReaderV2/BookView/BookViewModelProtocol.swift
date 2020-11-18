@@ -4,6 +4,9 @@ public enum BookCommand {
     case showSnackbar(String)
 }
 
-public protocol BookViewModelProtocol {
+protocol BookViewModelProtocol {
     var command: PassthroughSubject<BookCommand, Never> { get }
+    var books: CurrentValueSubject<[Book], Never> { get }
+    
+    func fetch()
 }

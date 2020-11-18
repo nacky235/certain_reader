@@ -25,6 +25,8 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
 
         viewModel.command
             .receive(on: RunLoop.main)
@@ -41,32 +43,45 @@ class BookViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-
-        // Do any additional setup after loading the view.
+        
+        viewModel.books
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.fetch()
+    }
+    
+    func transition(selectedRow: Int) -> Void {
+        // [] configure 値渡し to chapterviewmodel
+        let chapterViewModel = ChapterViewModel(dependency: .default)
+        let next = ChapterViewController(viewModel: chapterViewModel)
+        navigationController?.pushViewController(next, animated: true)
+    }
+    
+    @objc func fetch() {
+        viewModel.fetch()
     }
 }
 
 extension BookViewController: UITableViewDataSource {
-    
-    //
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //
+        return viewModel.books.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //
+        // [] configure custom cell
+        let cell = UITableViewCell()
+        cell.textLabel?.text = viewModel.books.value[indexPath.row].title
+        return cell
     }
 
 }
 
 extension BookViewController: UITableViewDelegate {
-    
-    //
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        transition(selectedRow: indexPath.row)
     }
-    
-    
 }

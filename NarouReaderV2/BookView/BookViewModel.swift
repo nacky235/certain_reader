@@ -11,11 +11,18 @@ final class BookViewModel: BookViewModelProtocol {
     // [Output]
 
     let command = PassthroughSubject<BookCommand, Never>()
+    let books = CurrentValueSubject<[Book], Never>([])
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
 
     init(dependency: Dependency) {
         self.dependency = dependency
+    }
+    
+    func fetch() {
+        loadBooks { books in
+            self.books.send(books)
+        }
     }
 }
