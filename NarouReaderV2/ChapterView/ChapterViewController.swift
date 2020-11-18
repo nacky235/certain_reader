@@ -56,8 +56,8 @@ class ChapterViewController: UIViewController {
     
     func transition(selectedRow: Int) -> Void {
         let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
-        let second = NovelViewController(viewModel: novelViewModel)
-        navigationController?.pushViewController(second, animated: true)
+        let next = NovelViewController(viewModel: novelViewModel)
+        navigationController?.pushViewController(next, animated: true)
     }
     
     @objc func fetch() {
@@ -71,6 +71,7 @@ extension ChapterViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // [] configure custom cell
         let cell = UITableViewCell()
         cell.textLabel?.text = viewModel.chapters.value[indexPath.row].title
         return cell
