@@ -1,19 +1,19 @@
 import Combine
 import UIKit
 
-class ChapterViewController: UIViewController {
-    public let viewModel: ChapterViewModelProtocol
-    
-    @IBOutlet private weak var tableView: UITableView! {
+class BookViewController: UIViewController {
+    public let viewModel: BookViewModelProtocol
+
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            tableView.dataSource = self
             tableView.delegate = self
+            tableView.dataSource = self
         }
     }
     
     private var cancellables = Set<AnyCancellable>()
 
-    init(viewModel: ChapterViewModelProtocol) {
+    init(viewModel: BookViewModelProtocol) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: .main)
@@ -27,7 +27,7 @@ class ChapterViewController: UIViewController {
         super.viewDidLoad()
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        
+
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -43,20 +43,21 @@ class ChapterViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-
-        viewModel.chapters
+        
+        viewModel.books
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
-
+        
         viewModel.fetch()
     }
     
     func transition(selectedRow: Int) -> Void {
-        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
-        let next = NovelViewController(viewModel: novelViewModel)
+        // [] configure 値渡し to chapterviewmodel
+        let chapterViewModel = ChapterViewModel(dependency: .default)
+        let next = ChapterViewController(viewModel: chapterViewModel)
         navigationController?.pushViewController(next, animated: true)
     }
     
@@ -65,24 +66,22 @@ class ChapterViewController: UIViewController {
     }
 }
 
-extension ChapterViewController: UITableViewDataSource {
+extension BookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chapters.value.count
+        return viewModel.books.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // [] configure custom cell
         let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel.chapters.value[indexPath.row].title
+        cell.textLabel?.text = viewModel.books.value[indexPath.row].title
         return cell
     }
+
 }
 
-extension ChapterViewController: UITableViewDelegate {
+extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         transition(selectedRow: indexPath.row)
     }
 }
-
-
-

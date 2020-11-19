@@ -1,15 +1,11 @@
 //
-//  ChapterJSON.swift
+//  LoadChaptersModel.swift
 //  NarouReaderV2
 //
-//  Created by 稲葉夏輝 on 2020/11/17.
+//  Created by 稲葉夏輝 on 2020/11/19.
 //
 
 import Foundation
-
-
-
-    
 
 func loadChapters(completion: @escaping (([Chapter]) -> Void)) {
     let url = URL(string: "https://5f45f1b4e165a60016ba9147.mockapi.io/api/v1/chapters")!
@@ -44,6 +40,3 @@ func loadChapters(completion: @escaping (([Chapter]) -> Void)) {
     task.resume()
     
 }
-    
-    
-
