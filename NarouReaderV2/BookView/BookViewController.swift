@@ -8,6 +8,7 @@ class BookViewController: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.register(UINib(nibName: "BookViewTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCell")
         }
     }
     
@@ -55,10 +56,12 @@ class BookViewController: UIViewController {
     }
     
     func transition(selectedRow: Int) -> Void {
-        // [] configure 値渡し to chapterviewmodel
+        //[] 値渡し　to chapterViewcontroller
+        
         let chapterViewModel = ChapterViewModel(dependency: .default)
         let next = ChapterViewController(viewModel: chapterViewModel)
         navigationController?.pushViewController(next, animated: true)
+        
     }
     
     @objc func fetch() {
@@ -72,10 +75,18 @@ extension BookViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // [] configure custom cell
-        let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel.books.value[indexPath.row].title
-        return cell
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookViewTableViewCell {
+            
+            cell.title.text = viewModel.books.value[indexPath.row].title
+            cell.author.text = viewModel.books.value[indexPath.row].author
+            cell.genre.text = viewModel.books.value[indexPath.row].genre
+            cell.subGenre.text = viewModel.books.value[indexPath.row].subgenre
+            
+            return cell
+        }
+        
+        return UITableViewCell()
     }
 
 }
