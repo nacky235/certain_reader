@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */; };
+		684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */; };
 		685076E72560C2EB00766490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685076E62560C2EB00766490 /* AppDelegate.swift */; };
 		685076F02560C2EE00766490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 685076EF2560C2EE00766490 /* Assets.xcassets */; };
 		685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 685076F12560C2EE00766490 /* LaunchScreen.storyboard */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewTableViewCell.swift; sourceTree = "<group>"; };
+		684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChapterViewTableViewCell.xib; sourceTree = "<group>"; };
 		685076E32560C2EB00766490 /* NarouReaderV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarouReaderV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685076E62560C2EB00766490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		685076EF2560C2EE00766490 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		684EDBFA2569F19A000C4EAA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */,
+				684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		685076DA2560C2EB00766490 = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +197,7 @@
 		6889C1A62560C465001263BD /* ChapterView */ = {
 			isa = PBXGroup;
 			children = (
+				684EDBFA2569F19A000C4EAA /* Cell */,
 				6889C1A72560C485001263BD /* ChapterViewModelProtocol.swift */,
 				6889C1A82560C485001263BD /* ChapterViewController.swift */,
 				6889C1A92560C485001263BD /* ChapterViewModel.swift */,
@@ -341,6 +355,7 @@
 			files = (
 				6889C1AE2560C485001263BD /* ChapterViewController.xib in Resources */,
 				685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */,
+				684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */,
 				689BE1E025652E62003D668B /* BookViewController.xib in Resources */,
 				689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */,
 				6889C1A22560C3E3001263BD /* MainViewController.xib in Resources */,
@@ -377,6 +392,7 @@
 				68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */,
 				689BE1DE25652E62003D668B /* BookViewController.swift in Sources */,
 				685076E72560C2EB00766490 /* AppDelegate.swift in Sources */,
+				684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */,
 				689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */,
 				689BE1ED2565DB86003D668B /* LoadBooksModel.swift in Sources */,
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
