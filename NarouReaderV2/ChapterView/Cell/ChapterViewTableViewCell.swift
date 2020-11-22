@@ -8,7 +8,9 @@
 import UIKit
 
 class ChapterViewTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var episodeNumber: UILabel!
+    @IBOutlet weak var title: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

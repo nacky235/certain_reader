@@ -8,6 +8,7 @@ class ChapterViewController: UIViewController {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
+            tableView.register(UINib(nibName: "ChapterViewTableViewCell", bundle: nil), forCellReuseIdentifier: "ChapterCell")
         }
     }
     
@@ -71,10 +72,14 @@ extension ChapterViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // [] configure custom cell
-        let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel.chapters.value[indexPath.row].title
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ChapterCell", for: indexPath) as? ChapterViewTableViewCell {
+            
+            cell.title.text = viewModel.chapters.value[indexPath.row].title
+            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
+            
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 
