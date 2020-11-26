@@ -18,10 +18,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Main"
-
-        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(rightBarButtonTapped))
-        navigationItem.rightBarButtonItem = rightBarButtonItem
+        title = "なろうリーダーv2.0"
 
         viewModel.command
             .receive(on: RunLoop.main)
@@ -40,9 +37,9 @@ class MainViewController: UIViewController {
             .store(in: &cancellables)
     }
     
-    @objc func rightBarButtonTapped() {
+    @IBAction func readButtonTapped(_ sender: Any) {
         let viewModel = BookViewModel(dependency: .default)
-        let second = BookViewController(viewModel: viewModel)
-        self.navigationController?.pushViewController(second, animated: true)
+        let next = BookViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(next, animated: true)
     }
 }
