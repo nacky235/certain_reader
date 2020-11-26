@@ -7,7 +7,7 @@
 
 import Foundation
 
-func loadChapters(completion: @escaping (([Chapter]) -> Void)) {
+func loadChapters(bookId: String, completion: @escaping (([Chapter]) -> Void)) {
     let url = URL(string: "https://5f45f1b4e165a60016ba9147.mockapi.io/api/v1/chapters")!
     let urlRequest = URLRequest(url: url)
     var chapters: [Chapter] = []
@@ -19,17 +19,29 @@ func loadChapters(completion: @escaping (([Chapter]) -> Void)) {
         data, urlResponse, error in
         
         guard let data = data else { return }
-        do {
-            let object = try JSONSerialization.jsonObject(with: data, options: [])
-            print(object)
-        } catch let error {
-            print(error)
-        }
+//        do {
+//            let object = try JSONSerialization.jsonObject(with: data, options: [])
+//            print(object)
+//        } catch let error {
+//            print(error)
+//        }
         
         do {
             chapters = try decoder.decode([Chapter].self, from: data)
             print(chapters)
-            completion(chapters)
+            let newChapters = chapters.filter { (Chapter) -> Bool in
+                Chapter.bookId.description == bookId
+                
+            }
+//            var newChapters: [Chapter] = []
+//            for chapter in chapters {
+//                if chapter.bookId.description == bookId {
+//                    newChapters.append(chapter)
+//                }
+//            }
+            
+            print(newChapters)
+            completion(newChapters)
         } catch let error {
             print("Error = \(error)")
         }

@@ -21,14 +21,14 @@ func loadBooks(completion: @escaping (([Book]) -> Void)) {
         guard let data = data else { return }
         do {
             let object = try JSONSerialization.jsonObject(with: data, options: [])
-            print(object)
+//            print(object)
         } catch let error {
             print(error)
         }
         
         do {
             books = try decoder.decode([Book].self, from: data)
-            print(books)
+//            print(books)
             completion(books)
         } catch let error {
             print("Error = \(error)")

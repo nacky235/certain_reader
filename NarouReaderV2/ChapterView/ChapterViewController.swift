@@ -51,8 +51,15 @@ class ChapterViewController: UIViewController {
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
+        
+        viewModel.book
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.fetch()
+            }
+            .store(in: &cancellables)
 
-        viewModel.fetch()
+        print(viewModel.book.value.id)
     }
     
     func transition(selectedRow: Int) -> Void {

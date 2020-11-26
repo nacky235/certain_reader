@@ -8,6 +8,7 @@
 import Foundation
 
 struct Chapter:  Identifiable, Equatable, Codable {
+    var bookId: Int
     var id: String
     var title: String
     var episodeNumber: Int

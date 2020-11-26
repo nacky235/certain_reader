@@ -13,4 +13,12 @@ struct Book: Identifiable, Equatable, Codable {
     var author: String
     var genre: String
     var subgenre: String
+    
+    init() {
+        self.id = "0"
+        self.title = "default"
+        self.author = "default"
+        self.genre = "default"
+        self.subgenre = "default"
+    }
 }

@@ -36,7 +36,6 @@
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
 		68EF8D402563439E0099504E /* NovelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D3C2563439E0099504E /* NovelViewController.xib */; };
-		68EF8D4F256498C90099504E /* chapters.json in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D4E256498C90099504E /* chapters.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +91,6 @@
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
 		68EF8D3C2563439E0099504E /* NovelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelViewController.xib; sourceTree = "<group>"; };
-		68EF8D4E256498C90099504E /* chapters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chapters.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				6889C1B62560C4E0001263BD /* Chapter.swift */,
-				68EF8D4E256498C90099504E /* chapters.json */,
 				689BE1E72565D9F2003D668B /* Book.swift */,
 				689BE1EC2565DB86003D668B /* LoadBooksModel.swift */,
 				689BE1F42565DBD7003D668B /* LoadChaptersModel.swift */,
@@ -361,7 +358,6 @@
 				6889C1A22560C3E3001263BD /* MainViewController.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
 				685076F02560C2EE00766490 /* Assets.xcassets in Resources */,
-				68EF8D4F256498C90099504E /* chapters.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

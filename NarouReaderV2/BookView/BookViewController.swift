@@ -55,10 +55,10 @@ class BookViewController: UIViewController {
         viewModel.fetch()
     }
     
-    func transition(selectedRow: Int) -> Void {
+    func transition(selectedBook: Book) -> Void {
         //[] 値渡し　to chapterViewcontroller
         
-        let chapterViewModel = ChapterViewModel(dependency: .default)
+        let chapterViewModel = ChapterViewModel(dependency: .default, book: selectedBook)
         let next = ChapterViewController(viewModel: chapterViewModel)
         navigationController?.pushViewController(next, animated: true)
         
@@ -93,6 +93,7 @@ extension BookViewController: UITableViewDataSource {
 
 extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transition(selectedRow: indexPath.row)
+        print("\(viewModel.books.value[indexPath.row].id) is selected")
+        transition(selectedBook: viewModel.books.value[indexPath.row])
     }
 }
