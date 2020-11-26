@@ -4,7 +4,11 @@ import UIKit
 class NovelViewController: UIViewController {
     private let viewModel: NovelViewModelProtocol
 
-    @IBOutlet private weak var textField: UITextView!
+    @IBOutlet private weak var textField: UITextView! {
+        didSet {
+            textField.isEditable = false
+        }
+    }
 
     private var cancellables = Set<AnyCancellable>()
 
