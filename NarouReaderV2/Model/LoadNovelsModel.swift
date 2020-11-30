@@ -21,9 +21,9 @@ func loadNovels(completion: @escaping (([Novel]) -> Void)) {
         print("aaa")
 
         do {
-            novels = try JSONDecoder().decode([Novel].self, from: data!)
+            let novelContainer = try JSONDecoder().decode(NarouContainer.self, from: data!)
             print(novels)
-            completion(novels)
+            completion(novelContainer.novels)
         } catch let error {
             print("Error = \(error)")
         }
@@ -33,5 +33,4 @@ func loadNovels(completion: @escaping (([Novel]) -> Void)) {
     task.resume()
     
 }
-
 

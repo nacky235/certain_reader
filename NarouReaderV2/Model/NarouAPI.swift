@@ -8,8 +8,6 @@
 import Foundation
 
 struct Novel: Codable {
-//    var allcount: Int
-    
     var title: String
 //    var ncode: String
 //    var userid: Int
@@ -49,4 +47,30 @@ struct Novel: Codable {
 //    var kaiwaritu: Int
 //    var novelupdated_at: String
 //    var updated_at: String
+}
+
+struct AllCount: Codable {
+    var allcount: Int
+}
+
+struct NarouContainer: Decodable {
+    var allCount: AllCount
+    var novels: [Novel]
+
+    init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+
+        // Assume the first one is a Dog
+        self.allCount = try container.decode(AllCount.self)
+
+        // Assume the rest are Turtle
+        var novels: [Novel] = []
+
+        while !container.isAtEnd {
+            let novel = try container.decode(Novel.self)
+            novels.append(novel)
+        }
+
+        self.novels = novels
+    }
 }
