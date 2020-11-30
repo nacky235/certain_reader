@@ -2,6 +2,17 @@ import Combine
 import UIKit
 
 class SearchViewController: UIViewController {
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
     public let viewModel: SearchViewModelProtocol
 
     private var cancellables = Set<AnyCancellable>()
@@ -36,5 +47,28 @@ class SearchViewController: UIViewController {
             .store(in: &cancellables)
 
         // Do any additional setup after loading the view.
+        loadNovels { (novel) in
+            return
+        }
+    }
+}
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+        //
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //
+        return UITableViewCell()
+    }
+    
+    
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //
     }
 }

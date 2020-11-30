@@ -35,6 +35,7 @@ class MainViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+        print("aaa")
     }
     
     @IBAction func readButtonTapped(_ sender: Any) {
@@ -42,4 +43,11 @@ class MainViewController: UIViewController {
         let next = BookViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(next, animated: true)
     }
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        let viewModel = SearchViewModel(dependency: .default)
+        let next = SearchViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(next, animated: true)
+    }
+    
 }

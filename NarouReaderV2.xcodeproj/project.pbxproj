@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */; };
 		684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */; };
+		684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */; };
+		684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC2F256F80FB000C4EAA /* SearchViewController.swift */; };
+		684EDC34256F80FB000C4EAA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC30256F80FB000C4EAA /* SearchViewModel.swift */; };
+		684EDC35256F80FB000C4EAA /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 684EDC31256F80FB000C4EAA /* SearchViewController.xib */; };
+		684EDC3A256F85AC000C4EAA /* NarouAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC39256F85AC000C4EAA /* NarouAPI.swift */; };
+		684EDC3F2571C63F000C4EAA /* LoadNovelsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC3E2571C63F000C4EAA /* LoadNovelsModel.swift */; };
 		685076E72560C2EB00766490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685076E62560C2EB00766490 /* AppDelegate.swift */; };
 		685076F02560C2EE00766490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 685076EF2560C2EE00766490 /* Assets.xcassets */; };
 		685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 685076F12560C2EE00766490 /* LaunchScreen.storyboard */; };
@@ -58,6 +64,12 @@
 /* Begin PBXFileReference section */
 		684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewTableViewCell.swift; sourceTree = "<group>"; };
 		684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChapterViewTableViewCell.xib; sourceTree = "<group>"; };
+		684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelProtocol.swift; sourceTree = "<group>"; };
+		684EDC2F256F80FB000C4EAA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		684EDC30256F80FB000C4EAA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		684EDC31256F80FB000C4EAA /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		684EDC39256F85AC000C4EAA /* NarouAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouAPI.swift; sourceTree = "<group>"; };
+		684EDC3E2571C63F000C4EAA /* LoadNovelsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNovelsModel.swift; sourceTree = "<group>"; };
 		685076E32560C2EB00766490 /* NarouReaderV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarouReaderV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685076E62560C2EB00766490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		685076EF2560C2EE00766490 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +139,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		684EDC2D256F710F000C4EAA /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */,
+				684EDC2F256F80FB000C4EAA /* SearchViewController.swift */,
+				684EDC30256F80FB000C4EAA /* SearchViewModel.swift */,
+				684EDC31256F80FB000C4EAA /* SearchViewController.xib */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
 		685076DA2560C2EB00766490 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +173,7 @@
 		685076E52560C2EB00766490 /* NarouReaderV2 */ = {
 			isa = PBXGroup;
 			children = (
+				684EDC2D256F710F000C4EAA /* SearchView */,
 				6889C19A2560C3D6001263BD /* Main */,
 				689BE1D825652E4E003D668B /* BookView */,
 				6889C1A62560C465001263BD /* ChapterView */,
@@ -211,6 +235,8 @@
 				689BE1E72565D9F2003D668B /* Book.swift */,
 				689BE1EC2565DB86003D668B /* LoadBooksModel.swift */,
 				689BE1F42565DBD7003D668B /* LoadChaptersModel.swift */,
+				684EDC39256F85AC000C4EAA /* NarouAPI.swift */,
+				684EDC3E2571C63F000C4EAA /* LoadNovelsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -355,6 +381,7 @@
 				684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */,
 				689BE1E025652E62003D668B /* BookViewController.xib in Resources */,
 				689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */,
+				684EDC35256F80FB000C4EAA /* SearchViewController.xib in Resources */,
 				6889C1A22560C3E3001263BD /* MainViewController.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
 				685076F02560C2EE00766490 /* Assets.xcassets in Resources */,
@@ -382,11 +409,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				684EDC34256F80FB000C4EAA /* SearchViewModel.swift in Sources */,
 				689BE1E82565D9F2003D668B /* Book.swift in Sources */,
 				6889C1A02560C3E3001263BD /* MainViewController.swift in Sources */,
 				68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */,
 				68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */,
 				689BE1DE25652E62003D668B /* BookViewController.swift in Sources */,
+				684EDC3A256F85AC000C4EAA /* NarouAPI.swift in Sources */,
 				685076E72560C2EB00766490 /* AppDelegate.swift in Sources */,
 				684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */,
 				689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */,
@@ -394,8 +423,11 @@
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
 				6889C19F2560C3E3001263BD /* MainViewModelProtocol.swift in Sources */,
 				6889C1A12560C3E3001263BD /* MainViewModel.swift in Sources */,
+				684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */,
 				689BE20C2565F891003D668B /* BookViewTableViewCell.swift in Sources */,
+				684EDC3F2571C63F000C4EAA /* LoadNovelsModel.swift in Sources */,
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
+				684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,
 				6889C1B72560C4E0001263BD /* Chapter.swift in Sources */,
 				689BE1F52565DBD7003D668B /* LoadChaptersModel.swift in Sources */,

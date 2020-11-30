@@ -30,7 +30,7 @@ func loadChapters(bookId: String, completion: @escaping (([Chapter]) -> Void)) {
             chapters = try decoder.decode([Chapter].self, from: data)
             print(chapters)
             let newChapters = chapters.filter { (Chapter) -> Bool in
-                Chapter.bookId.description == bookId
+            Chapter.bookId.description == bookId
                 
             }
 //            var newChapters: [Chapter] = []

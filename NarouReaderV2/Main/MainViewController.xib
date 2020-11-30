@@ -31,6 +31,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPj-GS-tBn">
                             <rect key="frame" x="0.0" y="82" width="46" height="30"/>
                             <state key="normal" title="さがす"/>
+                            <connections>
+                                <action selector="searchButtonTapped:" destination="-1" eventType="touchUpInside" id="Rss-28-myL"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
