@@ -35,7 +35,6 @@ class MainViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        print("aaa")
     }
     
     @IBAction func readButtonTapped(_ sender: Any) {

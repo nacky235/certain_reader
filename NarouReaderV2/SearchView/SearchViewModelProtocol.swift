@@ -4,6 +4,10 @@ public enum SearchCommand {
     case showSnackbar(String)
 }
 
-public protocol SearchViewModelProtocol {
+protocol SearchViewModelProtocol {
     var command: PassthroughSubject<SearchCommand, Never> { get }
+    var novels: CurrentValueSubject<[Novel], Never> { get }
+    
+    func fetch()
+    
 }

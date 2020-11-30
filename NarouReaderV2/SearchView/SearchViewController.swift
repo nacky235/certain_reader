@@ -46,22 +46,27 @@ class SearchViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        // Do any additional setup after loading the view.
-        loadNovels { (novel) in
-            return
-        }
+        viewModel.novels
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.fetch()
+        
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-        //
+        return viewModel.novels.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //
-        return UITableViewCell()
+        let cell = UITableViewCell()
+        cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
+        return cell
     }
     
     
