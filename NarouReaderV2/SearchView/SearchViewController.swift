@@ -62,6 +62,12 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         
     }
     
+    func pushDetailView(novel: Novel) {
+        let viewModel = NovelsDetailViewModel(dependency: .default, novel: novel)
+        let next = NovelsDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(next, animated: true)
+    }
+    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -75,7 +81,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pushDetailView(novel: viewModel.novels.value[indexPath.row])
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {

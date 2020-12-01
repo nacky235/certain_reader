@@ -11,10 +11,10 @@ struct Novel: Codable {
     var title: String
 //    var ncode: String
 //    var userid: Int
-//    var writer: String
-//    var story: String
-//    var biggenre: Int
-//    var genre: Int
+    var writer: String
+    var story: String
+    var biggenre: Int
+    var genre: Int
 //    var gensaku: String
 //    var keyword: String
 //    var general_firstup: String

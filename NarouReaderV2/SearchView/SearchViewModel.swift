@@ -58,4 +58,6 @@ final class SearchViewModel: SearchViewModelProtocol {
             self.novels.send(novel)
         }
     }
+    
+    
 }
