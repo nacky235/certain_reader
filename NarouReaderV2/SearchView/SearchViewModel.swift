@@ -2,6 +2,7 @@ import Combine
 import Foundation
 
 final class SearchViewModel: SearchViewModelProtocol {
+    
     struct Dependency {
         // Add dependencies here.
 
@@ -16,6 +17,8 @@ final class SearchViewModel: SearchViewModelProtocol {
 
     let command = PassthroughSubject<SearchCommand, Never>()
     let novels = CurrentValueSubject<[Novel], Never>([])
+    var filteredNovels: [Novel] = []
+    
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency

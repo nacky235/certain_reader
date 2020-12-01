@@ -7,6 +7,7 @@ public enum SearchCommand {
 protocol SearchViewModelProtocol {
     var command: PassthroughSubject<SearchCommand, Never> { get }
     var novels: CurrentValueSubject<[Novel], Never> { get }
+    var filteredNovels: [Novel] { get set }
     
     func fetch()
     

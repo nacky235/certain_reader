@@ -1,21 +1,20 @@
 import Combine
 import UIKit
 
-class SearchViewController: UIViewController {
-    @IBOutlet weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.delegate = self
-        }
-    }
+class SearchViewController: UIViewController, UISearchControllerDelegate {
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
         }
     }
+   
     public let viewModel: SearchViewModelProtocol
 
     private var cancellables = Set<AnyCancellable>()
+    
+    var searchController = UISearchController(searchResultsController: nil)
 
     init(viewModel: SearchViewModelProtocol) {
         self.viewModel = viewModel
@@ -29,7 +28,13 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -56,6 +61,7 @@ class SearchViewController: UIViewController {
         viewModel.fetch()
         
     }
+    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -73,7 +79,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchViewController: UISearchBarDelegate {
+    //NSComparisonPredicate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //
+        var filterdArr: [Novel] = []
+            if let text = searchBar.text {
+                if text == "" {
+                    viewModel.fetch()
+                    tableView.reloadData()
+                } else {
+                    for novel in viewModel.novels.value {
+                        if novel.title.contains(text) {
+                            filterdArr.append(novel)
+                        }
+                    }
+                }
+                viewModel.novels.send(filterdArr)
+            }
     }
 }
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+//        let searchBar = searchController.searchBar
+//        searchBarSearchButtonClicked(searchBar)
+    }
+}
+
+
+

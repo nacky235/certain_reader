@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="NarouReaderV2" customModuleProvider="target">
             <connections>
-                <outlet property="searchBar" destination="6Rp-R5-Zkv" id="JN9-OM-XZq"/>
                 <outlet property="tableView" destination="QfB-5O-ihM" id="4lG-m5-2SP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,12 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6Rp-R5-Zkv">
-                    <rect key="frame" x="0.0" y="44" width="414" height="56"/>
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QfB-5O-ihM">
-                    <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
@@ -33,12 +28,9 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="QfB-5O-ihM" secondAttribute="bottom" id="0a0-Xo-uz2"/>
-                <constraint firstItem="6Rp-R5-Zkv" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7o0-J6-xat"/>
                 <constraint firstItem="QfB-5O-ihM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AAD-cs-shk"/>
-                <constraint firstItem="6Rp-R5-Zkv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FEt-9l-11Y"/>
-                <constraint firstItem="QfB-5O-ihM" firstAttribute="top" secondItem="6Rp-R5-Zkv" secondAttribute="bottom" id="Qb7-V6-Cmo"/>
                 <constraint firstItem="QfB-5O-ihM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Tst-ev-CRf"/>
-                <constraint firstItem="6Rp-R5-Zkv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hBr-7X-Og9"/>
+                <constraint firstItem="QfB-5O-ihM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mr1-93-CqX"/>
             </constraints>
             <point key="canvasLocation" x="-196" y="146"/>
         </view>
