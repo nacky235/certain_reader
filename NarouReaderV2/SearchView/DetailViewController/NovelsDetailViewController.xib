@@ -79,9 +79,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="QmC-9C-bdw"/>
                     </constraints>
-                    <state key="normal" title="リーディングリストに追加">
+                    <state key="normal" title="読む(webview)">
                         <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="readButton:" destination="-1" eventType="touchUpInside" id="AVe-Cq-eaQ"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

@@ -1,5 +1,6 @@
 import Combine
 import UIKit
+import SafariServices
 
 class NovelsDetailViewController: UIViewController {
     public let viewModel: NovelsDetailViewModelProtocol
@@ -52,5 +53,13 @@ class NovelsDetailViewController: UIViewController {
         bigGenreLabel?.text = viewModel.novel.biggenre.description
         genreLabel?.text = viewModel.novel.genre.description
         storyLabel?.text = viewModel.novel.story
+    }
+    @IBAction func readButton(_ sender: Any) {
+        let narouUrl = NSURL(string: "https://ncode.syosetu.com/" + "\(viewModel.novel.ncode)")
+
+            if let narouUrl = narouUrl {
+                let safariViewController = SFSafariViewController(url: narouUrl as URL)
+                present(safariViewController, animated: false, completion: nil)
+            }
     }
 }

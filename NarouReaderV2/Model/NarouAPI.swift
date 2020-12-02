@@ -8,8 +8,9 @@
 import Foundation
 
 struct Novel: Codable {
+//    var chapters: [Chapter]
     var title: String
-//    var ncode: String
+    var ncode: String
 //    var userid: Int
     var writer: String
     var story: String

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AE426B9EBA4270BEDBADF6F /* Pods_NarouReaderV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCAA078269395D968AEFDE22 /* Pods_NarouReaderV2Tests.framework */; };
+		41AF2E5402C0572284490144 /* Pods_NarouReaderV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF306F7C03352A26149CC17 /* Pods_NarouReaderV2.framework */; };
+		5151DD1F0B7FA1A356B0FA1B /* Pods_NarouReaderV2_NarouReaderV2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DE01CE854CC01335E4B65A /* Pods_NarouReaderV2_NarouReaderV2UITests.framework */; };
 		684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */; };
 		684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */; };
 		684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */; };
@@ -65,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E990B471C0811DFFC45F540 /* Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewTableViewCell.swift; sourceTree = "<group>"; };
 		684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChapterViewTableViewCell.xib; sourceTree = "<group>"; };
 		684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -109,6 +113,14 @@
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
 		68EF8D3C2563439E0099504E /* NovelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelViewController.xib; sourceTree = "<group>"; };
+		6EF306F7C03352A26149CC17 /* Pods_NarouReaderV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NarouReaderV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71DE01CE854CC01335E4B65A /* Pods_NarouReaderV2_NarouReaderV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NarouReaderV2_NarouReaderV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7551225CF9AB769BCFE1BE33 /* Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		940856AFF1E03A25C66701D4 /* Pods-NarouReaderV2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2Tests.release.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2Tests/Pods-NarouReaderV2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		95EC7C9B02A1DCD0D7A0B863 /* Pods-NarouReaderV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2.debug.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2/Pods-NarouReaderV2.debug.xcconfig"; sourceTree = "<group>"; };
+		A211BA4A46E1D5B0D1CF3057 /* Pods-NarouReaderV2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2Tests.debug.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2Tests/Pods-NarouReaderV2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		AABAB9A248F29A87974A6DE4 /* Pods-NarouReaderV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2.release.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2/Pods-NarouReaderV2.release.xcconfig"; sourceTree = "<group>"; };
+		BCAA078269395D968AEFDE22 /* Pods_NarouReaderV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NarouReaderV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41AF2E5402C0572284490144 /* Pods_NarouReaderV2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE426B9EBA4270BEDBADF6F /* Pods_NarouReaderV2Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,12 +144,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5151DD1F0B7FA1A356B0FA1B /* Pods_NarouReaderV2_NarouReaderV2UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39EFA45E6C4F6796D118B6FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95EC7C9B02A1DCD0D7A0B863 /* Pods-NarouReaderV2.debug.xcconfig */,
+				AABAB9A248F29A87974A6DE4 /* Pods-NarouReaderV2.release.xcconfig */,
+				5E990B471C0811DFFC45F540 /* Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig */,
+				7551225CF9AB769BCFE1BE33 /* Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig */,
+				A211BA4A46E1D5B0D1CF3057 /* Pods-NarouReaderV2Tests.debug.xcconfig */,
+				940856AFF1E03A25C66701D4 /* Pods-NarouReaderV2Tests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		684EDBFA2569F19A000C4EAA /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +193,8 @@
 				685076FC2560C2EE00766490 /* NarouReaderV2Tests */,
 				685077072560C2EE00766490 /* NarouReaderV2UITests */,
 				685076E42560C2EB00766490 /* Products */,
+				39EFA45E6C4F6796D118B6FE /* Pods */,
+				ABD82D084C9E33A299C3BAF3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,6 +321,16 @@
 			path = NovelView;
 			sourceTree = "<group>";
 		};
+		ABD82D084C9E33A299C3BAF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6EF306F7C03352A26149CC17 /* Pods_NarouReaderV2.framework */,
+				71DE01CE854CC01335E4B65A /* Pods_NarouReaderV2_NarouReaderV2UITests.framework */,
+				BCAA078269395D968AEFDE22 /* Pods_NarouReaderV2Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,9 +338,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6850770D2560C2EE00766490 /* Build configuration list for PBXNativeTarget "NarouReaderV2" */;
 			buildPhases = (
+				FFC25D6C013820BF2843DFF5 /* [CP] Check Pods Manifest.lock */,
 				685076DF2560C2EB00766490 /* Sources */,
 				685076E02560C2EB00766490 /* Frameworks */,
 				685076E12560C2EB00766490 /* Resources */,
+				15FEF89D87341437884F7AC1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,6 +357,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 685077102560C2EE00766490 /* Build configuration list for PBXNativeTarget "NarouReaderV2Tests" */;
 			buildPhases = (
+				98341BBB3F24704B3FBB1D9B /* [CP] Check Pods Manifest.lock */,
 				685076F52560C2EE00766490 /* Sources */,
 				685076F62560C2EE00766490 /* Frameworks */,
 				685076F72560C2EE00766490 /* Resources */,
@@ -332,9 +376,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 685077132560C2EE00766490 /* Build configuration list for PBXNativeTarget "NarouReaderV2UITests" */;
 			buildPhases = (
+				52371FDBD6196DF4E58FAE6A /* [CP] Check Pods Manifest.lock */,
 				685077002560C2EE00766490 /* Sources */,
 				685077012560C2EE00766490 /* Frameworks */,
 				685077022560C2EE00766490 /* Resources */,
+				4B33FC174B3A0DE73A8F232E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -421,6 +467,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15FEF89D87341437884F7AC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NarouReaderV2/Pods-NarouReaderV2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NarouReaderV2/Pods-NarouReaderV2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NarouReaderV2/Pods-NarouReaderV2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B33FC174B3A0DE73A8F232E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52371FDBD6196DF4E58FAE6A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NarouReaderV2-NarouReaderV2UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98341BBB3F24704B3FBB1D9B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NarouReaderV2Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFC25D6C013820BF2843DFF5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NarouReaderV2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		685076DF2560C2EB00766490 /* Sources */ = {
@@ -617,6 +766,7 @@
 		};
 		6850770E2560C2EE00766490 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95EC7C9B02A1DCD0D7A0B863 /* Pods-NarouReaderV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -636,6 +786,7 @@
 		};
 		6850770F2560C2EE00766490 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AABAB9A248F29A87974A6DE4 /* Pods-NarouReaderV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -655,6 +806,7 @@
 		};
 		685077112560C2EE00766490 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A211BA4A46E1D5B0D1CF3057 /* Pods-NarouReaderV2Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -677,6 +829,7 @@
 		};
 		685077122560C2EE00766490 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 940856AFF1E03A25C66701D4 /* Pods-NarouReaderV2Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -699,6 +852,7 @@
 		};
 		685077142560C2EE00766490 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E990B471C0811DFFC45F540 /* Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -719,6 +873,7 @@
 		};
 		685077152560C2EE00766490 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7551225CF9AB769BCFE1BE33 /* Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
