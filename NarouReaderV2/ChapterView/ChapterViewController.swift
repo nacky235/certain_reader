@@ -62,11 +62,11 @@ class ChapterViewController: UIViewController {
         print(viewModel.book.value.id)
     }
     
-    func transition(selectedRow: Int) -> Void {
-        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
-        let next = NovelViewController(viewModel: novelViewModel)
-        navigationController?.pushViewController(next, animated: true)
-    }
+//    func transition(selectedRow: Int) -> Void {
+//        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
+//        let next = NovelViewController(viewModel: novelViewModel)
+//        navigationController?.pushViewController(next, animated: true)
+//    }
     
     @objc func fetch() {
         viewModel.fetch()
@@ -92,7 +92,7 @@ extension ChapterViewController: UITableViewDataSource {
 
 extension ChapterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transition(selectedRow: indexPath.row)
+//        transition(selectedRow: indexPath.row)
     }
 }
 

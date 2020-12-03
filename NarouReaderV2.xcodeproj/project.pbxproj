@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,7 @@
 		6864BFD12576481700FE1A0B /* NovelsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864BFCD2576481700FE1A0B /* NovelsDetailViewController.swift */; };
 		6864BFD22576481700FE1A0B /* NovelsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864BFCE2576481700FE1A0B /* NovelsDetailViewModel.swift */; };
 		6864BFD32576481700FE1A0B /* NovelsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864BFCF2576481700FE1A0B /* NovelsDetailViewController.xib */; };
+		6864C0342577A87200FE1A0B /* htmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864C0332577A87200FE1A0B /* htmlParser.swift */; };
 		6889C19F2560C3E3001263BD /* MainViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889C19B2560C3E3001263BD /* MainViewModelProtocol.swift */; };
 		6889C1A02560C3E3001263BD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889C19C2560C3E3001263BD /* MainViewController.swift */; };
 		6889C1A12560C3E3001263BD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889C19D2560C3E3001263BD /* MainViewModel.swift */; };
@@ -91,6 +92,7 @@
 		6864BFCD2576481700FE1A0B /* NovelsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelsDetailViewController.swift; sourceTree = "<group>"; };
 		6864BFCE2576481700FE1A0B /* NovelsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelsDetailViewModel.swift; sourceTree = "<group>"; };
 		6864BFCF2576481700FE1A0B /* NovelsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelsDetailViewController.xib; sourceTree = "<group>"; };
+		6864C0332577A87200FE1A0B /* htmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = htmlParser.swift; sourceTree = "<group>"; };
 		6889C19B2560C3E3001263BD /* MainViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelProtocol.swift; sourceTree = "<group>"; };
 		6889C19C2560C3E3001263BD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6889C19D2560C3E3001263BD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -161,7 +163,6 @@
 				A211BA4A46E1D5B0D1CF3057 /* Pods-NarouReaderV2Tests.debug.xcconfig */,
 				940856AFF1E03A25C66701D4 /* Pods-NarouReaderV2Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -285,6 +286,7 @@
 				689BE1EC2565DB86003D668B /* LoadBooksModel.swift */,
 				689BE1F42565DBD7003D668B /* LoadChaptersModel.swift */,
 				684EDC39256F85AC000C4EAA /* NarouAPI.swift */,
+				6864C0332577A87200FE1A0B /* htmlParser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -597,6 +599,7 @@
 				684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,
 				6864BFD22576481700FE1A0B /* NovelsDetailViewModel.swift in Sources */,
+				6864C0342577A87200FE1A0B /* htmlParser.swift in Sources */,
 				6889C1B72560C4E0001263BD /* Chapter.swift in Sources */,
 				689BE1F52565DBD7003D668B /* LoadChaptersModel.swift in Sources */,
 				68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */,

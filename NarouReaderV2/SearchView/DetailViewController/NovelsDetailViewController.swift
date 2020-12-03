@@ -55,11 +55,13 @@ class NovelsDetailViewController: UIViewController {
         storyLabel?.text = viewModel.novel.story
     }
     @IBAction func readButton(_ sender: Any) {
-        let narouUrl = NSURL(string: "https://ncode.syosetu.com/" + "\(viewModel.novel.ncode)")
+        getNovel(ncode: viewModel.novel.ncode, episodeNumber: 1) { cts in
+            
+            let viewModel = NovelViewModel(content: cts)
+            let vc = NovelViewController(viewModel: viewModel)
+            self.present(vc, animated: true, completion: nil)
+        }
 
-            if let narouUrl = narouUrl {
-                let safariViewController = SFSafariViewController(url: narouUrl as URL)
-                present(safariViewController, animated: false, completion: nil)
-            }
+            
     }
 }

@@ -28,7 +28,7 @@ func loadChapters(bookId: String, completion: @escaping (([Chapter]) -> Void)) {
         
         do {
             chapters = try decoder.decode([Chapter].self, from: data)
-            print(chapters)
+//            print(chapters)
             let newChapters = chapters.filter { (Chapter) -> Bool in
             Chapter.bookId.description == bookId
                 
@@ -40,7 +40,7 @@ func loadChapters(bookId: String, completion: @escaping (([Chapter]) -> Void)) {
 //                }
 //            }
             
-            print(newChapters)
+//            print(newChapters)
             completion(newChapters)
         } catch let error {
             print("Error = \(error)")
