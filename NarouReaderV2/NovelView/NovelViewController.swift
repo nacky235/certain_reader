@@ -41,11 +41,12 @@ class NovelViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.chapter
-            .receive(on: RunLoop.main)
-            .sink { [weak self] ch in
-                self?.textField?.text = ch.content
-            }
-            .store(in: &cancellables)
+//        viewModel.content
+//            .receive(on: RunLoop.main)
+//            .sink { [weak self] ch in
+//                self?.textField?.text = ch.content
+//            }
+//            .store(in: &cancellables)
+        self.textField?.text = viewModel.content.value[0]
     }
 }

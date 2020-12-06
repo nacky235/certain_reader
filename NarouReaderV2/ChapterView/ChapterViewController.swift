@@ -52,38 +52,36 @@ class ChapterViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.book
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.fetch()
-            }
-            .store(in: &cancellables)
-
-        print(viewModel.book.value.id)
+        
     }
-    
-    func transition(selectedRow: Int) -> Void {
-        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
-        let next = NovelViewController(viewModel: novelViewModel)
-        navigationController?.pushViewController(next, animated: true)
-    }
-    
+//    func transition(selectedRow: Int) -> Void {
+//        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
+//        let next = NovelViewController(viewModel: novelViewModel)
+//        navigationController?.pushViewController(next, animated: true)
+//    }
     @objc func fetch() {
-        viewModel.fetch()
+        viewModel.fetch("n7798go")
     }
 }
 
 extension ChapterViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.chapters.value.chapterTitle.count
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.chapters.value.chapterTitle[section]
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chapters.value.count
+        return viewModel.chapters.value.chapterName[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ChapterCell", for: indexPath) as? ChapterViewTableViewCell {
+            let chapters = viewModel.chapters.value.chapterName[indexPath.section]
             
-            cell.title.text = viewModel.chapters.value[indexPath.row].title
-            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
-            
+            cell.title.text = chapters[indexPath.row]
+//            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
+
             return cell
         }
         return UITableViewCell()
@@ -92,7 +90,7 @@ extension ChapterViewController: UITableViewDataSource {
 
 extension ChapterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transition(selectedRow: indexPath.row)
+//        transition(selectedRow: indexPath.row)
     }
 }
 

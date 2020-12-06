@@ -16,3 +16,11 @@ struct Chapter:  Identifiable, Equatable, Codable {
     
 }
 
+struct NovelsChapter: Equatable {
+    var chapterTitle: [String]
+    var chapterName: [[String]]
+    init() {
+        self.chapterName = [[String]]()
+        self.chapterTitle = [String]()
+    }
+}

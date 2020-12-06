@@ -6,10 +6,11 @@ public enum ChapterCommand {
 
 protocol ChapterViewModelProtocol {
     var command: PassthroughSubject<ChapterCommand, Never> { get }
-    var book: CurrentValueSubject<Book, Never> { get }
-    var chapters: CurrentValueSubject<[Chapter], Never> { get }
+    var novelTitle: CurrentValueSubject<String, Never> { get }
+    var chapters: CurrentValueSubject<NovelsChapter,Never> { get }
     
     
-    func fetch()
+    
+    func fetch(_ ncode: String)
 }
 
