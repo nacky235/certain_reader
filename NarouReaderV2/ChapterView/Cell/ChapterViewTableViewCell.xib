@@ -16,17 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="362" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-Di-6KE">
-                        <rect key="frame" x="51" y="11" width="300" height="40"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pv-bb-OJ0">
-                        <rect key="frame" x="11" y="11" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="wFX-9Z-xgh"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-Di-6KE">
+                        <rect key="frame" x="11" y="11" width="340" height="40"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,15 +27,11 @@
                     <constraint firstAttribute="bottom" secondItem="FC1-Di-6KE" secondAttribute="bottom" constant="11" id="NPB-Vv-hNc"/>
                     <constraint firstAttribute="trailing" secondItem="FC1-Di-6KE" secondAttribute="trailing" constant="11" id="UhS-NS-vha"/>
                     <constraint firstItem="FC1-Di-6KE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="XPL-Fi-QDB"/>
-                    <constraint firstItem="9Pv-bb-OJ0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="eyo-hU-ak5"/>
-                    <constraint firstItem="9Pv-bb-OJ0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="neL-cc-i22"/>
-                    <constraint firstAttribute="bottom" secondItem="9Pv-bb-OJ0" secondAttribute="bottom" constant="11" id="qVc-4r-k5o"/>
-                    <constraint firstItem="FC1-Di-6KE" firstAttribute="leading" secondItem="9Pv-bb-OJ0" secondAttribute="trailing" id="tPa-Ol-kPp"/>
+                    <constraint firstItem="FC1-Di-6KE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="YoP-GF-wwi"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="episodeNumber" destination="9Pv-bb-OJ0" id="J0E-ck-3oX"/>
                 <outlet property="title" destination="FC1-Di-6KE" id="5ji-lv-MOx"/>
             </connections>
             <point key="canvasLocation" x="-33.333333333333336" y="79.6875"/>

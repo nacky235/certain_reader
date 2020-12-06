@@ -58,7 +58,7 @@ class BookViewController: UIViewController {
     func transition(selectedBook: Book) -> Void {
         //[] 値渡し　to chapterViewcontroller
         
-        let chapterViewModel = ChapterViewModel(dependency: .default, book: selectedBook)
+        let chapterViewModel = ChapterViewModel(dependency: .default, ncode: "n7789go")
         let next = ChapterViewController(viewModel: chapterViewModel)
         navigationController?.pushViewController(next, animated: true)
         
