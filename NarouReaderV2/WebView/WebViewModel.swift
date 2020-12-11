@@ -1,28 +1,24 @@
 import Combine
 
-final class BookViewModel: BookViewModelProtocol {
+final class WebViewModel: WebViewModelProtocol {
     struct Dependency {
+        // Add dependencies here.
+
         static var `default`: Dependency {
             Dependency(
+                // Create a new aggregated dependency.
             )
         }
     }
 
-    // [Output]
+    // Output
 
-    let command = PassthroughSubject<BookCommand, Never>()
-    let books = CurrentValueSubject<[Novel], Never>([])
+    let command = PassthroughSubject<WebCommand, Never>()
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
 
     init(dependency: Dependency) {
         self.dependency = dependency
-    }
-    
-    func fetch() {
-        loadBooks { books in
-            self.books.send(books)
-        }
     }
 }

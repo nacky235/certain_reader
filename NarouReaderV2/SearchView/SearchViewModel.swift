@@ -31,17 +31,16 @@ final class SearchViewModel: SearchViewModelProtocol {
         
         let url = URL(string: "https://api.syosetu.com/novelapi/api/?out=json")!
         let urlRequest = URLRequest(url: url)
-        let novels: [Novel] = []
 
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest) {
             data, urlResponse, error in
 
-            print("aaa")
+        
 
             do {
                 let novelContainer = try JSONDecoder().decode(NarouContainer.self, from: data!)
-                print(novels)
+                
                 completion(novelContainer.novels)
             } catch let error {
                 print("Error = \(error)")

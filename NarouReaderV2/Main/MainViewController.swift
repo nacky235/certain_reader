@@ -1,5 +1,6 @@
 import Combine
 import UIKit
+import WebKit
 
 class MainViewController: UIViewController {
     public let viewModel: MainViewModelProtocol
@@ -35,6 +36,8 @@ class MainViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        
     }
     
     @IBAction func readButtonTapped(_ sender: Any) {
@@ -46,6 +49,12 @@ class MainViewController: UIViewController {
     @IBAction func searchButtonTapped(_ sender: Any) {
         let viewModel = SearchViewModel(dependency: .default)
         let next = SearchViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(next, animated: true)
+    }
+    
+    @IBAction func testButtonTapped(_ sender: Any) {
+        let viewModel = WebViewModel(dependency: .default)
+        let next = WebViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(next, animated: true)
     }
     

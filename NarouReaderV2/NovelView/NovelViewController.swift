@@ -1,5 +1,6 @@
 import Combine
 import UIKit
+import WebKit
 
 class NovelViewController: UIViewController {
     private let viewModel: NovelViewModelProtocol
@@ -47,6 +48,10 @@ class NovelViewController: UIViewController {
 //                self?.textField?.text = ch.content
 //            }
 //            .store(in: &cancellables)
-        self.textField?.text = viewModel.content.value[0]
+//        self.textField?.text = viewModel.content.value[0]
+        
+        
+        
+        
     }
 }

@@ -55,13 +55,16 @@ class NovelsDetailViewController: UIViewController {
         storyLabel?.text = viewModel.novel.story
     }
     @IBAction func readButton(_ sender: Any) {
-        getNovel(ncode: viewModel.novel.ncode, episodeNumber: 1) { cts in
-            
-            let viewModel = NovelViewModel(content: cts)
-            let vc = NovelViewController(viewModel: viewModel)
-            self.present(vc, animated: true, completion: nil)
-        }
-
+//        getNovel(ncode: viewModel.novel.ncode, episodeNumber: 1) { cts in
+//
+//            let viewModel = NovelViewModel(content: cts)
+//            let vc = NovelViewController(viewModel: viewModel)
+//            self.present(vc, animated: true, completion: nil)
+//        }
+        
+        let viewModel = NovelViewModel(content: [loadContent(ep: 1)])
+        let vc = NovelViewController(viewModel: viewModel)
+        self.present(vc, animated: true, completion: nil)
             
     }
 }

@@ -42,3 +42,59 @@ func loadChapters(url: URL) {
         print("Error: \(error)")
     }
 }
+
+func loadContent(ep: Int) -> String {
+//    let url = URL(string: "https://ncode.syosetu.com/n7798go/\(ep.description)")! //[]
+    
+    let url = URL(string: "https://ncode.syosetu.com/n6167eq")!
+    do {
+        let html = try String(contentsOf: url, encoding: .utf8)
+        if let doc = try? HTML(html: html, encoding: .utf8) {
+            for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
+                let chapterTitle = thing.xpath(#"//*[@class="novel_subtitle"]"#).first?.text
+                if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first?.toHTML {
+                   
+                    print(honbun)
+                    return honbun
+                    
+                }
+
+            }
+        }
+    } catch let error {
+        print("Error: \(error)")
+    }
+    return ""
+}
+//
+//func loadContent(ep: Int) -> [String] {
+//    let url = URL(string: "https://ncode.syosetu.com/n7798go/\(ep.description)")! //[]
+//    do {
+//        let html = try String(contentsOf: url, encoding: .utf8)
+//        if let doc = try? HTML(html: html, encoding: .utf8) {
+//            for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
+//                let chapterTitle = thing.xpath(#"//*[@class="novel_subtitle"]"#).first?.text
+//                if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first, let firstLine = honbun.xpath("//p").first {
+//
+//                    print(firstLine.text)
+//                    let content: [String] = getNovelsContent(currentElement: firstLine)
+//                    print(content)
+//                    return content
+//                }
+//
+//            }
+//        }
+//    } catch let error {
+//        print("Error: \(error)")
+//    }
+//    return []
+//}
+//
+//func getNovelsContent(currentElement: XMLElement) -> [String] {
+//    let line = currentElement.text ?? ""
+//
+//    guard let next = currentElement.nextSibling else { return [line] }
+//    // リンクはこうやってとる
+////     let link = linkElement["href"]
+//    return [line] + getNovelsContent(currentElement: next)
+//}

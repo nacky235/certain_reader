@@ -55,7 +55,7 @@ class BookViewController: UIViewController {
         viewModel.fetch()
     }
     
-    func transition(selectedBook: Book) -> Void {
+    func transition(selectedBook: Novel) -> Void {
         //[] 値渡し　to chapterViewcontroller
         
         let chapterViewModel = ChapterViewModel(dependency: .default, ncode: "n7789go")
@@ -79,9 +79,9 @@ extension BookViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookViewTableViewCell {
             
             cell.title.text = viewModel.books.value[indexPath.row].title
-            cell.author.text = viewModel.books.value[indexPath.row].author
-            cell.genre.text = viewModel.books.value[indexPath.row].genre
-            cell.subGenre.text = viewModel.books.value[indexPath.row].subgenre
+            cell.author.text = viewModel.books.value[indexPath.row].writer
+            cell.genre.text = viewModel.books.value[indexPath.row].genre.description
+            cell.subGenre.text = viewModel.books.value[indexPath.row].biggenre.description
             
             return cell
         }
@@ -93,7 +93,7 @@ extension BookViewController: UITableViewDataSource {
 
 extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(viewModel.books.value[indexPath.row].id) is selected")
+        print("\(viewModel.books.value[indexPath.row].title) is selected")
         transition(selectedBook: viewModel.books.value[indexPath.row])
     }
 }

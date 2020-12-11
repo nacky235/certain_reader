@@ -41,6 +41,9 @@
                     <rect key="frame" x="167" y="542" width="81" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="chaperView"/>
+                    <connections>
+                        <action selector="testButtonTapped:" destination="-1" eventType="touchUpInside" id="SyL-AJ-Wm8"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
