@@ -58,7 +58,6 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
             }
             .store(in: &cancellables)
         
-        viewModel.fetch()
         
     }
     
@@ -89,19 +88,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     //NSComparisonPredicate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        var filterdArr: [Novel] = []
             if let text = searchBar.text {
                 if text == "" {
-                    viewModel.fetch()
-                    tableView.reloadData()
+                    viewModel.loadNovels(parameters: Parameters(word: "")) { novels in
+                        self.viewModel.novels.send(novels)
+                    }
                 } else {
-                    for novel in viewModel.novels.value {
-                        if novel.title.contains(text) {
-                            filterdArr.append(novel)
-                        }
+                    let parameters = Parameters(word: text)
+                    viewModel.loadNovels(parameters: parameters) { novels in
+                        self.viewModel.novels.send(novels)
                     }
                 }
-                viewModel.novels.send(filterdArr)
             }
     }
 }

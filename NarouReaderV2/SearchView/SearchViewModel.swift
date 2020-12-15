@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import Alamofire
 
 final class SearchViewModel: SearchViewModelProtocol {
     
@@ -27,35 +28,32 @@ final class SearchViewModel: SearchViewModelProtocol {
         self.dependency = dependency
     }
     
-    func loadNovels(completion: @escaping (([Novel]) -> Void)) {
+    func loadNovels(parameters: Parameters ,completion: @escaping (([Novel]) -> Void)) {
         
-        let url = URL(string: "https://api.syosetu.com/novelapi/api/?out=json")!
-        let urlRequest = URLRequest(url: url)
+        let decoder = JSONDecoder()
 
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest) {
-            data, urlResponse, error in
-
-        
-
-            do {
-                let novelContainer = try JSONDecoder().decode(NarouContainer.self, from: data!)
+        AF.request("https://api.syosetu.com/novelapi/api/", method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default).responseString { response in
+            
+            switch response.result {
+            case .success:
+                do {
+                    let novels = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
+                    print(novels.novels)
+                    completion(novels.novels)
+                    
+                } catch let error {
+                    print("Error = \(error)")
+                }
+            case .failure:
+                print("failure")
                 
-                completion(novelContainer.novels)
-            } catch let error {
-                print("Error = \(error)")
             }
+            
+            
+            
+            
         }
         
-        
-        task.resume()
-        
-    }
-    
-    func fetch() {
-        loadNovels { (novel) in
-            self.novels.send(novel)
-        }
     }
     
     

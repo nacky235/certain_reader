@@ -1,4 +1,6 @@
 import Combine
+import Foundation
+import Alamofire
 
 final class BookViewModel: BookViewModelProtocol {
     struct Dependency {
@@ -21,8 +23,33 @@ final class BookViewModel: BookViewModelProtocol {
     }
     
     func fetch() {
-        loadBooks { books in
-            self.books.send(books)
+        loadNovels()
+    }
+    
+    func loadNovels() {
+        //[] calling api can be onetime
+        let novelList = UserDefaults.standard.stringArray(forKey: "novels")?.joined(separator: "-")
+        if novelList != nil {
+            let decoder = JSONDecoder()
+            let parameter = ["ncode": novelList,"out":"json"]
+            
+            AF.request("https://api.syosetu.com/novelapi/api/", method: .get, parameters: parameter, encoder: URLEncodedFormParameterEncoder.default).responseString { response in
+                
+                switch response.result {
+                case .success:
+                    
+                    do {
+                        let novels = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
+                        self.books.send(novels.novels)
+                    } catch let error {
+                        print("Error = \(error)")
+                    }
+                case .failure:
+                    print("failure")
+                }
+            }
         }
     }
+    
 }
+

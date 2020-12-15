@@ -53,6 +53,7 @@ class BookViewController: UIViewController {
             .store(in: &cancellables)
         
         viewModel.fetch()
+        
     }
     
     func transition(selectedBook: Novel) -> Void {

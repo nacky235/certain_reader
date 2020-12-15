@@ -10,6 +10,6 @@ import Foundation
 struct Parameters: Encodable {
     let title: Int = 1 //words in title
     let word: String
-    let genre: Int
     let out: String = "json"
+    let type: String = "re"
 }

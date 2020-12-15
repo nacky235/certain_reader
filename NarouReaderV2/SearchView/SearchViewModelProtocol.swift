@@ -9,6 +9,6 @@ protocol SearchViewModelProtocol {
     var novels: CurrentValueSubject<[Novel], Never> { get }
     var filteredNovels: [Novel] { get set }
     
-    func fetch()
+    func loadNovels(parameters:Parameters,completion: @escaping (([Novel]) -> Void))
     
 }

@@ -24,7 +24,9 @@ class NovelsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:.add , target: self, action: #selector(addToShelf))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -66,5 +68,10 @@ class NovelsDetailViewController: UIViewController {
         let vc = NovelViewController(viewModel: viewModel)
         self.present(vc, animated: true, completion: nil)
             
+    }
+    @objc func addToShelf() {
+        var list = UserDefaults.standard.stringArray(forKey: "novels")
+        list?.append(viewModel.novel.ncode)
+        UserDefaults.standard.set(list, forKey: "novels")
     }
 }

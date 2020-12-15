@@ -9,4 +9,5 @@ protocol BookViewModelProtocol {
     var books: CurrentValueSubject<[Novel], Never> { get }
     
     func fetch()
+    func loadNovels()
 }

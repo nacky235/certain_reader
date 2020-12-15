@@ -43,7 +43,7 @@ import Alamofire
 //
 
 func loadBooks(completion: @escaping (([Novel]) -> Void)) {
-    let parameters = Parameters(word: "転生したらスライム",genre: 101)
+    let parameters = Parameters(word: "転生したらスライム")
     let decoder = JSONDecoder()
 
     AF.request("https://api.syosetu.com/novelapi/api/", method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default).responseString { response in
