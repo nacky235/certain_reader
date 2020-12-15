@@ -52,7 +52,7 @@ class ChapterViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        
+        fetch()
     }
 //    func transition(selectedRow: Int) -> Void {
 //        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
@@ -60,7 +60,9 @@ class ChapterViewController: UIViewController {
 //        navigationController?.pushViewController(next, animated: true)
 //    }
     @objc func fetch() {
-        viewModel.fetch("n7798go")
+        print(viewModel.chapters.value.chapterTitle)
+        viewModel.fetch(viewModel.ncode)
+        
     }
 }
 

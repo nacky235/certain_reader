@@ -81,7 +81,6 @@ func loadContent(ep: Int) -> String {
 //                    print(content)
 //                    return content
 //                }
-//
 //            }
 //        }
 //    } catch let error {
@@ -98,3 +97,11 @@ func loadContent(ep: Int) -> String {
 ////     let link = linkElement["href"]
 //    return [line] + getNovelsContent(currentElement: next)
 //}
+func getNovelsContent(currentElement: XMLElement) -> [String] {
+    let line = currentElement.text ?? ""
+
+    guard let next = currentElement.nextSibling else { return [line] }
+    // リンクはこうやってとる
+//     let link = linkElement["href"]
+    return [line] + getNovelsContent(currentElement: next)
+}

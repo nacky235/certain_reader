@@ -19,13 +19,14 @@ final class ChapterViewModel: ChapterViewModelProtocol {
     let command = PassthroughSubject<ChapterCommand, Never>()
     var novelTitle = CurrentValueSubject<String, Never>("")
     var chapters = CurrentValueSubject<NovelsChapter, Never>(NovelsChapter())
+    var ncode = ""
 
     private let cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
 
     init(dependency: Dependency, ncode: String) {
         self.dependency = dependency
-        self.fetch(ncode)
+        self.ncode = ncode
     }
 
     func fetch(_ ncode: String) {
@@ -40,15 +41,25 @@ final class ChapterViewModel: ChapterViewModelProtocol {
                     self.novelTitle.send(novelTitle!)
                     if let box = thing.xpath(#"//*[@class="index_box"]"#).first {
                         var novelsChapter: NovelsChapter = NovelsChapter()
-                        for (index, chapter) in box.xpath(#"//*[@class="chapter_title"]"#).enumerated() {
-                            let chapterTitle = chapter.content
-                            novelsChapter.chapterTitle.append(chapterTitle!)
-                            let chapters = getChapters(chapterTitleElement: chapter)
+                        
+                        if box.xpath(#"//*[@class="chapter_title"]"#).first != nil {
+                            for chapter in box.xpath(#"//*[@class="chapter_title"]"#) {
+                                let chapterTitle = chapter.content
+                                novelsChapter.chapterTitle.append(chapterTitle!)
+                                let chapters = getChapters(chapterTitleElement: chapter)
+                                novelsChapter.chapterName.append(chapters)
+                                print("ChapterTitle: ", chapterTitle ?? "")
+                                print("Chapters", novelsChapter.chapterName)
+                                self.chapters.send(novelsChapter)
+                            }
+                        } else {
+                            let firstChapter = box.xpath("//dl").first
+                            novelsChapter.chapterTitle.append("")
+                            let chapters = getChapters(chapterTitleElement: firstChapter!)
                             novelsChapter.chapterName.append(chapters)
-                            print("ChapterTitle: ", chapterTitle ?? "")
-                            print("Chapters", novelsChapter.chapterName)
                             self.chapters.send(novelsChapter)
                         }
+                        
                     }
 
                 }
