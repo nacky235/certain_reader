@@ -86,6 +86,8 @@ extension ChapterViewController: UITableViewDataSource {
             if let readList = UserDefaults.standard.stringArray(forKey: "readList") {
                 let isRead: Bool = readList.filter({ $0 == chapters[indexPath.row].link }).isEmpty
                 cell.isReadLabel.text = isRead ? "":"読"
+            } else {
+                cell.isReadLabel.text = ""
             }
             
             cell.title.text = chapters[indexPath.row].title
