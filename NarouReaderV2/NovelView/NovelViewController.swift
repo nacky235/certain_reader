@@ -5,11 +5,13 @@ import WebKit
 class NovelViewController: UIViewController {
     private let viewModel: NovelViewModelProtocol
 
-    @IBOutlet private weak var textField: UITextView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            textField.isEditable = false
+            tableView.delegate = self
+            tableView.dataSource = self
         }
     }
+    
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -42,16 +44,34 @@ class NovelViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-//        viewModel.content
-//            .receive(on: RunLoop.main)
-//            .sink { [weak self] ch in
-//                self?.textField?.text = ch.content
-//            }
-//            .store(in: &cancellables)
-//        self.textField?.text = viewModel.content.value[0]
-        
-        
-        
+        viewModel.content
+            .receive(on: RunLoop.main)
+            .sink { [weak self] ch in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+                
         
     }
+}
+
+extension NovelViewController: UITableViewDelegate {
+    
+}
+
+extension NovelViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.content.value.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") {
+            cell.textLabel?.text = viewModel.content.value[indexPath.row]
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    
 }

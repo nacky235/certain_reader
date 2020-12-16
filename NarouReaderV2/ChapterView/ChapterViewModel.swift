@@ -46,17 +46,17 @@ final class ChapterViewModel: ChapterViewModelProtocol {
                             for chapter in box.xpath(#"//*[@class="chapter_title"]"#) {
                                 let chapterTitle = chapter.content
                                 novelsChapter.chapterTitle.append(chapterTitle!)
-                                let chapters = getChapters(chapterTitleElement: chapter)
-                                novelsChapter.chapterName.append(chapters)
-                                print("ChapterTitle: ", chapterTitle ?? "")
-                                print("Chapters", novelsChapter.chapterName)
+                                let chapters = getChapters(chapterTitleElement: chapter.nextSibling!)
+                                novelsChapter.chapters.append(chapters)
+//                                print("ChapterTitle: ", chapterTitle ?? "")
+//                                print("Chapters", novelsChapter.chapterName)
                                 self.chapters.send(novelsChapter)
                             }
                         } else {
                             let firstChapter = box.xpath("//dl").first
                             novelsChapter.chapterTitle.append("")
                             let chapters = getChapters(chapterTitleElement: firstChapter!)
-                            novelsChapter.chapterName.append(chapters)
+                            novelsChapter.chapters.append(chapters)
                             self.chapters.send(novelsChapter)
                         }
                         

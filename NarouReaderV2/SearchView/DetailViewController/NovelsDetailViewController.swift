@@ -56,19 +56,6 @@ class NovelsDetailViewController: UIViewController {
         genreLabel?.text = viewModel.novel.genre.description
         storyLabel?.text = viewModel.novel.story
     }
-    @IBAction func readButton(_ sender: Any) {
-//        getNovel(ncode: viewModel.novel.ncode, episodeNumber: 1) { cts in
-//
-//            let viewModel = NovelViewModel(content: cts)
-//            let vc = NovelViewController(viewModel: viewModel)
-//            self.present(vc, animated: true, completion: nil)
-//        }
-        
-        let viewModel = NovelViewModel(content: [loadContent(ep: 1)])
-        let vc = NovelViewController(viewModel: viewModel)
-        self.present(vc, animated: true, completion: nil)
-            
-    }
     @objc func addToShelf() {
         var list = UserDefaults.standard.stringArray(forKey: "novels")
         list?.append(viewModel.novel.ncode)

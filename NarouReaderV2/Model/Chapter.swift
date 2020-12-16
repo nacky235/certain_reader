@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct Chapter:  Identifiable, Equatable, Codable {
-    var bookId: Int
-    var id: String
+struct Chapter:  Equatable, Codable {
     var title: String
-    var episodeNumber: Int
-    var content: String
-    
+    var link: String
+    init() {
+        self.title = ""
+        self.link = ""
+    }
 }
 
 struct NovelsChapter: Equatable {
     var chapterTitle: [String]
-    var chapterName: [[String]]
+    var chapters: [[Chapter]]
     init() {
-        self.chapterName = [[String]]()
+        self.chapters = [[Chapter]]()
         self.chapterTitle = [String]()
     }
 }

@@ -54,13 +54,15 @@ class ChapterViewController: UIViewController {
         
         fetch()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    }
 //    func transition(selectedRow: Int) -> Void {
 //        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
 //        let next = NovelViewController(viewModel: novelViewModel)
 //        navigationController?.pushViewController(next, animated: true)
 //    }
     @objc func fetch() {
-        print(viewModel.chapters.value.chapterTitle)
         viewModel.fetch(viewModel.ncode)
         
     }
@@ -74,14 +76,14 @@ extension ChapterViewController: UITableViewDataSource {
         return viewModel.chapters.value.chapterTitle[section]
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chapters.value.chapterName[section].count
+        return viewModel.chapters.value.chapters[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ChapterCell", for: indexPath) as? ChapterViewTableViewCell {
-            let chapters = viewModel.chapters.value.chapterName[indexPath.section]
+            let chapters = viewModel.chapters.value.chapters[indexPath.section]
             
-            cell.title.text = chapters[indexPath.row]
+            cell.title.text = chapters[indexPath.row].title
 //            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
 
             return cell
@@ -92,7 +94,34 @@ extension ChapterViewController: UITableViewDataSource {
 
 extension ChapterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        transition(selectedRow: indexPath.row)
+        
+        
+//        for i in 0...indexPath.section {
+//            if indexPath.section == 0 {
+//                cellCount = indexPath.row + 1
+//                break
+//            }
+//            switch i {
+//            case 0:
+//                cellCount = indexPath.row
+//            default:
+//                cellCount += viewModel.chapters.value.chapterName[indexPath.section - 1].count
+//                if indexPath.row == viewModel.chapters.value.chapterName[indexPath.section].endIndex - 1 {
+//                    cellCount += indexPath.row - 1
+//                } else {
+//                    cellCount += indexPath.row
+//                }
+//            }
+//        }
+        
+        let ncode = viewModel.ncode
+        let link = viewModel.chapters.value.chapters[indexPath.section][indexPath.row].link
+        let url = "https://ncode.syosetu.com/" + link
+        
+        let vm = NovelViewModel(url: url)
+        let vc = NovelViewController(viewModel: vm)
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 }
 

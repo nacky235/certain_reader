@@ -8,13 +8,22 @@
 import Foundation
 import Kanna
 
-let url = URL(string: "https://ncode.syosetu.com/n7798go/")!
 
-func getChapters(chapterTitleElement: XMLElement) -> [String] {
-    guard let next = chapterTitleElement.nextSibling, let linkElement = next.xpath("//dd/a").first, let title = linkElement.text else { return [] }
+//func getChapters1(chapterTitleElement: XMLElement) -> [String] {
+//    guard let next = chapterTitleElement.nextSibling, let linkElement = next.xpath("//dd/a").first, let title = linkElement.text else { return [] }
+//    // リンクはこうやってとる
+//    // let link = linkElement["href"]
+//    return [title] + getChapters(chapterTitleElement: next)
+//}
+func getChapters(chapterTitleElement: XMLElement) -> [Chapter] {
+    var chapter: Chapter = Chapter()
+    guard let title = chapterTitleElement.xpath("//dd/a").first?.text, let link = chapterTitleElement.xpath("//dd/a").first?["href"] else { return [] }
+    chapter.title = title
+    chapter.link = link
+    guard let next = chapterTitleElement.nextSibling else { return [chapter] }
     // リンクはこうやってとる
     // let link = linkElement["href"]
-    return [title] + getChapters(chapterTitleElement: next)
+    return [chapter] + getChapters(chapterTitleElement: next)
 }
 
 func loadChapters(url: URL) {
@@ -43,51 +52,51 @@ func loadChapters(url: URL) {
     }
 }
 
-func loadContent(ep: Int) -> String {
-//    let url = URL(string: "https://ncode.syosetu.com/n7798go/\(ep.description)")! //[]
-    
-    let url = URL(string: "https://ncode.syosetu.com/n6167eq")!
-    do {
-        let html = try String(contentsOf: url, encoding: .utf8)
-        if let doc = try? HTML(html: html, encoding: .utf8) {
-            for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
-                let chapterTitle = thing.xpath(#"//*[@class="novel_subtitle"]"#).first?.text
-                if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first?.toHTML {
-                   
-                    print(honbun)
-                    return honbun
-                    
-                }
-
-            }
-        }
-    } catch let error {
-        print("Error: \(error)")
-    }
-    return ""
-}
+//func loadContent(ep: Int) -> String {
+////    let url = URL(string: "https://ncode.syosetu.com/n7798go/\(ep.description)")! //[]
 //
-//func loadContent(ep: Int) -> [String] {
-//    let url = URL(string: "https://ncode.syosetu.com/n7798go/\(ep.description)")! //[]
+//    let url = URL(string: "https://ncode.syosetu.com/1755gq/")!
 //    do {
 //        let html = try String(contentsOf: url, encoding: .utf8)
 //        if let doc = try? HTML(html: html, encoding: .utf8) {
 //            for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
-//                let chapterTitle = thing.xpath(#"//*[@class="novel_subtitle"]"#).first?.text
-//                if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first, let firstLine = honbun.xpath("//p").first {
+////                let chapterTitle = thing.xpath(#"//*[@class="novel_subtitle"]"#).first?.text
+//                if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first?.toHTML {
 //
-//                    print(firstLine.text)
-//                    let content: [String] = getNovelsContent(currentElement: firstLine)
-//                    print(content)
-//                    return content
+//                    print(honbun)
+//                    return honbun
+//
 //                }
+//
 //            }
 //        }
 //    } catch let error {
 //        print("Error: \(error)")
 //    }
-//    return []
+//    return ""
 //}
+
+func loadContent(urlString: String) -> [String] {
+     //[]
+    if let url = URL(string: urlString) {
+        do {
+            let html = try String(contentsOf: url, encoding: .utf8)
+            if let doc = try? HTML(html: html, encoding: .utf8) {
+                for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
+                    if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first, let firstLine = honbun.xpath("//p").first {
+                        let content: [String] = getNovelsContent(currentElement: firstLine)
+//                        print(content)
+                        return content
+                    }
+                }
+            }
+        } catch let error {
+            print("Error: \(error)")
+        }
+    }
+    
+    return []
+}
 //
 //func getNovelsContent(currentElement: XMLElement) -> [String] {
 //    let line = currentElement.text ?? ""

@@ -73,30 +73,13 @@
                         </label>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdn-3l-grg">
-                    <rect key="frame" x="0.0" y="856" width="414" height="40"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="QmC-9C-bdw"/>
-                    </constraints>
-                    <state key="normal" title="読む(webview)">
-                        <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="readButton:" destination="-1" eventType="touchUpInside" id="AVe-Cq-eaQ"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="xdn-3l-grg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1ga-BM-SxZ"/>
                 <constraint firstItem="Jkv-63-rGt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4OJ-5B-87f"/>
                 <constraint firstItem="Jkv-63-rGt" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="40" id="4zc-rc-Oxq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xdn-3l-grg" secondAttribute="trailing" id="9n6-7b-Me0"/>
-                <constraint firstItem="xdn-3l-grg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GDv-Ag-PmP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jkv-63-rGt" secondAttribute="trailing" id="IGU-Et-Eb4"/>
-                <constraint firstAttribute="bottom" secondItem="xdn-3l-grg" secondAttribute="bottom" id="UJU-65-eVx"/>
                 <constraint firstItem="Jkv-63-rGt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="VTE-Ps-DGH"/>
             </constraints>
             <point key="canvasLocation" x="-13.043478260869566" y="108.48214285714285"/>

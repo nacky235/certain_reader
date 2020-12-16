@@ -16,7 +16,7 @@ func getNovel(ncode: String, episodeNumber: Int, completion: @escaping (([String
     AF.request("https://ncode.syosetu.com/\(ncode)/\(episodeNumber.description)/").responseString { response in
             if case .success(let value) = response.result {
                 
-                contents = getNovelsContents(html: value)
+//                contents = loadContent(html: value)
 //                    print(response)
                 completion(contents)
             }
