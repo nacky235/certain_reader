@@ -57,8 +57,14 @@ class NovelsDetailViewController: UIViewController {
         storyLabel?.text = viewModel.novel.story
     }
     @objc func addToShelf() {
-        var list = UserDefaults.standard.stringArray(forKey: "novels")
-        list?.append(viewModel.novel.ncode)
-        UserDefaults.standard.set(list, forKey: "novels")
+        if var list = UserDefaults.standard.stringArray(forKey: "novels") {
+            if list.filter({ $0 == viewModel.novel.ncode }) == [] {
+                list.append(viewModel.novel.ncode)
+            }
+            UserDefaults.standard.set(list, forKey: "novels")
+        } else {
+            UserDefaults.standard.setValue([viewModel.novel.ncode], forKey: "novels")
+        }
+        
     }
 }

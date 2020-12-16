@@ -27,9 +27,8 @@ final class BookViewModel: BookViewModelProtocol {
     }
     
     func loadNovels() {
-        //[] calling api can be onetime
-        let novelList = UserDefaults.standard.stringArray(forKey: "novels")?.joined(separator: "-")
-        if novelList != nil {
+        if UserDefaults.standard.stringArray(forKey: "novels") != [] {
+            let novelList = UserDefaults.standard.stringArray(forKey: "novels")?.joined(separator: "-")
             let decoder = JSONDecoder()
             let parameter = ["ncode": novelList,"out":"json"]
             

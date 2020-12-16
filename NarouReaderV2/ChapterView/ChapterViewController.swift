@@ -90,6 +90,8 @@ extension ChapterViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    
 }
 
 extension ChapterViewController: UITableViewDelegate {
@@ -113,8 +115,6 @@ extension ChapterViewController: UITableViewDelegate {
 //                }
 //            }
 //        }
-        
-        let ncode = viewModel.ncode
         let link = viewModel.chapters.value.chapters[indexPath.section][indexPath.row].link
         let url = "https://ncode.syosetu.com/" + link
         

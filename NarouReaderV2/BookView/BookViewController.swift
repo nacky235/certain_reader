@@ -52,8 +52,12 @@ class BookViewController: UIViewController {
             }
             .store(in: &cancellables)
         
+        
         viewModel.fetch()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fetch()
     }
     
     func transition(selectedBook: Novel) -> Void {
@@ -96,5 +100,15 @@ extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(viewModel.books.value[indexPath.row].title) is selected")
         transition(selectedBook: viewModel.books.value[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        viewModel.books.value.remove(at: indexPath.row)
+        if var list = UserDefaults.standard.stringArray(forKey: "novels") {
+            list.remove(at: indexPath.row)
+            UserDefaults.standard.set(list, forKey: "novels")
+        }
+        
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }

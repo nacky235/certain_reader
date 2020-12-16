@@ -55,6 +55,10 @@
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
 		68EF8D402563439E0099504E /* NovelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EF8D3C2563439E0099504E /* NovelViewController.xib */; };
+		68F2F9E525899D0000FED2CC /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F2F9E325899D0000FED2CC /* TextTableViewCell.swift */; };
+		68F2F9E625899D0000FED2CC /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F2F9E425899D0000FED2CC /* TextTableViewCell.xib */; };
+		68F2F9EC2589B06400FED2CC /* ToNextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F2F9EA2589B06400FED2CC /* ToNextTableViewCell.swift */; };
+		68F2F9ED2589B06400FED2CC /* ToNextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F2F9EB2589B06400FED2CC /* ToNextTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,10 @@
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
 		68EF8D3C2563439E0099504E /* NovelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelViewController.xib; sourceTree = "<group>"; };
+		68F2F9E325899D0000FED2CC /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		68F2F9E425899D0000FED2CC /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
+		68F2F9EA2589B06400FED2CC /* ToNextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNextTableViewCell.swift; sourceTree = "<group>"; };
+		68F2F9EB2589B06400FED2CC /* ToNextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToNextTableViewCell.xib; sourceTree = "<group>"; };
 		6EF306F7C03352A26149CC17 /* Pods_NarouReaderV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NarouReaderV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71DE01CE854CC01335E4B65A /* Pods_NarouReaderV2_NarouReaderV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NarouReaderV2_NarouReaderV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7551225CF9AB769BCFE1BE33 /* Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -343,12 +351,24 @@
 		68EF8D38256343820099504E /* NovelView */ = {
 			isa = PBXGroup;
 			children = (
+				68F2F9E225899CD100FED2CC /* Ocell */,
 				68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */,
 				68EF8D3A2563439E0099504E /* NovelViewController.swift */,
 				68EF8D3B2563439E0099504E /* NovelViewModel.swift */,
 				68EF8D3C2563439E0099504E /* NovelViewController.xib */,
 			);
 			path = NovelView;
+			sourceTree = "<group>";
+		};
+		68F2F9E225899CD100FED2CC /* Ocell */ = {
+			isa = PBXGroup;
+			children = (
+				68F2F9E325899D0000FED2CC /* TextTableViewCell.swift */,
+				68F2F9E425899D0000FED2CC /* TextTableViewCell.xib */,
+				68F2F9EA2589B06400FED2CC /* ToNextTableViewCell.swift */,
+				68F2F9EB2589B06400FED2CC /* ToNextTableViewCell.xib */,
+			);
+			path = Ocell;
 			sourceTree = "<group>";
 		};
 		ABD82D084C9E33A299C3BAF3 /* Frameworks */ = {
@@ -471,12 +491,14 @@
 			files = (
 				6889C1AE2560C485001263BD /* ChapterViewController.xib in Resources */,
 				685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */,
+				68F2F9E625899D0000FED2CC /* TextTableViewCell.xib in Resources */,
 				6864BFD32576481700FE1A0B /* NovelsDetailViewController.xib in Resources */,
 				684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */,
 				689BE1E025652E62003D668B /* BookViewController.xib in Resources */,
 				689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */,
 				684EDC35256F80FB000C4EAA /* SearchViewController.xib in Resources */,
 				6889C1A22560C3E3001263BD /* MainViewController.xib in Resources */,
+				68F2F9ED2589B06400FED2CC /* ToNextTableViewCell.xib in Resources */,
 				6835A3FE257DC7FB00C997F2 /* WebViewController.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
 				685076F02560C2EE00766490 /* Assets.xcassets in Resources */,
@@ -622,6 +644,7 @@
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
 				6835A3FC257DC7FB00C997F2 /* WebViewController.swift in Sources */,
 				68951537257B15FA00881E7D /* getNovels.swift in Sources */,
+				68F2F9E525899D0000FED2CC /* TextTableViewCell.swift in Sources */,
 				6889C19F2560C3E3001263BD /* MainViewModelProtocol.swift in Sources */,
 				6889C1A12560C3E3001263BD /* MainViewModel.swift in Sources */,
 				684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */,
@@ -629,6 +652,7 @@
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
 				684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,
+				68F2F9EC2589B06400FED2CC /* ToNextTableViewCell.swift in Sources */,
 				6864BFD22576481700FE1A0B /* NovelsDetailViewModel.swift in Sources */,
 				6835A3FD257DC7FB00C997F2 /* WebViewModel.swift in Sources */,
 				6864C0342577A87200FE1A0B /* htmlParser.swift in Sources */,
