@@ -30,6 +30,9 @@ class NovelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let url = "https://ncode.syosetu.com/" + viewModel.chapter.link
+        loadContent(urlString: url)
+        
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -54,6 +57,7 @@ class NovelViewController: UIViewController {
             .store(in: &cancellables)
         
         
+        
                 
         
     }
@@ -65,21 +69,19 @@ extension NovelViewController: UITableViewDelegate {
 
 extension NovelViewController: UITableViewDataSource, ToNextContent {
     func toNextContent() {
-        let url = viewModel.url
-        
-        let ch = url.dropFirst(35)
-        print(ch)
-        
-        if let ep = Int(ch.dropLast(1)) {
-            let nextEp = ep + 1
-            let nextUrl = url.prefix(35) + nextEp.description
+        if let currentChapterLink = URL(string: viewModel.chapter.link), let ep = Int(currentChapterLink.lastPathComponent) {
             
-            let vm = NovelViewModel(url: String(nextUrl))
+            let nextEp = ep + 1
+            let nextUrl = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description)
+            
+            let nextChapterLink = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description)
+            let chapter = Chapter(link: nextChapterLink)
+            
+            let vm = NovelViewModel(chapter: chapter)
             let vc = NovelViewController(viewModel: vm)
             navigationController?.pushViewController(vc, animated: true)
+            
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,6 +93,7 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
         switch indexPath.row {
         case viewModel.content.value.count:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "toNext") as? ToNextTableViewCell {
+//                viewModel.chapter.isRead = true
                 cell.delegate = self
                 return cell
             }

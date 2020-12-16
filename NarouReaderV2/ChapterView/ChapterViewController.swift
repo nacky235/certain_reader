@@ -84,6 +84,7 @@ extension ChapterViewController: UITableViewDataSource {
             let chapters = viewModel.chapters.value.chapters[indexPath.section]
             
             cell.title.text = chapters[indexPath.row].title
+            cell.isReadLabel.text = chapters[indexPath.row].isRead ? "読":""
 //            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
 
             return cell
@@ -115,12 +116,12 @@ extension ChapterViewController: UITableViewDelegate {
 //                }
 //            }
 //        }
-        let link = viewModel.chapters.value.chapters[indexPath.section][indexPath.row].link
-        let url = "https://ncode.syosetu.com/" + link
+        let chapter = viewModel.chapters.value.chapters[indexPath.section][indexPath.row]
         
-        let vm = NovelViewModel(url: url)
+        let vm = NovelViewModel(chapter: chapter)
         let vc = NovelViewController(viewModel: vm)
-        navigationController?.pushViewController(vc, animated: true)
+        let navCon = UINavigationController(rootViewController: vc)
+        present(navCon, animated: true, completion: nil)
         
     }
 }

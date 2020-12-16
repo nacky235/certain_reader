@@ -8,8 +8,8 @@
 import UIKit
 
 class ChapterViewTableViewCell: UITableViewCell {
-    @IBOutlet weak var episodeNumber: UILabel!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var isReadLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

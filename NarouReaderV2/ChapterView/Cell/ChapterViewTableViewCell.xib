@@ -17,21 +17,36 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-Di-6KE">
-                        <rect key="frame" x="11" y="11" width="340" height="40"/>
+                        <rect key="frame" x="20" y="11" width="260" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poh-eF-k6z">
+                        <rect key="frame" x="300" y="11" width="42" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="zvU-56-gOM"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="poh-eF-k6z" secondAttribute="bottom" constant="11" id="5ZO-Jk-lRG"/>
+                    <constraint firstAttribute="bottom" secondItem="FC1-Di-6KE" secondAttribute="bottom" constant="11" id="8IK-Sa-zvg"/>
+                    <constraint firstAttribute="trailing" secondItem="poh-eF-k6z" secondAttribute="trailing" constant="20" id="8za-Bn-oyC"/>
+                    <constraint firstItem="poh-eF-k6z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="CSo-MQ-qG1"/>
+                    <constraint firstItem="FC1-Di-6KE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="CXm-CG-cYY"/>
                     <constraint firstAttribute="bottom" secondItem="FC1-Di-6KE" secondAttribute="bottom" constant="11" id="NPB-Vv-hNc"/>
-                    <constraint firstAttribute="trailing" secondItem="FC1-Di-6KE" secondAttribute="trailing" constant="11" id="UhS-NS-vha"/>
                     <constraint firstItem="FC1-Di-6KE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="XPL-Fi-QDB"/>
-                    <constraint firstItem="FC1-Di-6KE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="YoP-GF-wwi"/>
+                    <constraint firstItem="poh-eF-k6z" firstAttribute="leading" secondItem="FC1-Di-6KE" secondAttribute="trailing" constant="20" id="cOA-0q-Xsl"/>
+                    <constraint firstItem="FC1-Di-6KE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="ojv-IL-ufs"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="isReadLabel" destination="poh-eF-k6z" id="BB5-ss-KiT"/>
                 <outlet property="title" destination="FC1-Di-6KE" id="5ji-lv-MOx"/>
             </connections>
             <point key="canvasLocation" x="-33.333333333333336" y="79.6875"/>

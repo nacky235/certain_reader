@@ -10,9 +10,16 @@ import Foundation
 struct Chapter:  Equatable, Codable {
     var title: String
     var link: String
+    var isRead: Bool
     init() {
         self.title = ""
         self.link = ""
+        self.isRead = false
+    }
+    init(link: String) {
+        self.title = ""
+        self.link = link
+        self.isRead = false
     }
 }
 

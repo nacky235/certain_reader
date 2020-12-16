@@ -19,6 +19,7 @@ final class NovelViewModel: NovelViewModelProtocol {
     let command = PassthroughSubject<NovelCommand, Never>()
 //    let chapter: CurrentValueSubject<Chapter, Never> = (Chapter())
     let content: CurrentValueSubject<[String], Never>
+    var chapter: Chapter
     var url: String
 
 
@@ -30,11 +31,25 @@ final class NovelViewModel: NovelViewModelProtocol {
 //        self.dependency = dependency
 //    }
     
-    init(url: String) {
+    init(chapter: Chapter) {
         self.dependency = .default
         self.content = CurrentValueSubject<[String], Never>([])
-        self.url = url
-        self.loadContent(urlString: url)
+        self.chapter = chapter
+        self.url = "https://ncode.syosetu.com/" + chapter.link
+    }
+    
+
+    deinit {
+        if chapter.isRead {
+            if var list = UserDefaults.standard.stringArray(forKey: "readList") {
+                if list.filter({ $0 == chapter.link }) == [] {
+                    list.append(chapter.link)
+                }
+                UserDefaults.standard.set(list, forKey: "readList")
+            } else {
+                UserDefaults.standard.setValue([chapter.link], forKey: "readList")
+            }
+        }
     }
     
 //    func loadContent(urlString: String) -> [String] {
