@@ -56,6 +56,7 @@ class ChapterViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        fetch()
     }
 //    func transition(selectedRow: Int) -> Void {
 //        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
@@ -82,9 +83,13 @@ extension ChapterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ChapterCell", for: indexPath) as? ChapterViewTableViewCell {
             let chapters = viewModel.chapters.value.chapters[indexPath.section]
+            if let readList = UserDefaults.standard.stringArray(forKey: "readList") {
+                let isRead: Bool = readList.filter({ $0 == chapters[indexPath.row].link }).isEmpty
+                cell.isReadLabel.text = isRead ? "":"読"
+            }
             
             cell.title.text = chapters[indexPath.row].title
-            cell.isReadLabel.text = chapters[indexPath.row].isRead ? "読":""
+            
 //            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
 
             return cell

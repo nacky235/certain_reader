@@ -19,7 +19,7 @@ final class NovelViewModel: NovelViewModelProtocol {
     let command = PassthroughSubject<NovelCommand, Never>()
 //    let chapter: CurrentValueSubject<Chapter, Never> = (Chapter())
     let content: CurrentValueSubject<[String], Never>
-    var chapter: Chapter
+    var chapter: CurrentValueSubject<Chapter, Never>
     var url: String
 
 
@@ -34,20 +34,21 @@ final class NovelViewModel: NovelViewModelProtocol {
     init(chapter: Chapter) {
         self.dependency = .default
         self.content = CurrentValueSubject<[String], Never>([])
-        self.chapter = chapter
+        self.chapter = CurrentValueSubject<Chapter, Never>(chapter)
         self.url = "https://ncode.syosetu.com/" + chapter.link
+        loadContent(urlString: url)
     }
     
 
     deinit {
-        if chapter.isRead {
+        if chapter.value.isRead {
             if var list = UserDefaults.standard.stringArray(forKey: "readList") {
-                if list.filter({ $0 == chapter.link }) == [] {
-                    list.append(chapter.link)
+                if list.filter({ $0 == chapter.value.link }) == [] {
+                    list.append(chapter.value.link)
                 }
                 UserDefaults.standard.set(list, forKey: "readList")
             } else {
-                UserDefaults.standard.setValue([chapter.link], forKey: "readList")
+                UserDefaults.standard.setValue([chapter.value.link], forKey: "readList")
             }
         }
     }
@@ -93,7 +94,6 @@ final class NovelViewModel: NovelViewModelProtocol {
                     for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
                         if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first, let firstLine = honbun.xpath("//p").first {
                             let content: [String] = getNovelsContent(currentElement: firstLine)
-//                            print(content)
                             self.content.send(content)
                             return
                         }

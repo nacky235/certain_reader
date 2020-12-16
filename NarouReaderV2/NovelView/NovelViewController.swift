@@ -29,9 +29,6 @@ class NovelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let url = "https://ncode.syosetu.com/" + viewModel.chapter.link
-        loadContent(urlString: url)
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -56,10 +53,7 @@ class NovelViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        
-        
                 
-        
     }
 }
 
@@ -69,13 +63,11 @@ extension NovelViewController: UITableViewDelegate {
 
 extension NovelViewController: UITableViewDataSource, ToNextContent {
     func toNextContent() {
-        if let currentChapterLink = URL(string: viewModel.chapter.link), let ep = Int(currentChapterLink.lastPathComponent) {
+        if let currentChapterLink = URL(string: viewModel.chapter.value.link), let ep = Int(currentChapterLink.lastPathComponent) {
             
             let nextEp = ep + 1
-            let nextUrl = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description)
-            
             let nextChapterLink = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description)
-            let chapter = Chapter(link: nextChapterLink)
+            let chapter = Chapter(link: nextChapterLink.absoluteString)
             
             let vm = NovelViewModel(chapter: chapter)
             let vc = NovelViewController(viewModel: vm)
@@ -93,7 +85,9 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
         switch indexPath.row {
         case viewModel.content.value.count:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "toNext") as? ToNextTableViewCell {
-//                viewModel.chapter.isRead = true
+                var chapter = viewModel.chapter.value
+                chapter.isRead = true
+                viewModel.chapter.send(chapter)
                 cell.delegate = self
                 return cell
             }
