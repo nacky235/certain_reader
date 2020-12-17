@@ -62,9 +62,5 @@ func loadBooks(completion: @escaping (([Novel]) -> Void)) {
             print("failure")
             
         }
-        
-        
-        
-        
     }
 }

@@ -83,9 +83,11 @@ extension BookViewController: UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookViewTableViewCell {
             
+            if let genre: Genre = Genre(rawValue: viewModel.books.value[indexPath.row].genre) {
+                cell.genre.text = genre.title
+            }
             cell.title.text = viewModel.books.value[indexPath.row].title
             cell.author.text = viewModel.books.value[indexPath.row].writer
-            cell.genre.text = viewModel.books.value[indexPath.row].genre.description
             cell.subGenre.text = viewModel.books.value[indexPath.row].biggenre.description
             
             return cell

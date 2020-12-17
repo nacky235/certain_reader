@@ -18,7 +18,7 @@ final class ChapterViewModel: ChapterViewModelProtocol {
 
     let command = PassthroughSubject<ChapterCommand, Never>()
     var novelTitle = CurrentValueSubject<String, Never>("")
-    var chapters = CurrentValueSubject<NovelsChapter, Never>(NovelsChapter())
+    var chapters = CurrentValueSubject<NovelsContents, Never>(NovelsContents())
     var ncode = ""
 
     private let cancellables = Set<AnyCancellable>()
@@ -40,7 +40,7 @@ final class ChapterViewModel: ChapterViewModelProtocol {
                     let novelTitle = thing.xpath(#"//*[@class="novel_title"]"#).first?.text
                     self.novelTitle.send(novelTitle!)
                     if let box = thing.xpath(#"//*[@class="index_box"]"#).first {
-                        var novelsChapter: NovelsChapter = NovelsChapter()
+                        var novelsChapter: NovelsContents = NovelsContents()
                         
                         if box.xpath(#"//*[@class="chapter_title"]"#).first != nil {
                             for chapter in box.xpath(#"//*[@class="chapter_title"]"#) {

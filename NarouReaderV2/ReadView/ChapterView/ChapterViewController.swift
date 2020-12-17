@@ -58,11 +58,6 @@ class ChapterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         fetch()
     }
-//    func transition(selectedRow: Int) -> Void {
-//        let novelViewModel = NovelViewModel(dependency: .default, chapter: viewModel.chapters.value[selectedRow])
-//        let next = NovelViewController(viewModel: novelViewModel)
-//        navigationController?.pushViewController(next, animated: true)
-//    }
     @objc func fetch() {
         viewModel.fetch(viewModel.ncode)
         
@@ -89,11 +84,7 @@ extension ChapterViewController: UITableViewDataSource {
             } else {
                 cell.isReadLabel.text = ""
             }
-            
             cell.title.text = chapters[indexPath.row].title
-            
-//            cell.episodeNumber.text = viewModel.chapters.value[indexPath.row].episodeNumber.description
-
             return cell
         }
         return UITableViewCell()
@@ -104,25 +95,6 @@ extension ChapterViewController: UITableViewDataSource {
 
 extension ChapterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-//        for i in 0...indexPath.section {
-//            if indexPath.section == 0 {
-//                cellCount = indexPath.row + 1
-//                break
-//            }
-//            switch i {
-//            case 0:
-//                cellCount = indexPath.row
-//            default:
-//                cellCount += viewModel.chapters.value.chapterName[indexPath.section - 1].count
-//                if indexPath.row == viewModel.chapters.value.chapterName[indexPath.section].endIndex - 1 {
-//                    cellCount += indexPath.row - 1
-//                } else {
-//                    cellCount += indexPath.row
-//                }
-//            }
-//        }
         let chapter = viewModel.chapters.value.chapters[indexPath.section][indexPath.row]
         
         let vm = NovelViewModel(chapter: chapter)

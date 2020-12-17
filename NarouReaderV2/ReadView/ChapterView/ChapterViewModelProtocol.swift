@@ -7,7 +7,7 @@ public enum ChapterCommand {
 protocol ChapterViewModelProtocol {
     var command: PassthroughSubject<ChapterCommand, Never> { get }
     var novelTitle: CurrentValueSubject<String, Never> { get }
-    var chapters: CurrentValueSubject<NovelsChapter,Never> { get }
+    var chapters: CurrentValueSubject<NovelsContents,Never> { get }
     var ncode: String { get set }
     
     

@@ -21,8 +21,8 @@ func getNovel(ncode: String, episodeNumber: Int, completion: @escaping (([String
                 completion(contents)
             }
         
-        }
     }
+}
     
     func getNovelsContents(html: String) -> [String] {
         
