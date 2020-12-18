@@ -12,7 +12,7 @@ class BookViewTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var genre: UILabel!
-    @IBOutlet weak var subGenre: UILabel!
+    @IBOutlet weak var bigGenre: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

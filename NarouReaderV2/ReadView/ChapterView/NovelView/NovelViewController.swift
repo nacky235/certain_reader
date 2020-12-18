@@ -14,6 +14,7 @@ class NovelViewController: UIViewController {
         }
     }
     
+    
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -29,6 +30,9 @@ class NovelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let rightbarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        self.navigationItem.rightBarButtonItem = rightbarButtonItem
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -53,7 +57,12 @@ class NovelViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-                
+            
+    }
+    
+    
+    @objc func close () {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -66,13 +75,12 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
         if let currentChapterLink = URL(string: viewModel.chapter.value.link), let ep = Int(currentChapterLink.lastPathComponent) {
             
             let nextEp = ep + 1
-            let nextChapterLink = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description)
+            let nextChapterLink = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description, isDirectory: true)
             let chapter = Chapter(link: nextChapterLink.absoluteString)
             
             let vm = NovelViewModel(chapter: chapter)
             let vc = NovelViewController(viewModel: vm)
             navigationController?.pushViewController(vc, animated: true)
-            
         }
     }
     
@@ -81,7 +89,6 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.row {
         case viewModel.content.value.count:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "toNext") as? ToNextTableViewCell {

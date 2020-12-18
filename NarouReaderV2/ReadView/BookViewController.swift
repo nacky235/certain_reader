@@ -86,9 +86,12 @@ extension BookViewController: UITableViewDataSource {
             if let genre: Genre = Genre(rawValue: viewModel.books.value[indexPath.row].genre) {
                 cell.genre.text = genre.title
             }
+            
+            if let biggenre: BigGenre = BigGenre(rawValue: viewModel.books.value[indexPath.row].biggenre) {
+                cell.bigGenre.text = biggenre.title
+            }
             cell.title.text = viewModel.books.value[indexPath.row].title
             cell.author.text = viewModel.books.value[indexPath.row].writer
-            cell.subGenre.text = viewModel.books.value[indexPath.row].biggenre.description
             
             return cell
         }

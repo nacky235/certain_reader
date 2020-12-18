@@ -4,6 +4,7 @@ import UIKit
 class ChapterViewController: UIViewController {
     public let viewModel: ChapterViewModelProtocol
     
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
@@ -16,7 +17,6 @@ class ChapterViewController: UIViewController {
 
     init(viewModel: ChapterViewModelProtocol) {
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: .main)
     }
 
@@ -56,6 +56,10 @@ class ChapterViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+//        presentingViewController?.beginAppearanceTransition(false, animated: animated)
+//        super.viewWillAppear(animated)
+//        print("viewWillAppear")
         fetch()
     }
     @objc func fetch() {
@@ -100,7 +104,8 @@ extension ChapterViewController: UITableViewDelegate {
         let vm = NovelViewModel(chapter: chapter)
         let vc = NovelViewController(viewModel: vm)
         let navCon = UINavigationController(rootViewController: vc)
-        present(navCon, animated: true, completion: nil)
+        navCon.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(navCon, animated: true, completion: nil)
         
     }
 }

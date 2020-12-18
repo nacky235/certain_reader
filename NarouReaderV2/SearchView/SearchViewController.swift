@@ -35,6 +35,9 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: nil, action: #selector(pushSearchSetting))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -65,6 +68,10 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         let viewModel = NovelsDetailViewModel(dependency: .default, novel: novel)
         let next = NovelsDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(next, animated: true)
+    }
+    
+    @objc func pushSearchSetting() {
+        
     }
     
 }
