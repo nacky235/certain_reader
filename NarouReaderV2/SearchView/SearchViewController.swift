@@ -9,12 +9,17 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
             tableView.dataSource = self
         }
     }
+    
+//    var isSearchBarEmpty: Bool {
+//        return searchController.searchBar.text?.isEmpty ?? true
+//    }
    
-    public let viewModel: SearchViewModelProtocol
+    public var viewModel: SearchViewModelProtocol
 
     private var cancellables = Set<AnyCancellable>()
     
     var searchController = UISearchController(searchResultsController: nil)
+
 
     init(viewModel: SearchViewModelProtocol) {
         self.viewModel = viewModel
@@ -34,6 +39,9 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        searchController.searchBar.scopeButtonTitles = SearchArea.allCases.map { $0.name }
+        
         
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: nil, action: #selector(pushSearchSetting))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -61,7 +69,11 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
             }
             .store(in: &cancellables)
         
-        
+        filterContentForSearchText("", searchArea: viewModel.searchArea)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchController.searchBar.resignFirstResponder()
     }
     
     func pushDetailView(novel: Novel) {
@@ -74,6 +86,27 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         
     }
     
+    func filterContentForSearchText(_ searchText: String,
+                                    searchArea: SearchArea) {
+        
+        var parameters: Parameters {
+            switch searchArea {
+            case .all:
+                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1)
+            case .title:
+                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0)
+            case .writer:
+                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0)
+            case .keywords:
+                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1)
+            }
+        }
+        
+        viewModel.loadNovels(parameters: parameters) { (novel) in
+            self.viewModel.novels.send(novel)
+        }
+        tableView.reloadData()
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,9 +115,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: .none)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
+        cell.detailTextLabel?.text = Genre(rawValue: viewModel.novels.value[indexPath.row].genre)?.title
         return cell
     }
     
@@ -95,26 +129,32 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate {
     //NSComparisonPredicate
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            if let text = searchBar.text {
-                if text == "" {
-                    viewModel.loadNovels(parameters: Parameters(word: "")) { novels in
-                        self.viewModel.novels.send(novels)
-                    }
-                } else {
-                    let parameters = Parameters(word: text)
-                    viewModel.loadNovels(parameters: parameters) { novels in
-                        self.viewModel.novels.send(novels)
-                    }
-                }
-            }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//            if let text = searchBar.text {
+//                if text == "" {
+//                    viewModel.loadNovels(parameters: Parameters(word: "")) { novels in
+//                        self.viewModel.novels.send(novels)
+//                    }
+//                } else {
+//                    let parameters = Parameters(word: text)
+//                    viewModel.loadNovels(parameters: parameters) { novels in
+//                        self.viewModel.novels.send(novels)
+//                    }
+//                }
+//            }
+//    }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if let selectedArea = SearchArea(rawValue: selectedScope) {
+            viewModel.searchArea = selectedArea
+        }
     }
 }
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-//        let searchBar = searchController.searchBar
+        let searchBar = searchController.searchBar
 //        searchBarSearchButtonClicked(searchBar)
+        filterContentForSearchText(searchBar.text!, searchArea: viewModel.searchArea)
     }
 }
 

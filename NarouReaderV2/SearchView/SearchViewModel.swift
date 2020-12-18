@@ -18,7 +18,7 @@ final class SearchViewModel: SearchViewModelProtocol {
 
     let command = PassthroughSubject<SearchCommand, Never>()
     let novels = CurrentValueSubject<[Novel], Never>([])
-    var filteredNovels: [Novel] = []
+    var searchArea: SearchArea = .all
     
 
     private var cancellables = Set<AnyCancellable>()

@@ -103,7 +103,6 @@ extension BookViewController: UITableViewDataSource {
 
 extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(viewModel.books.value[indexPath.row].title) is selected")
         transition(selectedBook: viewModel.books.value[indexPath.row])
     }
     

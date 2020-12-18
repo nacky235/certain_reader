@@ -55,14 +55,21 @@ struct Parameters: Encodable {
     let word: String
 //    let notword: String
     
-    let title: Int = 1 //words in title
-    let ex: Int = 1 // words in ex
-    let keyword: Int = 1 //words in keyword
+    let title: Int //words in title
+    let wname: Int // words in writer
+    let keyword: Int //words in keyword
     
     let out: String = "json"
     let type: String = "re"
     let lim: Int = 20 // (1- 500)
     let order: String = "hyoka"
+    
+    init(word: String, title: Int, writer: Int, keyword: Int) {
+        self.word = word
+        self.title = title
+        self.wname = writer
+        self.keyword = keyword
+    }
 }
 
 struct AllCount: Codable {
@@ -188,3 +195,25 @@ enum BigGenre: Int {
     }
     
 }
+
+enum SearchArea: Int {
+    case all = 0
+    case title
+    case writer
+    case keywords
+    
+    var name: String {
+        switch self {
+        case .all:
+            return "All"
+        case .title:
+            return "Title"
+        case .writer:
+            return "Writer"
+        case .keywords:
+            return "Keywords"
+        }
+    }
+}
+
+extension SearchArea: CaseIterable {  }
