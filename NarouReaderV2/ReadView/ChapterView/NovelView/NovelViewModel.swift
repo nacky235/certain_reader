@@ -54,6 +54,11 @@ final class NovelViewModel: NovelViewModelProtocol {
                 let html = try String(contentsOf: url, encoding: .utf8)
                 if let doc = try? HTML(html: html, encoding: .utf8) {
                     for thing in doc.xpath(#"//*[@id="novel_contents"]"#) {
+                        if let title = thing.xpath(#"//*[@class="novel_subtitle"]"#).first?.text {
+                            var chapter = self.chapter.value
+                            chapter.title = title
+                            self.chapter.send(chapter)
+                        }
                         if let honbun = thing.xpath(#"//*[@id="novel_honbun"]"#).first, let firstLine = honbun.xpath("//p").first {
                             let content: [String] = getNovelsContent(currentElement: firstLine)
                             self.content.send(content)

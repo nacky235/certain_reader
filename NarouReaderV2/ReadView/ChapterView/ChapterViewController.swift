@@ -57,8 +57,8 @@ class ChapterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-//        presentingViewController?.beginAppearanceTransition(false, animated: animated)
-//        super.viewWillAppear(animated)
+        presentingViewController?.beginAppearanceTransition(false, animated: animated)
+        super.viewWillAppear(animated)
 //        print("viewWillAppear")
         fetch()
     }
@@ -84,9 +84,9 @@ extension ChapterViewController: UITableViewDataSource {
             let chapters = viewModel.chapters.value.chapters[indexPath.section]
             if let readList = UserDefaults.standard.stringArray(forKey: "readList") {
                 let isRead: Bool = readList.filter({ $0 == chapters[indexPath.row].link }).isEmpty
-                cell.isReadLabel.text = isRead ? "":"読"
+                cell.readMark.image = isRead ? .none : UIImage(systemName: "book.closed")
             } else {
-                cell.isReadLabel.text = ""
+                cell.readMark.image = .none
             }
             cell.title.text = chapters[indexPath.row].title
             return cell

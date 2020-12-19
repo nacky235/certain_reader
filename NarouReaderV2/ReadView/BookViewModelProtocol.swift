@@ -6,7 +6,7 @@ public enum BookCommand {
 
 protocol BookViewModelProtocol {
     var command: PassthroughSubject<BookCommand, Never> { get }
-    var books: CurrentValueSubject<[Novel], Never> { get }
+    var novels: CurrentValueSubject<[Novel], Never> { get }
     
     func fetch()
     func loadNovels()

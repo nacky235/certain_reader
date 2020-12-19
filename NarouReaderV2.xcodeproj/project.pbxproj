@@ -10,10 +10,11 @@
 		0AE426B9EBA4270BEDBADF6F /* Pods_NarouReaderV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCAA078269395D968AEFDE22 /* Pods_NarouReaderV2Tests.framework */; };
 		41AF2E5402C0572284490144 /* Pods_NarouReaderV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF306F7C03352A26149CC17 /* Pods_NarouReaderV2.framework */; };
 		5151DD1F0B7FA1A356B0FA1B /* Pods_NarouReaderV2_NarouReaderV2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DE01CE854CC01335E4B65A /* Pods_NarouReaderV2_NarouReaderV2UITests.framework */; };
-		681D2A17258C3EA1003C8D84 /* SearchSettingViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D2A13258C3EA1003C8D84 /* SearchSettingViewModelProtocol.swift */; };
-		681D2A18258C3EA1003C8D84 /* SearchSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D2A14258C3EA1003C8D84 /* SearchSettingViewController.swift */; };
-		681D2A19258C3EA1003C8D84 /* SearchSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D2A15258C3EA1003C8D84 /* SearchSettingViewModel.swift */; };
-		681D2A1A258C3EA1003C8D84 /* SearchSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681D2A16258C3EA1003C8D84 /* SearchSettingViewController.xib */; };
+		681D2A2A258D61EB003C8D84 /* NovelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D2A28258D61EB003C8D84 /* NovelTableViewCell.swift */; };
+		681D2A2B258D61EB003C8D84 /* NovelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681D2A29258D61EB003C8D84 /* NovelTableViewCell.xib */; };
+		681D2A3E258D9005003C8D84 /* ModalContainerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D2A3D258D9005003C8D84 /* ModalContainerNavigationController.swift */; };
+		681D2A47258D9034003C8D84 /* INPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681D2A45258D9034003C8D84 /* INPickerViewController.swift */; };
+		681D2A48258D9034003C8D84 /* INPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681D2A46258D9034003C8D84 /* INPickerViewController.xib */; };
 		684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */; };
 		684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */; };
 		684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */; };
@@ -72,10 +73,11 @@
 
 /* Begin PBXFileReference section */
 		5E990B471C0811DFFC45F540 /* Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig"; path = "Target Support Files/Pods-NarouReaderV2-NarouReaderV2UITests/Pods-NarouReaderV2-NarouReaderV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		681D2A13258C3EA1003C8D84 /* SearchSettingViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingViewModelProtocol.swift; sourceTree = "<group>"; };
-		681D2A14258C3EA1003C8D84 /* SearchSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingViewController.swift; sourceTree = "<group>"; };
-		681D2A15258C3EA1003C8D84 /* SearchSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingViewModel.swift; sourceTree = "<group>"; };
-		681D2A16258C3EA1003C8D84 /* SearchSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSettingViewController.xib; sourceTree = "<group>"; };
+		681D2A28258D61EB003C8D84 /* NovelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelTableViewCell.swift; sourceTree = "<group>"; };
+		681D2A29258D61EB003C8D84 /* NovelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelTableViewCell.xib; sourceTree = "<group>"; };
+		681D2A3D258D9005003C8D84 /* ModalContainerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalContainerNavigationController.swift; sourceTree = "<group>"; };
+		681D2A45258D9034003C8D84 /* INPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INPickerViewController.swift; sourceTree = "<group>"; };
+		681D2A46258D9034003C8D84 /* INPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INPickerViewController.xib; sourceTree = "<group>"; };
 		6835A402257F13B900C997F2 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		684EDBFB2569F1AD000C4EAA /* ChapterViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewTableViewCell.swift; sourceTree = "<group>"; };
 		684EDBFC2569F1AD000C4EAA /* ChapterViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChapterViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -171,23 +173,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		681D2A12258C3E8A003C8D84 /* SearchSettingView */ = {
+		681D2A3C258D8FC6003C8D84 /* INPicker */ = {
 			isa = PBXGroup;
 			children = (
-				681D2A1E258C3EAC003C8D84 /* Model */,
-				681D2A13258C3EA1003C8D84 /* SearchSettingViewModelProtocol.swift */,
-				681D2A14258C3EA1003C8D84 /* SearchSettingViewController.swift */,
-				681D2A15258C3EA1003C8D84 /* SearchSettingViewModel.swift */,
-				681D2A16258C3EA1003C8D84 /* SearchSettingViewController.xib */,
+				681D2A3D258D9005003C8D84 /* ModalContainerNavigationController.swift */,
+				681D2A45258D9034003C8D84 /* INPickerViewController.swift */,
+				681D2A46258D9034003C8D84 /* INPickerViewController.xib */,
 			);
-			path = SearchSettingView;
-			sourceTree = "<group>";
-		};
-		681D2A1E258C3EAC003C8D84 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
+			path = INPicker;
 			sourceTree = "<group>";
 		};
 		684EDBFA2569F19A000C4EAA /* Cell */ = {
@@ -202,7 +195,7 @@
 		684EDC2D256F710F000C4EAA /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				681D2A12258C3E8A003C8D84 /* SearchSettingView */,
+				681D2A3C258D8FC6003C8D84 /* INPicker */,
 				684EDC2E256F80FB000C4EAA /* SearchViewModelProtocol.swift */,
 				684EDC2F256F80FB000C4EAA /* SearchViewController.swift */,
 				684EDC30256F80FB000C4EAA /* SearchViewModel.swift */,
@@ -320,6 +313,8 @@
 			children = (
 				689BE20A2565F891003D668B /* BookViewTableViewCell.swift */,
 				689BE20B2565F891003D668B /* BookViewTableViewCell.xib */,
+				681D2A28258D61EB003C8D84 /* NovelTableViewCell.swift */,
+				681D2A29258D61EB003C8D84 /* NovelTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -467,6 +462,7 @@
 			files = (
 				6889C1AE2560C485001263BD /* ChapterViewController.xib in Resources */,
 				685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */,
+				681D2A2B258D61EB003C8D84 /* NovelTableViewCell.xib in Resources */,
 				68F2F9E625899D0000FED2CC /* TextTableViewCell.xib in Resources */,
 				6864BFD32576481700FE1A0B /* NovelsDetailViewController.xib in Resources */,
 				684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */,
@@ -475,8 +471,8 @@
 				684EDC35256F80FB000C4EAA /* SearchViewController.xib in Resources */,
 				68F2F9ED2589B06400FED2CC /* ToNextTableViewCell.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
+				681D2A48258D9034003C8D84 /* INPickerViewController.xib in Resources */,
 				685076F02560C2EE00766490 /* Assets.xcassets in Resources */,
-				681D2A1A258C3EA1003C8D84 /* SearchSettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,24 +601,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				684EDC34256F80FB000C4EAA /* SearchViewModel.swift in Sources */,
-				681D2A18258C3EA1003C8D84 /* SearchSettingViewController.swift in Sources */,
 				689BE1E82565D9F2003D668B /* Book.swift in Sources */,
 				68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */,
 				68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */,
-				681D2A19258C3EA1003C8D84 /* SearchSettingViewModel.swift in Sources */,
 				6864BFD12576481700FE1A0B /* NovelsDetailViewController.swift in Sources */,
 				689BE1DE25652E62003D668B /* BookViewController.swift in Sources */,
 				684EDC3A256F85AC000C4EAA /* NarouAPI.swift in Sources */,
 				685076E72560C2EB00766490 /* AppDelegate.swift in Sources */,
+				681D2A47258D9034003C8D84 /* INPickerViewController.swift in Sources */,
 				684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */,
 				689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */,
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
 				68951537257B15FA00881E7D /* getNovels.swift in Sources */,
 				68F2F9E525899D0000FED2CC /* TextTableViewCell.swift in Sources */,
+				681D2A2A258D61EB003C8D84 /* NovelTableViewCell.swift in Sources */,
 				684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */,
-				681D2A17258C3EA1003C8D84 /* SearchSettingViewModelProtocol.swift in Sources */,
 				689BE20C2565F891003D668B /* BookViewTableViewCell.swift in Sources */,
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
+				681D2A3E258D9005003C8D84 /* ModalContainerNavigationController.swift in Sources */,
 				684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,
 				68F2F9EC2589B06400FED2CC /* ToNextTableViewCell.swift in Sources */,

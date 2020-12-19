@@ -9,7 +9,7 @@ import UIKit
 
 class ChapterViewTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var isReadLabel: UILabel!
+    @IBOutlet var readMark: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

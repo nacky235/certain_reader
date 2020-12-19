@@ -65,6 +65,6 @@ class NovelsDetailViewController: UIViewController {
         } else {
             UserDefaults.standard.setValue([viewModel.novel.ncode], forKey: "novels")
         }
-        
+        self.navigationController?.popViewController(animated: true)
     }
 }

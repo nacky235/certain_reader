@@ -43,8 +43,14 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         searchController.searchBar.scopeButtonTitles = SearchArea.allCases.map { $0.name }
         
         
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: nil, action: #selector(pushSearchSetting))
+        self.navigationItem.title = viewModel.genre.value.title + " #" + viewModel.biggenre.value.title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: self, action: #selector(pushSearchSetting))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartTapped))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -83,7 +89,19 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     }
     
     @objc func pushSearchSetting() {
-        
+        let pickerView = STPickerViewController(completion: pushData)
+        let nc = ModalContainerNavigationViewController(rootViewController: pickerView)
+//        self.presentPanModal()
+        present(nc, animated: true, completion: nil)
+    }
+    
+    func pushData(selected: (biggenre: BigGenre,genre: Genre)) {
+        viewModel.biggenre.send(selected.biggenre)
+        viewModel.genre.send(selected.genre)
+    }
+    
+    @objc func heartTapped() {
+        self.navigationItem.leftBarButtonItem?.image = UIImage(systemName: "heart.fill")
     }
     
     func filterContentForSearchText(_ searchText: String,
@@ -92,13 +110,13 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         var parameters: Parameters {
             switch searchArea {
             case .all:
-                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1)
+                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             case .title:
-                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0)
+                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             case .writer:
-                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0)
+                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             case .keywords:
-                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1)
+                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             }
         }
         
@@ -118,6 +136,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: .none)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         cell.detailTextLabel?.text = Genre(rawValue: viewModel.novels.value[indexPath.row].genre)?.title
         return cell
     }

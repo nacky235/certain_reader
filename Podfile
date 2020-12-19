@@ -9,6 +9,7 @@ target 'NarouReaderV2' do
 
 pod 'Alamofire'
 pod 'Kanna'
+pod 'PanModal'
   # Pods for NarouReaderV2
 
   target 'NarouReaderV2Tests' do

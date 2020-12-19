@@ -9,6 +9,7 @@ class BookViewController: UIViewController {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: "BookViewTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCell")
+            tableView.register(UINib(nibName: "NovelTableViewCell", bundle: nil), forCellReuseIdentifier: "NovelCell")
         }
     }
     
@@ -45,7 +46,7 @@ class BookViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.books
+        viewModel.novels
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
@@ -76,22 +77,37 @@ class BookViewController: UIViewController {
 
 extension BookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.books.value.count
+        return viewModel.novels.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookViewTableViewCell {
+//        if let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookViewTableViewCell {
+//
+//            if let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) {
+//                cell.genre.text = genre.title
+//            }
+//
+//            if let biggenre: BigGenre = BigGenre(rawValue: viewModel.novels.value[indexPath.row].biggenre) {
+//                cell.bigGenre.text = biggenre.title
+//            }
+//            cell.title.text = viewModel.novels.value[indexPath.row].title
+//            cell.author.text = viewModel.novels.value[indexPath.row].writer
+//
+//            return cell
+//        }
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as? NovelTableViewCell {
             
-            if let genre: Genre = Genre(rawValue: viewModel.books.value[indexPath.row].genre) {
-                cell.genre.text = genre.title
-            }
+            cell.textLabel?.numberOfLines = 0
             
-            if let biggenre: BigGenre = BigGenre(rawValue: viewModel.books.value[indexPath.row].biggenre) {
-                cell.bigGenre.text = biggenre.title
+            cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
+            cell.textLabel?.font = .boldSystemFont(ofSize: 18)
+            
+            if let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) {
+                cell.detailTextLabel?.text = genre.title
+                
             }
-            cell.title.text = viewModel.books.value[indexPath.row].title
-            cell.author.text = viewModel.books.value[indexPath.row].writer
             
             return cell
         }
@@ -103,16 +119,17 @@ extension BookViewController: UITableViewDataSource {
 
 extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transition(selectedBook: viewModel.books.value[indexPath.row])
+        transition(selectedBook: viewModel.novels.value[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.books.value.remove(at: indexPath.row)
-        if var list = UserDefaults.standard.stringArray(forKey: "novels") {
-            list.remove(at: indexPath.row)
-            UserDefaults.standard.set(list, forKey: "novels")
+        
+        if let list = UserDefaults.standard.stringArray(forKey: "novels") {
+            let committedTitle = viewModel.novels.value[indexPath.row].ncode
+            let newList = list.filter({ $0 != committedTitle })
+            UserDefaults.standard.set(newList, forKey: "novels")
+            viewModel.novels.value.remove(at: indexPath.row)
         }
         
-        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }

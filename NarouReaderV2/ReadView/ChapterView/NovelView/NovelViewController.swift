@@ -33,6 +33,7 @@ class NovelViewController: UIViewController {
         
         let rightbarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
         self.navigationItem.rightBarButtonItem = rightbarButtonItem
+        self.navigationItem.title = viewModel.chapter.value.title
         
         viewModel.command
             .receive(on: RunLoop.main)

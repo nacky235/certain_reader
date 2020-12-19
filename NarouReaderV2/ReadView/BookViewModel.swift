@@ -13,7 +13,7 @@ final class BookViewModel: BookViewModelProtocol {
     // [Output]
 
     let command = PassthroughSubject<BookCommand, Never>()
-    let books = CurrentValueSubject<[Novel], Never>([])
+    let novels = CurrentValueSubject<[Novel], Never>([])
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
@@ -39,7 +39,7 @@ final class BookViewModel: BookViewModelProtocol {
                     
                     do {
                         let novels = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
-                        self.books.send(novels.novels)
+                        self.novels.send(novels.novels)
                     } catch let error {
                         print("Error = \(error)")
                     }

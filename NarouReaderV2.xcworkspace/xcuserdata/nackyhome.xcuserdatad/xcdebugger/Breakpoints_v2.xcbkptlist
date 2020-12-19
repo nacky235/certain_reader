@@ -52,5 +52,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "91D70222-B50A-4AEA-885F-9BA7172076DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NarouReaderV2/SearchView/NovelsDetailView/NovelsDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "addToShelf()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4D6E872-A136-4BCB-8F1C-8207E107BAF8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NarouReaderV2/SearchView/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "pushSearchSetting()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A4D6E872-A136-4BCB-8F1C-8207E107BAF8 - 7686aca51e8b51de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarouReaderV2.SearchViewController.pushSearchSetting() -&gt; ()"
+                  moduleName = "NarouReaderV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nackyhome/Desktop/NarouReaderV2/NarouReaderV2/SearchView/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  uuid = "A4D6E872-A136-4BCB-8F1C-8207E107BAF8 - f92e90285c5d4522"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #2 ((biggenre: NarouReaderV2.BigGenre, genre: NarouReaderV2.Genre)) -&gt; () in implicit closure #1 (NarouReaderV2.SearchViewController) -&gt; ((biggenre: NarouReaderV2.BigGenre, genre: NarouReaderV2.Genre)) -&gt; () in NarouReaderV2.SearchViewController.pushSearchSetting() -&gt; ()"
+                  moduleName = "NarouReaderV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nackyhome/Desktop/NarouReaderV2/NarouReaderV2/SearchView/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -62,13 +62,18 @@ struct Parameters: Encodable {
     let out: String = "json"
     let type: String = "re"
     let lim: Int = 20 // (1- 500)
-    let order: String = "hyoka"
+    let order: String
+    let genre: Int
+    let biggenre: Int
     
-    init(word: String, title: Int, writer: Int, keyword: Int) {
+    init(word: String, title: Int, writer: Int, keyword: Int, order: Order, genre: Genre, biggenre: BigGenre) {
         self.word = word
         self.title = title
         self.wname = writer
         self.keyword = keyword
+        self.order = order.name
+        self.genre = genre.rawValue
+        self.biggenre = biggenre.rawValue
     }
 }
 
@@ -196,7 +201,7 @@ enum BigGenre: Int {
     
 }
 
-enum SearchArea: Int {
+enum SearchArea: Int, CaseIterable {
     case all = 0
     case title
     case writer
@@ -216,4 +221,66 @@ enum SearchArea: Int {
     }
 }
 
-extension SearchArea: CaseIterable {  }
+enum Order: String, CaseIterable {
+    case new = "新着更新順"
+    case favnovelcnt = "ブックマーク数の多い順"
+    case reviewcnt = "レビュー数の多い順"
+    case hyoka = "総合ポイントの高い順"
+    case hyokaasc = "総合ポイントの低い順"
+    case dailypoint = "日間ポイントの高い順"
+    case weeklypoint = "週刊ポイントの高い順"
+    case monthlypoint = "月間ポイントの高い順"
+    case quarterpoint = "四半期ポイントの高い順"
+    case yearlypoint = "年間ポイントの高い順"
+    case impressioncnt = "感想の多い順"
+    case hyokacnt = "評価者数の多い順"
+    case hyokacntasc = "評価者数の少ない順"
+    case weekly = "週間ユニークユーザの多い順"
+    case lengthdesc = "小説本文の文字数が多い順"
+    case lengthasc = "小説本文の文字数が少ない順"
+    case ncodedesc = "新着投稿順"
+    case old = "更新が古い順"
+        
+    var name: String {
+        switch self {
+        
+        case .new:
+            return "new"
+        case .favnovelcnt:
+            return "favnovelcnt"
+        case .reviewcnt:
+            return "reviewcnt"
+        case .hyoka:
+            return "hyoka"
+        case .hyokaasc:
+            return "hyokaasc"
+        case .dailypoint:
+            return "dailypoint"
+        case .weeklypoint:
+            return "weeklypoint"
+        case .monthlypoint:
+            return "monthlypoint"
+        case .quarterpoint:
+            return "quarterpoint"
+        case .yearlypoint:
+            return "yearlypoint"
+        case .impressioncnt:
+            return "impressioncnt"
+        case .hyokacnt:
+            return "hyokacnt"
+        case .hyokacntasc:
+            return "hyokacntasc"
+        case .weekly:
+            return "weekly"
+        case .lengthdesc:
+            return "lengthdesc"
+        case .lengthasc:
+            return "lengthasc"
+        case .ncodedesc:
+            return "ncodeasc"
+        case .old:
+            return "old"
+        }
+        
+    }
+}
