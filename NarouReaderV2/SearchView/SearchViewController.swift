@@ -75,6 +75,20 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
             }
             .store(in: &cancellables)
         
+        viewModel.biggenre
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.filterContentForSearchText( (self?.searchController.searchBar.text!)!, searchArea: self!.viewModel.searchArea)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.genre
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.filterContentForSearchText( (self?.searchController.searchBar.text!)! , searchArea: self!.viewModel.searchArea)
+            }
+            .store(in: &cancellables)
+        
         filterContentForSearchText("", searchArea: viewModel.searchArea)
     }
     
@@ -89,15 +103,15 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     }
     
     @objc func pushSearchSetting() {
-        let pickerView = STPickerViewController(completion: pushData)
+        let pickerView = INPickerViewController(completion: pushData)
         let nc = ModalContainerNavigationViewController(rootViewController: pickerView)
-//        self.presentPanModal()
-        present(nc, animated: true, completion: nil)
+        self.presentPanModal(nc)
     }
     
     func pushData(selected: (biggenre: BigGenre,genre: Genre)) {
         viewModel.biggenre.send(selected.biggenre)
         viewModel.genre.send(selected.genre)
+        self.navigationItem.title = selected.biggenre.title + " #" + selected.genre.title
     }
     
     @objc func heartTapped() {
