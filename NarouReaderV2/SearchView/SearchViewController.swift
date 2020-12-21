@@ -3,6 +3,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchControllerDelegate {
     
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -31,8 +32,11 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        showSpinner(onView: view)
         
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -43,8 +47,8 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         searchController.searchBar.scopeButtonTitles = SearchArea.allCases.map { $0.name }
         
         
-        self.navigationItem.title = viewModel.genre.value.title + " #" + viewModel.biggenre.value.title
         navigationController?.navigationBar.prefersLargeTitles = true
+        showGenres()
         
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: self, action: #selector(pushSearchSetting))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -78,19 +82,34 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         viewModel.biggenre
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.filterContentForSearchText( (self?.searchController.searchBar.text!)!, searchArea: self!.viewModel.searchArea)
+                self?.fetch()
             }
             .store(in: &cancellables)
         
         viewModel.genre
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.filterContentForSearchText( (self?.searchController.searchBar.text!)! , searchArea: self!.viewModel.searchArea)
+                self?.fetch()
             }
             .store(in: &cancellables)
+//
+//        filterContentForSearchText(searchController.searchBar.text!, searchArea: viewModel.searchArea) {
+//            self.removeSpinner()
+//        }
         
-        filterContentForSearchText("", searchArea: viewModel.searchArea)
+        
     }
+    
+    
+    
+    func fetch() {
+        loadingView.isHidden = false
+        
+        filterContentForSearchText(searchController.searchBar.text!, searchArea: viewModel.searchArea) {
+        
+        }
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchController.searchBar.resignFirstResponder()
@@ -111,15 +130,28 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     func pushData(selected: (biggenre: BigGenre,genre: Genre)) {
         viewModel.biggenre.send(selected.biggenre)
         viewModel.genre.send(selected.genre)
-        self.navigationItem.title = selected.biggenre.title + " #" + selected.genre.title
+        showGenres()
+    }
+    
+    
+    
+    func showGenres() {
+        if viewModel.biggenre.value == .all {
+            self.navigationItem.title = "全て"
+        } else if viewModel.genre.value == .all && viewModel.biggenre.value != .all {
+            self.navigationItem.title = "全て" + " #" + viewModel.biggenre.value.title
+        } else {
+            self.navigationItem.title = viewModel.genre.value.title + " #" + viewModel.biggenre.value.title
+        }
     }
     
     @objc func heartTapped() {
         self.navigationItem.leftBarButtonItem?.image = UIImage(systemName: "heart.fill")
+        
     }
     
     func filterContentForSearchText(_ searchText: String,
-                                    searchArea: SearchArea) {
+                                    searchArea: SearchArea, completion: @escaping () -> Void) {
         
         var parameters: Parameters {
             switch searchArea {
@@ -138,6 +170,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
             self.viewModel.novels.send(novel)
         }
         tableView.reloadData()
+        completion()
     }
 }
 
@@ -147,6 +180,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            loadingView.isHidden = true
+        }
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: .none)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
@@ -181,13 +217,18 @@ extension SearchViewController: UISearchBarDelegate {
             viewModel.searchArea = selectedArea
         }
     }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        fetch()
+    }
 }
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
 //        searchBarSearchButtonClicked(searchBar)
-        filterContentForSearchText(searchBar.text!, searchArea: viewModel.searchArea)
+        if !(searchBar.text?.isEmpty)! {
+            fetch()
+        }
     }
 }
 

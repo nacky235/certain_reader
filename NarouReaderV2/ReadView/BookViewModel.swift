@@ -3,6 +3,8 @@ import Foundation
 import Alamofire
 
 final class BookViewModel: BookViewModelProtocol {
+    
+    
     struct Dependency {
         static var `default`: Dependency {
             Dependency(
@@ -21,12 +23,7 @@ final class BookViewModel: BookViewModelProtocol {
     init(dependency: Dependency) {
         self.dependency = dependency
     }
-    
-    func fetch() {
-        loadNovels()
-    }
-    
-    func loadNovels() {
+    func loadNovels(completion: @escaping () -> Void) {
         if UserDefaults.standard.stringArray(forKey: "novels") != [] {
             let novelList = UserDefaults.standard.stringArray(forKey: "novels")?.joined(separator: "-")
             let decoder = JSONDecoder()
@@ -38,8 +35,13 @@ final class BookViewModel: BookViewModelProtocol {
                 case .success:
                     
                     do {
-                        let novels = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
-                        self.novels.send(novels.novels)
+                        let narouContainer = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
+                        var novels: [Novel] = []
+                        let list = UserDefaults.standard.stringArray(forKey: "novels")!
+                        for novel in list {
+                            novels.append(contentsOf: narouContainer.novels.filter{ $0.ncode == novel })
+                        }
+                        self.novels.send(novels)
                     } catch let error {
                         print("Error = \(error)")
                     }
@@ -48,6 +50,7 @@ final class BookViewModel: BookViewModelProtocol {
                 }
             }
         }
+        completion()
     }
     
 }

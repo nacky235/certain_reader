@@ -8,6 +8,5 @@ protocol BookViewModelProtocol {
     var command: PassthroughSubject<BookCommand, Never> { get }
     var novels: CurrentValueSubject<[Novel], Never> { get }
     
-    func fetch()
-    func loadNovels()
+    func loadNovels(completion: @escaping () -> Void)
 }

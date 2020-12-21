@@ -4,6 +4,7 @@ import UIKit
 class ChapterViewController: UIViewController {
     public let viewModel: ChapterViewModelProtocol
     
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -14,6 +15,7 @@ class ChapterViewController: UIViewController {
     }
     
     private var cancellables = Set<AnyCancellable>()
+    
 
     init(viewModel: ChapterViewModelProtocol) {
         self.viewModel = viewModel
@@ -52,20 +54,21 @@ class ChapterViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        fetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        presentingViewController?.beginAppearanceTransition(false, animated: animated)
-        super.viewWillAppear(animated)
-//        print("viewWillAppear")
         fetch()
     }
     @objc func fetch() {
-        viewModel.fetch(viewModel.ncode)
+        loadingView.isHidden = false
+        DispatchQueue.main.async {
+            self.viewModel.fetch(self.viewModel.ncode) {
+                self.loadingView.isHidden = true
+            }
+        }
         
     }
+    
 }
 
 extension ChapterViewController: UITableViewDataSource {
@@ -104,7 +107,7 @@ extension ChapterViewController: UITableViewDelegate {
         let vm = NovelViewModel(chapter: chapter)
         let vc = NovelViewController(viewModel: vm)
         let navCon = UINavigationController(rootViewController: vc)
-        navCon.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        navCon.modalPresentationStyle = UIModalPresentationStyle.automatic
         self.present(navCon, animated: true, completion: nil)
         
     }

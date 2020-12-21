@@ -20,8 +20,8 @@ final class SearchViewModel: SearchViewModelProtocol {
     let novels = CurrentValueSubject<[Novel], Never>([])
     var searchArea: SearchArea = .all
     var order = CurrentValueSubject<Order, Never>(.hyoka)
-    var genre = CurrentValueSubject<Genre, Never>(.real_world)
-    var biggenre = CurrentValueSubject<BigGenre, Never>(.love_romance)
+    var genre = CurrentValueSubject<Genre, Never>(.all)
+    var biggenre = CurrentValueSubject<BigGenre, Never>(.all)
     
 
     private var cancellables = Set<AnyCancellable>()
@@ -41,7 +41,6 @@ final class SearchViewModel: SearchViewModelProtocol {
             case .success:
                 do {
                     let novels = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
-                    print(novels.novels)
                     completion(novels.novels)
                     
                 } catch let error {

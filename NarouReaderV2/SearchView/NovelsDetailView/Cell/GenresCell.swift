@@ -1,13 +1,13 @@
 //
-//  NovelTableViewCell.swift
+//  GenresCell.swift
 //  NarouReaderV2
 //
-//  Created by 稲葉夏輝 on 2020/12/19.
+//  Created by 稲葉夏輝 on 2020/12/20.
 //
 
 import UIKit
 
-class NovelTableViewCell: UITableViewCell {
+class GenresCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +17,7 @@ class NovelTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        self.accessoryType = .detailButton
+        
         // Configure the view for the selected state
     }
     

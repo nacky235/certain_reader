@@ -12,6 +12,6 @@ protocol ChapterViewModelProtocol {
     
     
     
-    func fetch(_ ncode: String)
+    func fetch(_ ncode: String, completion: @escaping () -> Void)
 }
 

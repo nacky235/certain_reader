@@ -29,7 +29,7 @@ final class ChapterViewModel: ChapterViewModelProtocol {
         self.ncode = ncode
     }
 
-    func fetch(_ ncode: String) {
+    func fetch(_ ncode: String, completion: @escaping () -> Void) {
         
         let url = URL(string: "https://ncode.syosetu.com/\(ncode)/")!
         do {
@@ -51,6 +51,7 @@ final class ChapterViewModel: ChapterViewModelProtocol {
 //                                print("ChapterTitle: ", chapterTitle ?? "")
 //                                print("Chapters", novelsChapter.chapterName)
                                 self.chapters.send(novelsChapter)
+                                completion()
                             }
                         } else {
                             let firstChapter = box.xpath("//dl").first
@@ -58,6 +59,7 @@ final class ChapterViewModel: ChapterViewModelProtocol {
                             let chapters = getChapters(chapterTitleElement: firstChapter!)
                             novelsChapter.chapters.append(chapters)
                             self.chapters.send(novelsChapter)
+                            completion()
                         }
                         
                     }

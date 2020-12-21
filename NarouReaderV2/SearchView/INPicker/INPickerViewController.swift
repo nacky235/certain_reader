@@ -25,15 +25,14 @@ class INPickerViewController: UIViewController {
     }
     
     let genre: [BigGenre: [Genre]] = [
-        .love_romance: [.iseki_world, .real_world],
-        .fantasy: [.high_fantasy, .low_fantasy],
-        .litelature: [.pure_literature, .human_drama, .history, .suspense, .horror, .action, .comedy],
-        .sf: [.vr_game, .space, .science_fiction, .panic],
-        .other: [.tale, .poetry, .essay, .replay, .other],
-        .nongenre: [.nongenre]
+        .all: [.all],
+        .love_romance: [.all ,.iseki_world, .real_world],
+        .fantasy: [.all ,.high_fantasy, .low_fantasy],
+        .litelature: [.all ,.pure_literature, .human_drama, .history, .suspense, .horror, .action, .comedy],
+        .sf: [.all, .vr_game, .space, .science_fiction, .panic],
+        .other: [.all, .tale, .poetry, .essay, .replay, .other],
+        .nongenre: [.all, .nongenre]
     ]
-    
-    let genre1: [BigGenre: [String]] = [.love_romance : [Genre.iseki_world.title, Genre.real_world.title]]
     
     
 
@@ -41,6 +40,7 @@ class INPickerViewController: UIViewController {
     // let titles: [String] = ["ジャンル", "その他"]
     
     let data: [BigGenre] = [
+        .all,
         .love_romance,
         .fantasy,
         .litelature,
@@ -50,8 +50,8 @@ class INPickerViewController: UIViewController {
     ]
 
     // 初期値は全部最初の要素
-    private var selectedBigGenre: BigGenre = .love_romance
-    private var selectedGenre: Genre = .real_world
+    private var selectedBigGenre: BigGenre = .all
+    private var selectedGenre: Genre = .all
 
     private let completion: ((BigGenre,Genre)) -> Void
 
@@ -129,6 +129,7 @@ extension INPickerViewController: UIPickerViewDelegate {
         switch component {
         case 0:
             selectedBigGenre = data[row]
+            selectedGenre = genre[selectedBigGenre]![0]
             pickerView.reloadComponent(1)
         case 1:
             let genresInSelectedBigGenre = genre[selectedBigGenre]!

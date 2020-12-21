@@ -63,8 +63,8 @@ struct Parameters: Encodable {
     let type: String = "re"
     let lim: Int = 20 // (1- 500)
     let order: String
-    let genre: Int
-    let biggenre: Int
+    let genre: String
+    let biggenre: String
     
     init(word: String, title: Int, writer: Int, keyword: Int, order: Order, genre: Genre, biggenre: BigGenre) {
         self.word = word
@@ -72,8 +72,8 @@ struct Parameters: Encodable {
         self.wname = writer
         self.keyword = keyword
         self.order = order.name
-        self.genre = genre.rawValue
-        self.biggenre = biggenre.rawValue
+        self.genre = genre.stringGenre
+        self.biggenre = biggenre.stringBigGenre
     }
 }
 
@@ -101,6 +101,7 @@ struct NarouContainer: Decodable {
 
 
 enum Genre: Int {
+    case all                = 0;
     case iseki_world        = 101;
     case real_world         = 102;
     case high_fantasy       = 201;
@@ -122,6 +123,55 @@ enum Genre: Int {
     case replay             = 9904;
     case other              = 9999;
     case nongenre           = 9801;
+    
+    var stringGenre: String {
+        switch self {
+        case .all:
+            return "101-102-201-202-301-302-303-304-305-306-307-401-402-403-404-9901-9902-9903-9904-9999-9801"
+        case .iseki_world:
+            return "101"
+        case .real_world:
+            return "102"
+        case .high_fantasy:
+            return "201"
+        case .low_fantasy:
+            return "202"
+        case .pure_literature:
+            return "301"
+        case .human_drama:
+            return "302"
+        case .history:
+            return "303"
+        case .suspense:
+            return "304"
+        case .horror:
+            return "305"
+        case .action:
+            return "306"
+        case .comedy:
+            return "307"
+        case .vr_game:
+            return "401"
+        case .space:
+            return "402"
+        case .science_fiction:
+            return "403"
+        case .panic:
+            return "404"
+        case .tale:
+            return "9901"
+        case .poetry:
+            return "9902"
+        case .essay:
+            return "9903"
+        case .replay:
+            return "9904"
+        case .other:
+            return "9999"
+        case .nongenre:
+            return "9801"
+        }
+    }
     
     var title: String {
         switch self {
@@ -167,13 +217,15 @@ enum Genre: Int {
              return "その他"
         case .nongenre:
             return "ノンジャンル"
-        
+        case .all:
+            return "指定なし"
         }
     }
 
 }
 
 enum BigGenre: Int {
+    case all = 0
     case love_romance = 1
     case fantasy = 2
     case litelature = 3
@@ -181,8 +233,29 @@ enum BigGenre: Int {
     case other = 99
     case nongenre = 98
     
+    var stringBigGenre: String {
+        switch self {
+        case .all:
+            return "1-2-3-4-99-98"
+        case .love_romance:
+            return "1"
+        case .fantasy:
+            return "2"
+        case .litelature:
+            return "3"
+        case .sf:
+            return "4"
+        case .other:
+            return "99"
+        case .nongenre:
+            return "98"
+        }
+    }
+    
     var title: String {
         switch self {
+        case .all:
+            return "指定なし"
         case .love_romance:
             return "恋愛"
         case .fantasy:

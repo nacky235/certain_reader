@@ -3,14 +3,21 @@ import UIKit
 import SafariServices
 
 class NovelsDetailViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.register(UINib(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier: "title")
+            tableView.register(UINib(nibName: "AuthorCell", bundle: nil), forCellReuseIdentifier: "author")
+            tableView.register(UINib(nibName: "GenresCell", bundle: nil), forCellReuseIdentifier: "genres")
+            tableView.register(UINib(nibName: "OutlineCell", bundle: nil), forCellReuseIdentifier: "outline")
+        }
+    }
     public let viewModel: NovelsDetailViewModelProtocol
 
     private var cancellables = Set<AnyCancellable>()
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var bigGenreLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var storyLabel: UILabel!
+    
     
     init(viewModel: NovelsDetailViewModelProtocol) {
         self.viewModel = viewModel
@@ -49,12 +56,7 @@ class NovelsDetailViewController: UIViewController {
     }
     
     func configure() {
-        titleLabel?.text = viewModel.novel.title
-        authorLabel?.text = viewModel.novel.writer
-        // [] make biggenre and genre readable by enum?
-        bigGenreLabel?.text = viewModel.novel.biggenre.description
-        genreLabel?.text = viewModel.novel.genre.description
-        storyLabel?.text = viewModel.novel.story
+        
     }
     @objc func addToShelf() {
         if var list = UserDefaults.standard.stringArray(forKey: "novels") {
@@ -68,3 +70,42 @@ class NovelsDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+extension NovelsDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "title") as? TitleCell {
+                cell.textLabel?.text = viewModel.novel.title
+                return cell
+            }
+        case 1:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "author") as? AuthorCell {
+                cell.textLabel?.text = viewModel.novel.writer
+                return cell
+            }
+        case 2:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "genres") as? GenresCell {
+                cell.textLabel?.text = Genre(rawValue: viewModel.novel.genre)?.title
+                cell.detailTextLabel?.text = BigGenre(rawValue: viewModel.novel.biggenre)?.title
+                return cell
+            }
+        case 3:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "outline") as? OutlineCell {
+                cell.contentLabel.text = viewModel.novel.story
+                return cell
+            }
+        default:
+            return UITableViewCell()
+        }
+        return UITableViewCell()
+    }
+    
+    
+}
+
+

@@ -33,6 +33,14 @@
 		6864BFD32576481700FE1A0B /* NovelsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864BFCF2576481700FE1A0B /* NovelsDetailViewController.xib */; };
 		68750B6E258EE77300BBFE56 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68750B6C258EE77300BBFE56 /* TitleCell.swift */; };
 		68750B6F258EE77300BBFE56 /* TitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68750B6D258EE77300BBFE56 /* TitleCell.xib */; };
+		68750B78258EEAB800BBFE56 /* GenresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68750B76258EEAB800BBFE56 /* GenresCell.swift */; };
+		68750B79258EEAB800BBFE56 /* GenresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68750B77258EEAB800BBFE56 /* GenresCell.xib */; };
+		68750B7F258EEACF00BBFE56 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68750B7D258EEACF00BBFE56 /* AuthorCell.swift */; };
+		68750B80258EEACF00BBFE56 /* AuthorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68750B7E258EEACF00BBFE56 /* AuthorCell.xib */; };
+		68750B91258EEB1100BBFE56 /* OutlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68750B8F258EEB1100BBFE56 /* OutlineCell.swift */; };
+		68750B92258EEB1100BBFE56 /* OutlineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68750B90258EEB1100BBFE56 /* OutlineCell.xib */; };
+		68750B98258F73D900BBFE56 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68750B97258F73D900BBFE56 /* LoadingView.swift */; };
+		68750BA0258F740A00BBFE56 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68750B9F258F740A00BBFE56 /* LoadingView.xib */; };
 		6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889C1A72560C485001263BD /* ChapterViewModelProtocol.swift */; };
 		6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889C1A82560C485001263BD /* ChapterViewController.swift */; };
 		6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889C1A92560C485001263BD /* ChapterViewModel.swift */; };
@@ -46,6 +54,7 @@
 		689BE1E82565D9F2003D668B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE1E72565D9F2003D668B /* Book.swift */; };
 		689BE20C2565F891003D668B /* BookViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE20A2565F891003D668B /* BookViewTableViewCell.swift */; };
 		689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689BE20B2565F891003D668B /* BookViewTableViewCell.xib */; };
+		68E03A34259024F1004C3F7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A33259024F1004C3F7D /* SpinnerViewController.swift */; };
 		68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */; };
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
@@ -105,6 +114,14 @@
 		6864BFCF2576481700FE1A0B /* NovelsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NovelsDetailViewController.xib; sourceTree = "<group>"; };
 		68750B6C258EE77300BBFE56 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		68750B6D258EE77300BBFE56 /* TitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
+		68750B76258EEAB800BBFE56 /* GenresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCell.swift; sourceTree = "<group>"; };
+		68750B77258EEAB800BBFE56 /* GenresCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenresCell.xib; sourceTree = "<group>"; };
+		68750B7D258EEACF00BBFE56 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
+		68750B7E258EEACF00BBFE56 /* AuthorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorCell.xib; sourceTree = "<group>"; };
+		68750B8F258EEB1100BBFE56 /* OutlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineCell.swift; sourceTree = "<group>"; };
+		68750B90258EEB1100BBFE56 /* OutlineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutlineCell.xib; sourceTree = "<group>"; };
+		68750B97258F73D900BBFE56 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		68750B9F258F740A00BBFE56 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		6889C1A72560C485001263BD /* ChapterViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewModelProtocol.swift; sourceTree = "<group>"; };
 		6889C1A82560C485001263BD /* ChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewController.swift; sourceTree = "<group>"; };
 		6889C1A92560C485001263BD /* ChapterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewModel.swift; sourceTree = "<group>"; };
@@ -118,6 +135,7 @@
 		689BE1E72565D9F2003D668B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		689BE20A2565F891003D668B /* BookViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewTableViewCell.swift; sourceTree = "<group>"; };
 		689BE20B2565F891003D668B /* BookViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookViewTableViewCell.xib; sourceTree = "<group>"; };
+		68E03A33259024F1004C3F7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModelProtocol.swift; sourceTree = "<group>"; };
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
@@ -281,8 +299,23 @@
 			children = (
 				68750B6C258EE77300BBFE56 /* TitleCell.swift */,
 				68750B6D258EE77300BBFE56 /* TitleCell.xib */,
+				68750B7D258EEACF00BBFE56 /* AuthorCell.swift */,
+				68750B7E258EEACF00BBFE56 /* AuthorCell.xib */,
+				68750B76258EEAB800BBFE56 /* GenresCell.swift */,
+				68750B77258EEAB800BBFE56 /* GenresCell.xib */,
+				68750B8F258EEB1100BBFE56 /* OutlineCell.swift */,
+				68750B90258EEB1100BBFE56 /* OutlineCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		68750B96258F73B400BBFE56 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				68750B97258F73D900BBFE56 /* LoadingView.swift */,
+				68750B9F258F740A00BBFE56 /* LoadingView.xib */,
+			);
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 		6889C1A62560C465001263BD /* ChapterView */ = {
@@ -301,10 +334,12 @@
 		6889C1B22560C4BA001263BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				68750B96258F73B400BBFE56 /* LoadingView */,
 				6889C1B62560C4E0001263BD /* Chapter.swift */,
 				689BE1E72565D9F2003D668B /* Book.swift */,
 				684EDC39256F85AC000C4EAA /* NarouAPI.swift */,
 				68951536257B15FA00881E7D /* getNovels.swift */,
+				68E03A33259024F1004C3F7D /* SpinnerViewController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,16 +511,20 @@
 			files = (
 				6889C1AE2560C485001263BD /* ChapterViewController.xib in Resources */,
 				685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */,
+				68750B80258EEACF00BBFE56 /* AuthorCell.xib in Resources */,
 				681D2A2B258D61EB003C8D84 /* NovelTableViewCell.xib in Resources */,
 				681D2A61258EC480003C8D84 /* INPickerViewController.xib in Resources */,
 				68F2F9E625899D0000FED2CC /* TextTableViewCell.xib in Resources */,
 				6864BFD32576481700FE1A0B /* NovelsDetailViewController.xib in Resources */,
 				684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */,
+				68750B92258EEB1100BBFE56 /* OutlineCell.xib in Resources */,
+				68750B79258EEAB800BBFE56 /* GenresCell.xib in Resources */,
 				689BE1E025652E62003D668B /* BookViewController.xib in Resources */,
 				689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */,
 				684EDC35256F80FB000C4EAA /* SearchViewController.xib in Resources */,
 				68F2F9ED2589B06400FED2CC /* ToNextTableViewCell.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
+				68750BA0258F740A00BBFE56 /* LoadingView.xib in Resources */,
 				68750B6F258EE77300BBFE56 /* TitleCell.xib in Resources */,
 				685076F02560C2EE00766490 /* Assets.xcassets in Resources */,
 			);
@@ -620,8 +659,11 @@
 				68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */,
 				68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */,
 				6864BFD12576481700FE1A0B /* NovelsDetailViewController.swift in Sources */,
+				68750B98258F73D900BBFE56 /* LoadingView.swift in Sources */,
 				689BE1DE25652E62003D668B /* BookViewController.swift in Sources */,
+				68750B7F258EEACF00BBFE56 /* AuthorCell.swift in Sources */,
 				684EDC3A256F85AC000C4EAA /* NarouAPI.swift in Sources */,
+				68750B91258EEB1100BBFE56 /* OutlineCell.swift in Sources */,
 				685076E72560C2EB00766490 /* AppDelegate.swift in Sources */,
 				68750B6E258EE77300BBFE56 /* TitleCell.swift in Sources */,
 				684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */,
@@ -629,10 +671,12 @@
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
 				68951537257B15FA00881E7D /* getNovels.swift in Sources */,
 				68F2F9E525899D0000FED2CC /* TextTableViewCell.swift in Sources */,
+				68750B78258EEAB800BBFE56 /* GenresCell.swift in Sources */,
 				681D2A2A258D61EB003C8D84 /* NovelTableViewCell.swift in Sources */,
 				684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */,
 				689BE20C2565F891003D668B /* BookViewTableViewCell.swift in Sources */,
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
+				68E03A34259024F1004C3F7D /* SpinnerViewController.swift in Sources */,
 				681D2A3E258D9005003C8D84 /* ModalContainerNavigationController.swift in Sources */,
 				684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,

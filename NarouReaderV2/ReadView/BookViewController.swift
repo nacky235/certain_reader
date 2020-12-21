@@ -4,6 +4,8 @@ import UIKit
 class BookViewController: UIViewController {
     public let viewModel: BookViewModelProtocol
 
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -27,8 +29,6 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
 
         viewModel.command
             .receive(on: RunLoop.main)
@@ -53,12 +53,6 @@ class BookViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        
-        viewModel.fetch()
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.fetch()
     }
     
     func transition(selectedBook: Novel) -> Void {
@@ -70,8 +64,18 @@ class BookViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        fetch()
+    }
+    
     @objc func fetch() {
-        viewModel.fetch()
+        loadingView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.viewModel.loadNovels{
+                self.loadingView.isHidden = true
+            }
+        }
+        
     }
 }
 
@@ -82,19 +86,8 @@ extension BookViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        if let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookViewTableViewCell {
-//
-//            if let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) {
-//                cell.genre.text = genre.title
-//            }
-//
-//            if let biggenre: BigGenre = BigGenre(rawValue: viewModel.novels.value[indexPath.row].biggenre) {
-//                cell.bigGenre.text = biggenre.title
-//            }
-//            cell.title.text = viewModel.novels.value[indexPath.row].title
-//            cell.author.text = viewModel.novels.value[indexPath.row].writer
-//
-//            return cell
+//        if indexPath.row == 0 {
+//            loadingView.isHidden = true
 //        }
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as? NovelTableViewCell {
@@ -119,8 +112,21 @@ extension BookViewController: UITableViewDataSource {
 
 extension BookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let list = UserDefaults.standard.stringArray(forKey: "novels") {
+            var sortedList = list.filter { $0 != viewModel.novels.value[indexPath.row].ncode }
+            sortedList.insert(viewModel.novels.value[indexPath.row].ncode, at: 0)
+            UserDefaults.standard.set(sortedList, forKey: "novels")
+        }
         transition(selectedBook: viewModel.novels.value[indexPath.row])
     }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let vm = NovelsDetailViewModel(dependency: .default, novel: viewModel.novels.value[indexPath.row])
+        let vc = NovelsDetailViewController(viewModel: vm)
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
