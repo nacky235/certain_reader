@@ -29,6 +29,9 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartTapped))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
 
         viewModel.command
             .receive(on: RunLoop.main)
@@ -62,6 +65,12 @@ class BookViewController: UIViewController {
         let next = ChapterViewController(viewModel: chapterViewModel)
         navigationController?.pushViewController(next, animated: true)
         
+    }
+    
+    @objc func heartTapped () {
+        let vm = HNovelsListViewModel(dependency: .default)
+        let vc = HNovelsListViewController(viewModel: vm)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

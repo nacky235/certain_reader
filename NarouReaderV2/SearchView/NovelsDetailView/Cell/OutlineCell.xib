@@ -17,17 +17,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47b-CW-PXU">
-                        <rect key="frame" x="11" y="11" width="298" height="22"/>
+                        <rect key="frame" x="16" y="5" width="288" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="47b-CW-PXU" secondAttribute="trailing" constant="11" id="3Ml-BY-7xw"/>
-                    <constraint firstItem="47b-CW-PXU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="5nw-o9-Lt8"/>
-                    <constraint firstItem="47b-CW-PXU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="EhZ-Vx-haa"/>
-                    <constraint firstAttribute="bottom" secondItem="47b-CW-PXU" secondAttribute="bottom" constant="11" id="QVj-aH-gaT"/>
+                    <constraint firstAttribute="bottom" secondItem="47b-CW-PXU" secondAttribute="bottom" constant="5" id="2nW-df-ErU"/>
+                    <constraint firstItem="47b-CW-PXU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="A6U-Um-UbB"/>
+                    <constraint firstAttribute="trailing" secondItem="47b-CW-PXU" secondAttribute="trailing" constant="16" id="ICg-mO-Xej"/>
+                    <constraint firstItem="47b-CW-PXU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="qNy-eD-BKr"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -55,6 +55,28 @@
 		689BE20C2565F891003D668B /* BookViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BE20A2565F891003D668B /* BookViewTableViewCell.swift */; };
 		689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689BE20B2565F891003D668B /* BookViewTableViewCell.xib */; };
 		68E03A34259024F1004C3F7D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A33259024F1004C3F7D /* SpinnerViewController.swift */; };
+		68E03A3925905855004C3F7D /* NarouR18API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A3825905855004C3F7D /* NarouR18API.swift */; };
+		68E03A3E25905CE4004C3F7D /* IsR18orNot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A3D25905CE4004C3F7D /* IsR18orNot.swift */; };
+		68E03A4725905E4A004C3F7D /* HSearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A4325905E4A004C3F7D /* HSearchViewModelProtocol.swift */; };
+		68E03A4825905E4A004C3F7D /* HSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A4425905E4A004C3F7D /* HSearchViewController.swift */; };
+		68E03A4925905E4A004C3F7D /* HSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A4525905E4A004C3F7D /* HSearchViewModel.swift */; };
+		68E03A4A25905E4A004C3F7D /* HSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E03A4625905E4A004C3F7D /* HSearchViewController.xib */; };
+		68E03A5325906472004C3F7D /* HNovelsDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A4F25906472004C3F7D /* HNovelsDetailViewModelProtocol.swift */; };
+		68E03A5425906472004C3F7D /* HNovelsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A5025906472004C3F7D /* HNovelsDetailViewController.swift */; };
+		68E03A5525906472004C3F7D /* HNovelsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A5125906472004C3F7D /* HNovelsDetailViewModel.swift */; };
+		68E03A5625906472004C3F7D /* HNovelsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E03A5225906472004C3F7D /* HNovelsDetailViewController.xib */; };
+		68E03A62259067F0004C3F7D /* HNovelsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A5E259067F0004C3F7D /* HNovelsListViewModelProtocol.swift */; };
+		68E03A63259067F0004C3F7D /* HNovelsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A5F259067F0004C3F7D /* HNovelsListViewController.swift */; };
+		68E03A64259067F0004C3F7D /* HNovelsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A60259067F0004C3F7D /* HNovelsListViewModel.swift */; };
+		68E03A65259067F0004C3F7D /* HNovelsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E03A61259067F0004C3F7D /* HNovelsListViewController.xib */; };
+		68E03A7025906AA8004C3F7D /* HChapterListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A6C25906AA8004C3F7D /* HChapterListViewModelProtocol.swift */; };
+		68E03A7125906AA8004C3F7D /* HChapterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A6D25906AA8004C3F7D /* HChapterListViewController.swift */; };
+		68E03A7225906AA8004C3F7D /* HChapterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A6E25906AA8004C3F7D /* HChapterListViewModel.swift */; };
+		68E03A7325906AA8004C3F7D /* HChapterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E03A6F25906AA8004C3F7D /* HChapterListViewController.xib */; };
+		68E03A7B25906AC2004C3F7D /* HNovelsContentsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A7725906AC2004C3F7D /* HNovelsContentsViewModelProtocol.swift */; };
+		68E03A7C25906AC2004C3F7D /* HNovelsContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A7825906AC2004C3F7D /* HNovelsContentsViewController.swift */; };
+		68E03A7D25906AC2004C3F7D /* HNovelsContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E03A7925906AC2004C3F7D /* HNovelsContentsViewModel.swift */; };
+		68E03A7E25906AC2004C3F7D /* HNovelsContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E03A7A25906AC2004C3F7D /* HNovelsContentsViewController.xib */; };
 		68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */; };
 		68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3A2563439E0099504E /* NovelViewController.swift */; };
 		68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EF8D3B2563439E0099504E /* NovelViewModel.swift */; };
@@ -136,6 +158,28 @@
 		689BE20A2565F891003D668B /* BookViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewTableViewCell.swift; sourceTree = "<group>"; };
 		689BE20B2565F891003D668B /* BookViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookViewTableViewCell.xib; sourceTree = "<group>"; };
 		68E03A33259024F1004C3F7D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		68E03A3825905855004C3F7D /* NarouR18API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouR18API.swift; sourceTree = "<group>"; };
+		68E03A3D25905CE4004C3F7D /* IsR18orNot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsR18orNot.swift; sourceTree = "<group>"; };
+		68E03A4325905E4A004C3F7D /* HSearchViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSearchViewModelProtocol.swift; sourceTree = "<group>"; };
+		68E03A4425905E4A004C3F7D /* HSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSearchViewController.swift; sourceTree = "<group>"; };
+		68E03A4525905E4A004C3F7D /* HSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSearchViewModel.swift; sourceTree = "<group>"; };
+		68E03A4625905E4A004C3F7D /* HSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSearchViewController.xib; sourceTree = "<group>"; };
+		68E03A4F25906472004C3F7D /* HNovelsDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		68E03A5025906472004C3F7D /* HNovelsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsDetailViewController.swift; sourceTree = "<group>"; };
+		68E03A5125906472004C3F7D /* HNovelsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsDetailViewModel.swift; sourceTree = "<group>"; };
+		68E03A5225906472004C3F7D /* HNovelsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HNovelsDetailViewController.xib; sourceTree = "<group>"; };
+		68E03A5E259067F0004C3F7D /* HNovelsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		68E03A5F259067F0004C3F7D /* HNovelsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsListViewController.swift; sourceTree = "<group>"; };
+		68E03A60259067F0004C3F7D /* HNovelsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsListViewModel.swift; sourceTree = "<group>"; };
+		68E03A61259067F0004C3F7D /* HNovelsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HNovelsListViewController.xib; sourceTree = "<group>"; };
+		68E03A6C25906AA8004C3F7D /* HChapterListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HChapterListViewModelProtocol.swift; sourceTree = "<group>"; };
+		68E03A6D25906AA8004C3F7D /* HChapterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HChapterListViewController.swift; sourceTree = "<group>"; };
+		68E03A6E25906AA8004C3F7D /* HChapterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HChapterListViewModel.swift; sourceTree = "<group>"; };
+		68E03A6F25906AA8004C3F7D /* HChapterListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HChapterListViewController.xib; sourceTree = "<group>"; };
+		68E03A7725906AC2004C3F7D /* HNovelsContentsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsContentsViewModelProtocol.swift; sourceTree = "<group>"; };
+		68E03A7825906AC2004C3F7D /* HNovelsContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsContentsViewController.swift; sourceTree = "<group>"; };
+		68E03A7925906AC2004C3F7D /* HNovelsContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HNovelsContentsViewModel.swift; sourceTree = "<group>"; };
+		68E03A7A25906AC2004C3F7D /* HNovelsContentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HNovelsContentsViewController.xib; sourceTree = "<group>"; };
 		68EF8D392563439E0099504E /* NovelViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModelProtocol.swift; sourceTree = "<group>"; };
 		68EF8D3A2563439E0099504E /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		68EF8D3B2563439E0099504E /* NovelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewModel.swift; sourceTree = "<group>"; };
@@ -253,6 +297,8 @@
 		685076E52560C2EB00766490 /* NarouReaderV2 */ = {
 			isa = PBXGroup;
 			children = (
+				68E03A5A25906792004C3F7D /* HReadView */,
+				68E03A4225905E30004C3F7D /* HSearchView */,
 				684EDC2D256F710F000C4EAA /* SearchView */,
 				689BE1D825652E4E003D668B /* ReadView */,
 				6889C1B22560C4BA001263BD /* Models */,
@@ -340,6 +386,8 @@
 				684EDC39256F85AC000C4EAA /* NarouAPI.swift */,
 				68951536257B15FA00881E7D /* getNovels.swift */,
 				68E03A33259024F1004C3F7D /* SpinnerViewController.swift */,
+				68E03A3825905855004C3F7D /* NarouR18API.swift */,
+				68E03A3D25905CE4004C3F7D /* IsR18orNot.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,6 +414,72 @@
 				681D2A29258D61EB003C8D84 /* NovelTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		68E03A4225905E30004C3F7D /* HSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				68E03A4E25906457004C3F7D /* HNovelsDetailView */,
+				68E03A4325905E4A004C3F7D /* HSearchViewModelProtocol.swift */,
+				68E03A4425905E4A004C3F7D /* HSearchViewController.swift */,
+				68E03A4525905E4A004C3F7D /* HSearchViewModel.swift */,
+				68E03A4625905E4A004C3F7D /* HSearchViewController.xib */,
+			);
+			path = HSearchView;
+			sourceTree = "<group>";
+		};
+		68E03A4E25906457004C3F7D /* HNovelsDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				68E03A4F25906472004C3F7D /* HNovelsDetailViewModelProtocol.swift */,
+				68E03A5025906472004C3F7D /* HNovelsDetailViewController.swift */,
+				68E03A5125906472004C3F7D /* HNovelsDetailViewModel.swift */,
+				68E03A5225906472004C3F7D /* HNovelsDetailViewController.xib */,
+			);
+			path = HNovelsDetailView;
+			sourceTree = "<group>";
+		};
+		68E03A5A25906792004C3F7D /* HReadView */ = {
+			isa = PBXGroup;
+			children = (
+				68E03A5B259067A7004C3F7D /* HNovelListView */,
+			);
+			path = HReadView;
+			sourceTree = "<group>";
+		};
+		68E03A5B259067A7004C3F7D /* HNovelListView */ = {
+			isa = PBXGroup;
+			children = (
+				68E03A5E259067F0004C3F7D /* HNovelsListViewModelProtocol.swift */,
+				68E03A5F259067F0004C3F7D /* HNovelsListViewController.swift */,
+				68E03A60259067F0004C3F7D /* HNovelsListViewModel.swift */,
+				68E03A61259067F0004C3F7D /* HNovelsListViewController.xib */,
+				68E03A5C259067BC004C3F7D /* HChapterListView */,
+			);
+			path = HNovelListView;
+			sourceTree = "<group>";
+		};
+		68E03A5C259067BC004C3F7D /* HChapterListView */ = {
+			isa = PBXGroup;
+			children = (
+				68E03A6C25906AA8004C3F7D /* HChapterListViewModelProtocol.swift */,
+				68E03A6D25906AA8004C3F7D /* HChapterListViewController.swift */,
+				68E03A6E25906AA8004C3F7D /* HChapterListViewModel.swift */,
+				68E03A6F25906AA8004C3F7D /* HChapterListViewController.xib */,
+				68E03A5D259067D4004C3F7D /* HNovelsContentsView */,
+			);
+			path = HChapterListView;
+			sourceTree = "<group>";
+		};
+		68E03A5D259067D4004C3F7D /* HNovelsContentsView */ = {
+			isa = PBXGroup;
+			children = (
+				68E03A7725906AC2004C3F7D /* HNovelsContentsViewModelProtocol.swift */,
+				68E03A7825906AC2004C3F7D /* HNovelsContentsViewController.swift */,
+				68E03A7925906AC2004C3F7D /* HNovelsContentsViewModel.swift */,
+				68E03A7A25906AC2004C3F7D /* HNovelsContentsViewController.xib */,
+			);
+			path = HNovelsContentsView;
 			sourceTree = "<group>";
 		};
 		68EF8D38256343820099504E /* NovelView */ = {
@@ -512,12 +626,16 @@
 				6889C1AE2560C485001263BD /* ChapterViewController.xib in Resources */,
 				685076F32560C2EE00766490 /* LaunchScreen.storyboard in Resources */,
 				68750B80258EEACF00BBFE56 /* AuthorCell.xib in Resources */,
+				68E03A7325906AA8004C3F7D /* HChapterListViewController.xib in Resources */,
 				681D2A2B258D61EB003C8D84 /* NovelTableViewCell.xib in Resources */,
 				681D2A61258EC480003C8D84 /* INPickerViewController.xib in Resources */,
+				68E03A65259067F0004C3F7D /* HNovelsListViewController.xib in Resources */,
 				68F2F9E625899D0000FED2CC /* TextTableViewCell.xib in Resources */,
 				6864BFD32576481700FE1A0B /* NovelsDetailViewController.xib in Resources */,
 				684EDBFE2569F1AD000C4EAA /* ChapterViewTableViewCell.xib in Resources */,
 				68750B92258EEB1100BBFE56 /* OutlineCell.xib in Resources */,
+				68E03A4A25905E4A004C3F7D /* HSearchViewController.xib in Resources */,
+				68E03A7E25906AC2004C3F7D /* HNovelsContentsViewController.xib in Resources */,
 				68750B79258EEAB800BBFE56 /* GenresCell.xib in Resources */,
 				689BE1E025652E62003D668B /* BookViewController.xib in Resources */,
 				689BE20D2565F891003D668B /* BookViewTableViewCell.xib in Resources */,
@@ -525,6 +643,7 @@
 				68F2F9ED2589B06400FED2CC /* ToNextTableViewCell.xib in Resources */,
 				68EF8D402563439E0099504E /* NovelViewController.xib in Resources */,
 				68750BA0258F740A00BBFE56 /* LoadingView.xib in Resources */,
+				68E03A5625906472004C3F7D /* HNovelsDetailViewController.xib in Resources */,
 				68750B6F258EE77300BBFE56 /* TitleCell.xib in Resources */,
 				685076F02560C2EE00766490 /* Assets.xcassets in Resources */,
 			);
@@ -654,36 +773,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E03A7025906AA8004C3F7D /* HChapterListViewModelProtocol.swift in Sources */,
+				68E03A7C25906AC2004C3F7D /* HNovelsContentsViewController.swift in Sources */,
 				684EDC34256F80FB000C4EAA /* SearchViewModel.swift in Sources */,
 				689BE1E82565D9F2003D668B /* Book.swift in Sources */,
 				68EF8D3F2563439E0099504E /* NovelViewModel.swift in Sources */,
 				68EF8D3E2563439E0099504E /* NovelViewController.swift in Sources */,
 				6864BFD12576481700FE1A0B /* NovelsDetailViewController.swift in Sources */,
 				68750B98258F73D900BBFE56 /* LoadingView.swift in Sources */,
+				68E03A3925905855004C3F7D /* NarouR18API.swift in Sources */,
+				68E03A7125906AA8004C3F7D /* HChapterListViewController.swift in Sources */,
+				68E03A7D25906AC2004C3F7D /* HNovelsContentsViewModel.swift in Sources */,
 				689BE1DE25652E62003D668B /* BookViewController.swift in Sources */,
+				68E03A63259067F0004C3F7D /* HNovelsListViewController.swift in Sources */,
 				68750B7F258EEACF00BBFE56 /* AuthorCell.swift in Sources */,
+				68E03A5325906472004C3F7D /* HNovelsDetailViewModelProtocol.swift in Sources */,
 				684EDC3A256F85AC000C4EAA /* NarouAPI.swift in Sources */,
+				68E03A64259067F0004C3F7D /* HNovelsListViewModel.swift in Sources */,
+				68E03A4825905E4A004C3F7D /* HSearchViewController.swift in Sources */,
 				68750B91258EEB1100BBFE56 /* OutlineCell.swift in Sources */,
 				685076E72560C2EB00766490 /* AppDelegate.swift in Sources */,
+				68E03A3E25905CE4004C3F7D /* IsR18orNot.swift in Sources */,
+				68E03A7225906AA8004C3F7D /* HChapterListViewModel.swift in Sources */,
 				68750B6E258EE77300BBFE56 /* TitleCell.swift in Sources */,
 				684EDBFD2569F1AD000C4EAA /* ChapterViewTableViewCell.swift in Sources */,
 				689BE1DF25652E62003D668B /* BookViewModel.swift in Sources */,
 				6889C1AC2560C485001263BD /* ChapterViewController.swift in Sources */,
+				68E03A4725905E4A004C3F7D /* HSearchViewModelProtocol.swift in Sources */,
 				68951537257B15FA00881E7D /* getNovels.swift in Sources */,
 				68F2F9E525899D0000FED2CC /* TextTableViewCell.swift in Sources */,
 				68750B78258EEAB800BBFE56 /* GenresCell.swift in Sources */,
+				68E03A5525906472004C3F7D /* HNovelsDetailViewModel.swift in Sources */,
 				681D2A2A258D61EB003C8D84 /* NovelTableViewCell.swift in Sources */,
 				684EDC32256F80FB000C4EAA /* SearchViewModelProtocol.swift in Sources */,
 				689BE20C2565F891003D668B /* BookViewTableViewCell.swift in Sources */,
 				6889C1AD2560C485001263BD /* ChapterViewModel.swift in Sources */,
+				68E03A62259067F0004C3F7D /* HNovelsListViewModelProtocol.swift in Sources */,
 				68E03A34259024F1004C3F7D /* SpinnerViewController.swift in Sources */,
+				68E03A4925905E4A004C3F7D /* HSearchViewModel.swift in Sources */,
 				681D2A3E258D9005003C8D84 /* ModalContainerNavigationController.swift in Sources */,
 				684EDC33256F80FB000C4EAA /* SearchViewController.swift in Sources */,
+				68E03A5425906472004C3F7D /* HNovelsDetailViewController.swift in Sources */,
 				6889C1AB2560C485001263BD /* ChapterViewModelProtocol.swift in Sources */,
 				68F2F9EC2589B06400FED2CC /* ToNextTableViewCell.swift in Sources */,
 				681D2A60258EC480003C8D84 /* INPickerViewController.swift in Sources */,
 				6864BFD22576481700FE1A0B /* NovelsDetailViewModel.swift in Sources */,
 				6889C1B72560C4E0001263BD /* Chapter.swift in Sources */,
+				68E03A7B25906AC2004C3F7D /* HNovelsContentsViewModelProtocol.swift in Sources */,
 				68EF8D3D2563439E0099504E /* NovelViewModelProtocol.swift in Sources */,
 				6864BFD02576481700FE1A0B /* NovelsDetailViewModelProtocol.swift in Sources */,
 				689BE1DD25652E62003D668B /* BookViewModelProtocol.swift in Sources */,

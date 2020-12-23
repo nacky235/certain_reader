@@ -34,11 +34,6 @@ class INPickerViewController: UIViewController {
         .nongenre: [.all, .nongenre]
     ]
     
-    
-
-    // タイトルの配列とタイトルがKeyの辞書型、の２つ用意するとわかりやすい
-    // let titles: [String] = ["ジャンル", "その他"]
-    
     let data: [BigGenre] = [
         .all,
         .love_romance,
@@ -48,14 +43,31 @@ class INPickerViewController: UIViewController {
         .other,
         .nongenre
     ]
+    
+    let orders: [Order] = [
+        .hyoka,
+        .new,
+        .dailypoint,
+        .weekly
+    ]
+    
+    let ordersDescription: [String] = [
+        Order.hyoka.rawValue,
+        Order.new.rawValue,
+        Order.dailypoint.rawValue,
+        Order.weekly.rawValue
+    ]
+    
+    
 
     // 初期値は全部最初の要素
     private var selectedBigGenre: BigGenre = .all
     private var selectedGenre: Genre = .all
+    private var selectedOrder: Order = .hyoka
 
-    private let completion: ((BigGenre,Genre)) -> Void
+    private let completion: ((BigGenre, Genre, Order)) -> Void
 
-    public init(completion: @escaping ((BigGenre,Genre)) -> Void) {
+    public init(completion: @escaping ((BigGenre, Genre, Order)) -> Void) {
         self.completion = completion
 
         super.init(nibName: nil, bundle: .main)
@@ -69,19 +81,32 @@ class INPickerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTapped))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTapped))
+        
+        let segmentedControl = UISegmentedControl(items: ordersDescription)
+        segmentedControl.addTarget(self, action: #selector(segmentedValueChanged(_:)), for: .valueChanged)
+        segmentedControl.selectedSegmentIndex = 0
+        navigationItem.titleView = segmentedControl
     }
-
-    // Addをタップしたら、completionを返してからdismiss
-    @objc func addTapped() {
-        completion((selectedBigGenre,selectedGenre))
-        dismiss(animated: true)
+//
+//    // Addをタップしたら、completionを返してからdismiss
+//    @objc func addTapped() {
+//        completion((selectedBigGenre,selectedGenre))
+//        dismiss(animated: true)
+//    }
+//
+//    // Closeをタップしたらcompletionを返さないから反映されない
+//    @objc func closeTapped() {
+//        dismiss(animated: true)
+//    }
+    
+    @objc func segmentedValueChanged(_ sender: UISegmentedControl) {
+        selectedOrder = orders[sender.selectedSegmentIndex]
     }
-
-    // Closeをタップしたらcompletionを返さないから反映されない
-    @objc func closeTapped() {
-        dismiss(animated: true)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        completion((selectedBigGenre, selectedGenre, selectedOrder))
     }
 }
 

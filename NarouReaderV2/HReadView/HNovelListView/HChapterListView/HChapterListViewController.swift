@@ -1,28 +1,21 @@
 import Combine
 import UIKit
 
-class ChapterViewController: UIViewController {
-    public let viewModel: ChapterViewModelProtocol
-    
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
-    
-    let refreshControl = UIRefreshControl()
-    
-    @IBOutlet private weak var tableView: UITableView! {
+class HChapterListViewController: UIViewController {
+    public let viewModel: HChapterListViewModelProtocol
+
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            tableView.dataSource = self
             tableView.delegate = self
+            tableView.dataSource = self
             tableView.register(UINib(nibName: "ChapterViewTableViewCell", bundle: nil), forCellReuseIdentifier: "ChapterCell")
-            tableView.refreshControl = refreshControl
         }
     }
-    
     private var cancellables = Set<AnyCancellable>()
-    
-    
 
-    init(viewModel: ChapterViewModelProtocol) {
+    init(viewModel: HChapterListViewModelProtocol) {
         self.viewModel = viewModel
+
         super.init(nibName: nil, bundle: .main)
     }
 
@@ -32,11 +25,9 @@ class ChapterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        refreshControl.addTarget(self, action: #selector(fetch), for: .valueChanged)
         
+
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -53,46 +44,24 @@ class ChapterViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        viewModel.chapters
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.tableView.reloadData()
-            }
-            .store(in: &cancellables)
-        
+        // Do any additional setup after loading the view.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        fetch()
-    }
-    @objc func fetch() {
-        loadingView.isHidden = false
-        DispatchQueue.main.async {
-            self.viewModel.fetch(self.viewModel.ncode) {
-                self.loadingView.isHidden = true
-                self.refreshControl.endRefreshing()
-            }
-        }
-        
-        
-    }
-    
 }
 
-extension ChapterViewController: UITableViewDataSource {
+extension HChapterListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.chapters.value.chapterTitle.count
+        return viewModel.chapters.chapterTitle.count
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.chapters.value.chapterTitle[section]
+        return viewModel.chapters.chapterTitle[section]
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chapters.value.chapters[section].count
+        return viewModel.chapters.chapters[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ChapterCell", for: indexPath) as? ChapterViewTableViewCell {
-            let chapters = viewModel.chapters.value.chapters[indexPath.section]
+            let chapters = viewModel.chapters.chapters[indexPath.section]
             if let readList = UserDefaults.standard.stringArray(forKey: "readList") {
                 let isRead: Bool = readList.filter({ $0 == chapters[indexPath.row].link }).isEmpty
                 cell.readMark.image = isRead ? .none : UIImage(systemName: "book.closed")
@@ -104,22 +73,4 @@ extension ChapterViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    
 }
-
-extension ChapterViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chapter = viewModel.chapters.value.chapters[indexPath.section][indexPath.row]
-        
-        let vm = NovelViewModel(chapter: chapter)
-        let vc = NovelViewController(viewModel: vm)
-        let navCon = UINavigationController(rootViewController: vc)
-        navCon.modalPresentationStyle = UIModalPresentationStyle.automatic
-        self.present(navCon, animated: true, completion: nil)
-        
-    }
-}
-
-
-

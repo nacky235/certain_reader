@@ -96,8 +96,10 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
 //        filterContentForSearchText(searchController.searchBar.text!, searchArea: viewModel.searchArea) {
 //            self.removeSpinner()
 //        }
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -127,9 +129,10 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         self.presentPanModal(nc)
     }
     
-    func pushData(selected: (biggenre: BigGenre,genre: Genre)) {
+    func pushData(selected: (biggenre: BigGenre, genre: Genre, order: Order)) {
         viewModel.biggenre.send(selected.biggenre)
         viewModel.genre.send(selected.genre)
+        viewModel.order.send(selected.order)
         showGenres()
     }
     
@@ -147,7 +150,10 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     @objc func heartTapped() {
         self.navigationItem.leftBarButtonItem?.image = UIImage(systemName: "heart.fill")
-        
+        isSexy = true
+        let vm = HSearchViewModel(dependency: .default)
+        let vc = HSearchViewController(viewModel: vm)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func filterContentForSearchText(_ searchText: String,
@@ -156,13 +162,13 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         var parameters: Parameters {
             switch searchArea {
             case .all:
-                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
+                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             case .title:
-                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
+                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             case .writer:
-                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
+                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             case .keywords:
-                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1, order: Order.hyoka, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
+                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
             }
         }
         

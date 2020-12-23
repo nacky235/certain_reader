@@ -14,7 +14,6 @@ class NovelViewController: UIViewController {
         }
     }
     
-    
 
     private var cancellables = Set<AnyCancellable>()
     
@@ -33,9 +32,8 @@ class NovelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rightbarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
-        self.navigationItem.rightBarButtonItem = rightbarButtonItem
-        self.navigationItem.title = viewModel.chapter.value.title
+        configureGestures()
+        configureNavigationBar()
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -67,6 +65,36 @@ class NovelViewController: UIViewController {
     @objc func close () {
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func swipe(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .left:
+            toNextContent()
+        case .right:
+            toLastContent()
+        default:
+            break
+        }
+    }
+    
+    func configureNavigationBar() {
+        let rightbarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        self.navigationItem.rightBarButtonItem = rightbarButtonItem
+        self.navigationItem.title = viewModel.chapter.value.title
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    func configureGestures() {
+        //swipe left
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipe(_:)))
+        leftSwipeGesture.direction = .left
+        view.addGestureRecognizer(leftSwipeGesture)
+        
+        //swipe right
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipe(_:)))
+        rightSwipeGesture.direction = .right
+        view.addGestureRecognizer(rightSwipeGesture)
+    }
 }
 
 extension NovelViewController: UITableViewDelegate {
@@ -87,6 +115,19 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
         }
     }
     
+    func toLastContent() {
+        if let currentChapterLink = URL(string: viewModel.chapter.value.link), let ep = Int(currentChapterLink.lastPathComponent), ep != 1 {
+            
+            let nextEp = ep - 1
+            let nextChapterLink = currentChapterLink.deletingLastPathComponent().appendingPathComponent(nextEp.description, isDirectory: true)
+            let chapter = Chapter(link: nextChapterLink.absoluteString)
+            
+            let vm = NovelViewModel(chapter: chapter)
+            let vc = NovelViewController(viewModel: vm)
+            navigationController?.pushViewController(vc, animated: false)
+        } 
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.content.value.count + 1
     }
@@ -95,9 +136,6 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
         switch indexPath.row {
         case viewModel.content.value.count:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "toNext") as? ToNextTableViewCell {
-                var chapter = viewModel.chapter.value
-                chapter.isRead = true
-                viewModel.chapter.send(chapter)
                 cell.delegate = self
                 return cell
             }
@@ -109,6 +147,14 @@ extension NovelViewController: UITableViewDataSource, ToNextContent {
             }
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.content.value.count {
+            var chapter = viewModel.chapter.value
+            chapter.isRead = true
+            viewModel.chapter.send(chapter)
+        }
     }
     
     

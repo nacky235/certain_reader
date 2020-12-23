@@ -61,7 +61,7 @@ struct Parameters: Encodable {
     
     let out: String = "json"
     let type: String = "re"
-    let lim: Int = 20 // (1- 500)
+    let lim: Int = 30 // (1- 500)
     let order: String
     let genre: String
     let biggenre: String
@@ -295,20 +295,20 @@ enum SearchArea: Int, CaseIterable {
 }
 
 enum Order: String, CaseIterable {
-    case new = "新着更新順"
+    case new = "新着順"
     case favnovelcnt = "ブックマーク数の多い順"
     case reviewcnt = "レビュー数の多い順"
-    case hyoka = "総合ポイントの高い順"
+    case hyoka = "総合"
     case hyokaasc = "総合ポイントの低い順"
-    case dailypoint = "日間ポイントの高い順"
-    case weeklypoint = "週刊ポイントの高い順"
+    case dailypoint = "日間"
+    case weeklypoint = "週間ポイントの高い順"
     case monthlypoint = "月間ポイントの高い順"
     case quarterpoint = "四半期ポイントの高い順"
     case yearlypoint = "年間ポイントの高い順"
     case impressioncnt = "感想の多い順"
     case hyokacnt = "評価者数の多い順"
     case hyokacntasc = "評価者数の少ない順"
-    case weekly = "週間ユニークユーザの多い順"
+    case weekly = "週間"
     case lengthdesc = "小説本文の文字数が多い順"
     case lengthasc = "小説本文の文字数が少ない順"
     case ncodedesc = "新着投稿順"

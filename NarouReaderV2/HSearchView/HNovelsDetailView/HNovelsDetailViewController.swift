@@ -1,25 +1,22 @@
 import Combine
 import UIKit
-import SafariServices
 
-class NovelsDetailViewController: UIViewController {
-    
+class HNovelsDetailViewController: UIViewController {
+    public let viewModel: HNovelsDetailViewModelProtocol
+
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier: "title")
             tableView.register(UINib(nibName: "AuthorCell", bundle: nil), forCellReuseIdentifier: "author")
-            tableView.register(UINib(nibName: "GenresCell", bundle: nil), forCellReuseIdentifier: "genres")
             tableView.register(UINib(nibName: "OutlineCell", bundle: nil), forCellReuseIdentifier: "outline")
+            
         }
     }
-    public let viewModel: NovelsDetailViewModelProtocol
-
     private var cancellables = Set<AnyCancellable>()
-    
-    
-    init(viewModel: NovelsDetailViewModelProtocol) {
+
+    init(viewModel: HNovelsDetailViewModelProtocol) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: .main)
@@ -31,9 +28,9 @@ class NovelsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:.add , target: self, action: #selector(addToShelf))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -50,63 +47,52 @@ class NovelsDetailViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
-        configure()
 
         // Do any additional setup after loading the view.
     }
     
-    func configure() {
-        
-    }
     @objc func addToShelf() {
-        if var list = UserDefaults.standard.stringArray(forKey: "novels") {
-            if list.filter({ $0 == viewModel.novel.ncode }) == [] {
-                list.append(viewModel.novel.ncode)
+        if var list = UserDefaults.standard.stringArray(forKey: "Hnovels") {
+            if list.filter({ $0 == viewModel.hNovel.ncode }) == [] {
+                list.append(viewModel.hNovel.ncode)
             }
-            UserDefaults.standard.set(list, forKey: "novels")
+            UserDefaults.standard.set(list, forKey: "Hnovels")
         } else {
-            UserDefaults.standard.setValue([viewModel.novel.ncode], forKey: "novels")
+            UserDefaults.standard.setValue([viewModel.hNovel.ncode], forKey: "Hnovels")
         }
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-extension NovelsDetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension HNovelsDetailViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "title") as? TitleCell {
-                cell.textLabel?.text = viewModel.novel.title
+                cell.textLabel?.text = viewModel.hNovel.title
                 return cell
             }
+            
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "author") as? AuthorCell {
-                cell.textLabel?.text = viewModel.novel.writer
+                cell.textLabel?.text = viewModel.hNovel.writer
                 return cell
             }
         case 2:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "genres") as? GenresCell {
-                cell.textLabel?.text = Genre(rawValue: viewModel.novel.genre)?.title
-                cell.detailTextLabel?.text = BigGenre(rawValue: viewModel.novel.biggenre)?.title
-                return cell
-            }
-        case 3:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "outline") as? OutlineCell {
-                cell.contentLabel.text = viewModel.novel.story
+                cell.contentLabel.text = viewModel.hNovel.story
                 return cell
             }
         default:
-            return UITableViewCell()
-        }
+                return UITableViewCell()
+            }
         return UITableViewCell()
     }
-    
-    
 }
-
+    
+    
 
