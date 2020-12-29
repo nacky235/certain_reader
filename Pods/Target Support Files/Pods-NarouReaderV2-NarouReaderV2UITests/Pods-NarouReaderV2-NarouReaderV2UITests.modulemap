@@ -1,6 +1,0 @@
-framework module Pods_NarouReaderV2_NarouReaderV2UITests {
-  umbrella header "Pods-NarouReaderV2-NarouReaderV2UITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
