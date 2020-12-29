@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="INPickerViewController" customModule="NarouReaderV2" customModuleProvider="target">
+            <connections>
+                <outlet property="pickerView" destination="lBw-aL-9hv" id="6zb-HO-VUy"/>
+                <outlet property="view" destination="YMo-zW-BwM" id="R1m-xj-XmO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="YMo-zW-BwM">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBw-aL-9hv">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
+                </pickerView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="kc3-ve-htq"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lBw-aL-9hv" firstAttribute="leading" secondItem="kc3-ve-htq" secondAttribute="leading" id="2Eg-DK-gIO"/>
+                <constraint firstItem="lBw-aL-9hv" firstAttribute="bottom" secondItem="kc3-ve-htq" secondAttribute="bottom" id="CKn-xU-TGU"/>
+                <constraint firstItem="lBw-aL-9hv" firstAttribute="top" secondItem="YMo-zW-BwM" secondAttribute="top" id="MaB-2e-7xb"/>
+                <constraint firstItem="lBw-aL-9hv" firstAttribute="trailing" secondItem="kc3-ve-htq" secondAttribute="trailing" id="i30-93-1SX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-341" y="127"/>
+        </view>
+    </objects>
+</document>

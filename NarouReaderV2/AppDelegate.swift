@@ -11,13 +11,32 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var tabBarController: UITabBarController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        let viewModel = MainViewModel(dependency: .default)
-        let viewController = MainViewController(viewModel: viewModel)
-        let navCon = UINavigationController(rootViewController: viewController)
-        window?.rootViewController = navCon
+        
+        var viewControllers: [UIViewController] = []
+        
+        let firstTabBarButtonItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass.circle"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
+        let secondTabBarbuttonItem = UITabBarItem(title: "Read", image: UIImage(systemName: "books.vertical"), selectedImage: UIImage(systemName: "books.vertical.fill"))
+        
+        let firstViewModel = SearchViewModel(dependency: .default)
+        let firstViewController = SearchViewController(viewModel: firstViewModel)
+        let firstNavigationController = UINavigationController(rootViewController: firstViewController)
+        firstNavigationController.tabBarItem = firstTabBarButtonItem
+        viewControllers.append(firstNavigationController)
+        
+        let secondViewModel = BookViewModel(dependency: .default)
+        let secondViewController = BookViewController(viewModel: secondViewModel)
+        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
+        secondNavigationController.tabBarItem = secondTabBarbuttonItem
+        viewControllers.append(secondNavigationController)
+        
+        tabBarController = UITabBarController()
+        tabBarController?.setViewControllers(viewControllers, animated: true)
+        
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
         return true
