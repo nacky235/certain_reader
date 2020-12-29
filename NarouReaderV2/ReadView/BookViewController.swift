@@ -3,15 +3,15 @@ import UIKit
 
 class BookViewController: UIViewController {
     public let viewModel: BookViewModelProtocol
-
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(UINib(nibName: "BookViewTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCell")
             tableView.register(UINib(nibName: "NovelTableViewCell", bundle: nil), forCellReuseIdentifier: "NovelCell")
+            tableView.refreshControl = refreshControl
+            refreshControl.addTarget(self, action: #selector(fetch), for: .valueChanged)
         }
     }
     
@@ -30,9 +30,28 @@ class BookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartTapped))
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
-
+        subscribe()
+        fetch()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetch()
+    }
+    
+    
+    func pushChapterView(selectedBook: Novel) -> Void {
+        let chapterViewModel = ChapterViewModel(dependency: .default, ncode: selectedBook.ncode)
+        let next = ChapterViewController(viewModel: chapterViewModel)
+        navigationController?.pushViewController(next, animated: true)
+    }
+    
+    @objc func fetch() {
+        viewModel.loadNovels()
+        refreshControl.endRefreshing()
+    }
+    
+    func subscribe() {
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -55,36 +74,6 @@ class BookViewController: UIViewController {
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
-        
-    }
-    
-    func transition(selectedBook: Novel) -> Void {
-        //[] 値渡し　to chapterViewcontroller
-        
-        let chapterViewModel = ChapterViewModel(dependency: .default, ncode: selectedBook.ncode)
-        let next = ChapterViewController(viewModel: chapterViewModel)
-        navigationController?.pushViewController(next, animated: true)
-        
-    }
-    
-    @objc func heartTapped () {
-        let vm = HNovelsListViewModel(dependency: .default)
-        let vc = HNovelsListViewController(viewModel: vm)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        fetch()
-    }
-    
-    @objc func fetch() {
-        loadingView.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.viewModel.loadNovels{
-                self.loadingView.isHidden = true
-            }
-        }
-        
     }
 }
 
@@ -94,29 +83,14 @@ extension BookViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        if indexPath.row == 0 {
-//            loadingView.isHidden = true
-//        }
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as? NovelTableViewCell {
-            
-            cell.textLabel?.numberOfLines = 0
-            
             cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
-            cell.textLabel?.font = .boldSystemFont(ofSize: 18)
-            
-            if let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) {
-                cell.detailTextLabel?.text = genre.title
-                
-            }
-            
+            guard let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) else { return cell }
+            cell.detailTextLabel?.text = genre.title
             return cell
         }
-        
         return UITableViewCell()
     }
-
 }
 
 extension BookViewController: UITableViewDelegate {
@@ -126,25 +100,22 @@ extension BookViewController: UITableViewDelegate {
             sortedList.insert(viewModel.novels.value[indexPath.row].ncode, at: 0)
             UserDefaults.standard.set(sortedList, forKey: "novels")
         }
-        transition(selectedBook: viewModel.novels.value[indexPath.row])
+        pushChapterView(selectedBook: viewModel.novels.value[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let vm = NovelsDetailViewModel(dependency: .default, novel: viewModel.novels.value[indexPath.row])
         let vc = NovelsDetailViewController(viewModel: vm)
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if let list = UserDefaults.standard.stringArray(forKey: "novels") {
             let committedTitle = viewModel.novels.value[indexPath.row].ncode
             let newList = list.filter({ $0 != committedTitle })
             UserDefaults.standard.set(newList, forKey: "novels")
             viewModel.novels.value.remove(at: indexPath.row)
         }
-        
     }
+    
 }

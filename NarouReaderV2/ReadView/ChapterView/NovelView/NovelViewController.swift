@@ -17,7 +17,6 @@ class NovelViewController: UIViewController {
 
     private var cancellables = Set<AnyCancellable>()
     
-    let loadingView: LoadingView = LoadingView()
 
     init(viewModel: NovelViewModelProtocol) {
         self.viewModel = viewModel

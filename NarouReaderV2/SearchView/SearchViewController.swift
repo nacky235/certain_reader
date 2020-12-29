@@ -8,23 +8,17 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.keyboardDismissMode = .onDrag
         }
     }
+    var searchController = UISearchController(searchResultsController: nil)
     
-//    var isSearchBarEmpty: Bool {
-//        return searchController.searchBar.text?.isEmpty ?? true
-//    }
    
     public var viewModel: SearchViewModelProtocol
-
     private var cancellables = Set<AnyCancellable>()
-    
-    var searchController = UISearchController(searchResultsController: nil)
-
 
     init(viewModel: SearchViewModelProtocol) {
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: .main)
     }
 
@@ -36,25 +30,19 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        showSpinner(onView: view)
         
-        searchController.searchBar.delegate = self
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
         definesPresentationContext = true
+        subscribe()
+        configureNavigationBar()
+        configureSearchController()
         
-        searchController.searchBar.scopeButtonTitles = SearchArea.allCases.map { $0.name }
-        
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        showGenres()
-        
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: self, action: #selector(pushSearchSetting))
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartTapped))
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    func subscribe() {
+        let searchBar = searchController.searchBar
+        let searchArea = viewModel.searchArea.value
         
         viewModel.command
             .receive(on: RunLoop.main)
@@ -82,39 +70,52 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         viewModel.biggenre
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.fetch()
+                self?.viewModel.fetch(searchBar.text!, searchArea: searchArea)
+                self?.showGenres()
             }
             .store(in: &cancellables)
         
         viewModel.genre
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.fetch()
+                self?.viewModel.fetch(searchBar.text!, searchArea: searchArea)
+                self?.showGenres()
             }
             .store(in: &cancellables)
-//
-//        filterContentForSearchText(searchController.searchBar.text!, searchArea: viewModel.searchArea) {
-//            self.removeSpinner()
-//        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    
-    
-    func fetch() {
-        loadingView.isHidden = false
         
-        filterContentForSearchText(searchController.searchBar.text!, searchArea: viewModel.searchArea) {
+        viewModel.searchArea
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.viewModel.fetch(searchBar.text!, searchArea: searchArea)
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+    func configureNavigationBar() {
+        navigationItem.searchController = searchController
+        navigationController?.navigationBar.prefersLargeTitles = true
+        showGenres()
         
-        }
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: self, action: #selector(pushSearchSetting))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartTapped))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    
+    func configureSearchController() {
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.scopeButtonTitles = SearchArea.allCases.map { $0.name }
     }
     
     
+    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        searchController.searchBar.resignFirstResponder()
+//        searchController.searchBar.resignFirstResponder()
+//        searchController.searchBar.endEditing(true)
     }
     
     func pushDetailView(novel: Novel) {
@@ -124,19 +125,10 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     }
     
     @objc func pushSearchSetting() {
-        let pickerView = INPickerViewController(completion: pushData)
+        let pickerView = INPickerViewController(completion: viewModel.pushData)
         let nc = ModalContainerNavigationViewController(rootViewController: pickerView)
         self.presentPanModal(nc)
     }
-    
-    func pushData(selected: (biggenre: BigGenre, genre: Genre, order: Order)) {
-        viewModel.biggenre.send(selected.biggenre)
-        viewModel.genre.send(selected.genre)
-        viewModel.order.send(selected.order)
-        showGenres()
-    }
-    
-    
     
     func showGenres() {
         if viewModel.biggenre.value == .all {
@@ -150,34 +142,9 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     @objc func heartTapped() {
         self.navigationItem.leftBarButtonItem?.image = UIImage(systemName: "heart.fill")
-        isSexy = true
-        let vm = HSearchViewModel(dependency: .default)
-        let vc = HSearchViewController(viewModel: vm)
-        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func filterContentForSearchText(_ searchText: String,
-                                    searchArea: SearchArea, completion: @escaping () -> Void) {
-        
-        var parameters: Parameters {
-            switch searchArea {
-            case .all:
-                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
-            case .title:
-                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
-            case .writer:
-                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
-            case .keywords:
-                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1, order: viewModel.order.value, genre: viewModel.genre.value, biggenre: viewModel.biggenre.value)
-            }
-        }
-        
-        viewModel.loadNovels(parameters: parameters) { (novel) in
-            self.viewModel.novels.send(novel)
-        }
-        tableView.reloadData()
-        completion()
-    }
+    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -203,37 +170,20 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    //NSComparisonPredicate
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//            if let text = searchBar.text {
-//                if text == "" {
-//                    viewModel.loadNovels(parameters: Parameters(word: "")) { novels in
-//                        self.viewModel.novels.send(novels)
-//                    }
-//                } else {
-//                    let parameters = Parameters(word: text)
-//                    viewModel.loadNovels(parameters: parameters) { novels in
-//                        self.viewModel.novels.send(novels)
-//                    }
-//                }
-//            }
-//    }
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        if let selectedArea = SearchArea(rawValue: selectedScope) {
-            viewModel.searchArea = selectedArea
-        }
+        guard let selectedArea = SearchArea(rawValue: selectedScope) else { return }
+        viewModel.searchArea.send(selectedArea)
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        fetch()
+        viewModel.fetch(searchBar.text!, searchArea: viewModel.searchArea.value)
     }
 }
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-//        searchBarSearchButtonClicked(searchBar)
         if !(searchBar.text?.isEmpty)! {
-            fetch()
+            viewModel.fetch(searchBar.text!, searchArea: viewModel.searchArea.value)
         }
     }
 }

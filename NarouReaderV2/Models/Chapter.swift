@@ -20,7 +20,7 @@ struct Chapter:  Equatable, Codable {
     init(link: String) {
         self.title = ""
         self.link = link
-        self.isRead = true
+        self.isRead = false
     }
 }
 

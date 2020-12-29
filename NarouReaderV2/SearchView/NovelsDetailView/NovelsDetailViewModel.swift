@@ -1,7 +1,6 @@
 import Combine
 
 final class NovelsDetailViewModel: NovelsDetailViewModelProtocol {
-    var novel: Novel
     
     struct Dependency {
         // Add dependencies here.
@@ -16,12 +15,13 @@ final class NovelsDetailViewModel: NovelsDetailViewModelProtocol {
     // Output
 
     let command = PassthroughSubject<NovelsDetailCommand, Never>()
+    let novel = CurrentValueSubject<Novel, Never>(Novel(title: "", ncode: "", writer: "", story: "", biggenre: 0, genre: 0))
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
 
     init(dependency: Dependency, novel: Novel) {
         self.dependency = dependency
-        self.novel = novel
+        self.novel.send(novel)
     }
 }

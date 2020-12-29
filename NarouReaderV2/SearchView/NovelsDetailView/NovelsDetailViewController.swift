@@ -31,10 +31,18 @@ class NovelsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavigationBar()
+        subscribe()
+    }
+    
+    func configureNavigationBar() {
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:.add , target: self, action: #selector(addToShelf))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        
+    }
+    
+    func subscribe() {
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -51,22 +59,22 @@ class NovelsDetailViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        configure()
-
-        // Do any additional setup after loading the view.
+        viewModel.novel
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
-    func configure() {
-        
-    }
     @objc func addToShelf() {
         if var list = UserDefaults.standard.stringArray(forKey: "novels") {
-            if list.filter({ $0 == viewModel.novel.ncode }) == [] {
-                list.append(viewModel.novel.ncode)
+            if list.filter({ $0 == viewModel.novel.value.ncode }) == [] {
+                list.append(viewModel.novel.value.ncode)
             }
             UserDefaults.standard.set(list, forKey: "novels")
         } else {
-            UserDefaults.standard.setValue([viewModel.novel.ncode], forKey: "novels")
+            UserDefaults.standard.setValue([viewModel.novel.value.ncode], forKey: "novels")
         }
         self.navigationController?.popViewController(animated: true)
     }
@@ -81,23 +89,23 @@ extension NovelsDetailViewController: UITableViewDelegate, UITableViewDataSource
         switch indexPath.row {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "title") as? TitleCell {
-                cell.textLabel?.text = viewModel.novel.title
+                cell.textLabel?.text = viewModel.novel.value.title
                 return cell
             }
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "author") as? AuthorCell {
-                cell.textLabel?.text = viewModel.novel.writer
+                cell.textLabel?.text = viewModel.novel.value.writer
                 return cell
             }
         case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "genres") as? GenresCell {
-                cell.textLabel?.text = Genre(rawValue: viewModel.novel.genre)?.title
-                cell.detailTextLabel?.text = BigGenre(rawValue: viewModel.novel.biggenre)?.title
+                cell.textLabel?.text = Genre(rawValue: viewModel.novel.value.genre)?.title
+                cell.detailTextLabel?.text = BigGenre(rawValue: viewModel.novel.value.biggenre)?.title
                 return cell
             }
         case 3:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "outline") as? OutlineCell {
-                cell.contentLabel.text = viewModel.novel.story
+                cell.contentLabel.text = viewModel.novel.value.story
                 return cell
             }
         default:
@@ -105,8 +113,6 @@ extension NovelsDetailViewController: UITableViewDelegate, UITableViewDataSource
         }
         return UITableViewCell()
     }
-    
-    
 }
 
 

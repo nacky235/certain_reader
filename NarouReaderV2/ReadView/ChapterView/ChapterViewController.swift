@@ -14,13 +14,12 @@ class ChapterViewController: UIViewController {
             tableView.delegate = self
             tableView.register(UINib(nibName: "ChapterViewTableViewCell", bundle: nil), forCellReuseIdentifier: "ChapterCell")
             tableView.refreshControl = refreshControl
+            refreshControl.addTarget(self, action: #selector(fetch), for: .valueChanged)
         }
     }
     
     private var cancellables = Set<AnyCancellable>()
     
-    
-
     init(viewModel: ChapterViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: .main)
@@ -32,11 +31,17 @@ class ChapterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavigationBar()
+        subscribe()
+    }
+    
+    func configureNavigationBar() {
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetch))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        
-        refreshControl.addTarget(self, action: #selector(fetch), for: .valueChanged)
-        
+    }
+    
+    func subscribe() {
         viewModel.command
             .receive(on: RunLoop.main)
             .sink { [weak self] command in
@@ -59,12 +64,12 @@ class ChapterViewController: UIViewController {
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetch()
     }
+    
     @objc func fetch() {
         loadingView.isHidden = false
         DispatchQueue.main.async {
@@ -73,8 +78,6 @@ class ChapterViewController: UIViewController {
                 self.refreshControl.endRefreshing()
             }
         }
-        
-        
     }
     
 }

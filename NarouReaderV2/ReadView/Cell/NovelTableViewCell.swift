@@ -17,6 +17,8 @@ class NovelTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        self.textLabel?.font = .boldSystemFont(ofSize: 18)
+        self.textLabel?.numberOfLines = 0
         self.accessoryType = .detailButton
         // Configure the view for the selected state
     }

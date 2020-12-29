@@ -37,7 +37,6 @@ func loadChapters(url: URL) {
                         print("Chapters", chapters)
                     }
                 }
-
             }
         }
     } catch let error {
@@ -69,9 +68,6 @@ func loadContent(urlString: String) -> [String] {
 
 func getNovelsContent(currentElement: XMLElement) -> [String] {
     let line = currentElement.text ?? ""
-
     guard let next = currentElement.nextSibling else { return [line] }
-    // リンクはこうやってとる
-//     let link = linkElement["href"]
     return [line] + getNovelsContent(currentElement: next)
 }
