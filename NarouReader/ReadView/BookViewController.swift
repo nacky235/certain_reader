@@ -5,6 +5,8 @@ class BookViewController: UIViewController {
     public let viewModel: BookViewModelProtocol
     let refreshControl = UIRefreshControl()
     
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -31,7 +33,13 @@ class BookViewController: UIViewController {
         super.viewDidLoad()
         
         subscribe()
-        fetch()
+    
+        loadingView.isHidden = false
+        DispatchQueue.main.async {
+            self.viewModel.loadNovels {
+                self.loadingView.isHidden = true
+            }
+        }
         
     }
     
@@ -47,8 +55,12 @@ class BookViewController: UIViewController {
     }
     
     @objc func fetch() {
-        viewModel.loadNovels()
-        refreshControl.endRefreshing()
+        DispatchQueue.main.async {
+            self.viewModel.loadNovels {
+                self.refreshControl.endRefreshing()
+            }
+        }
+        
     }
     
     func subscribe() {
@@ -117,5 +129,4 @@ extension BookViewController: UITableViewDelegate {
             viewModel.novels.value.remove(at: indexPath.row)
         }
     }
-    
 }

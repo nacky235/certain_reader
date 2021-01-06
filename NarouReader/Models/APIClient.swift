@@ -9,16 +9,16 @@ import Foundation
 
 struct APILoginRequest: Codable {
     let word: String
-//    let notword: String
     
-    let title: Int //words in title
-    let wname: Int // words in writer
-    let keyword: Int //words in keyword
+    let title: String //words in title
+    let wname: String // words in writer
+    let keyword: String //words in keyword
     
-    var out: String = "json"
-    var type: String = "re"
-    var of: String = "t-n-w-s-bg-g"
-    var lim: Int = 30 // (1- 500)
+    let out: String = "json"
+    let type: String = "re"
+    let of: String = "t-n-w-s-bg-g"
+    let lim: Int = 30 // (1- 500)
+    
     let order: String
     let genre: String
     let biggenre: String
@@ -27,9 +27,9 @@ struct APILoginRequest: Codable {
     
     init(word: String, title: Int, writer: Int, keyword: Int, order: Order, genre: Genre, biggenre: BigGenre) {
         self.word = word
-        self.title = title
-        self.wname = writer
-        self.keyword = keyword
+        self.title = title.description
+        self.wname = writer.description
+        self.keyword = keyword.description
         self.order = order.name
         self.genre = genre.stringGenre
         self.biggenre = biggenre.stringBigGenre
@@ -41,9 +41,9 @@ struct APILoginRequest: Codable {
         self.ncode = ncode
         
         self.word = ""
-        self.title = 1
-        self.wname = 1
-        self.keyword = 1
+        self.title = "1"
+        self.wname = "1"
+        self.keyword = "1"
         self.order = ""
         self.genre = ""
         self.biggenre = ""
@@ -51,12 +51,12 @@ struct APILoginRequest: Codable {
 }
 
 struct APILoginSuccessResponse: Codable {
-    var allCount: AllCount
+    var allCount: NarouContainer.AllCount
     var novels: [Novel]
 
     init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        self.allCount = try container.decode(AllCount.self)
+        self.allCount = try container.decode(NarouContainer.AllCount.self)
         var novels: [Novel] = []
 
         while !container.isAtEnd {
@@ -197,13 +197,9 @@ extension APIRequest {
     public static func urlRequest(from request: APIEndpoint) -> URLRequest? {
         let endpoint = request.endpoint()
         let queryItems = request.queryItem()
-        
-        guard var endpointUrl = URLComponents(string: "https://api.syosetu.com/novelapi\(endpoint)") else {
-            return nil
-        }
-        
+        guard let apiURL = Bundle.main.object(forInfoDictionaryKey: "API_URL"), var endpointUrl = URLComponents(string: "\(apiURL)\(endpoint)") else { return nil }
         endpointUrl.queryItems = queryItems
-//
+        
         var endpointRequest = URLRequest(url: endpointUrl.url!)
         endpointRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         return endpointRequest

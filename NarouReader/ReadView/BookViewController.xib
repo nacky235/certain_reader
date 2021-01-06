@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookViewController" customModule="NarouReader" customModuleProvider="target">
             <connections>
+                <outlet property="loadingView" destination="HqU-5e-P2O" id="CbM-6d-Tnx"/>
                 <outlet property="tableView" destination="GQU-Sm-lVG" id="EwD-ig-IFt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,15 +21,19 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GQU-Sm-lVG">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GQU-Sm-lVG">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="HqU-5e-P2O">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="HqU-5e-P2O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ccp-Qz-Oyd"/>
                 <constraint firstItem="GQU-Sm-lVG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ceo-QJ-far"/>
+                <constraint firstItem="HqU-5e-P2O" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="JYl-UB-OgN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GQU-Sm-lVG" secondAttribute="trailing" id="Jor-t5-yu4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GQU-Sm-lVG" secondAttribute="bottom" id="Kjz-qG-z8f"/>
                 <constraint firstItem="GQU-Sm-lVG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Pul-TZ-rDa"/>

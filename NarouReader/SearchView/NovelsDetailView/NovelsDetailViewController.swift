@@ -15,9 +15,7 @@ class NovelsDetailViewController: UIViewController {
         }
     }
     public let viewModel: NovelsDetailViewModelProtocol
-
     private var cancellables = Set<AnyCancellable>()
-    
     
     init(viewModel: NovelsDetailViewModelProtocol) {
         self.viewModel = viewModel
@@ -37,7 +35,7 @@ class NovelsDetailViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:.add , target: self, action: #selector(addToShelf))
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add , target: self, action: #selector(addToShelf))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
@@ -81,9 +79,14 @@ class NovelsDetailViewController: UIViewController {
 }
 
 extension NovelsDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {

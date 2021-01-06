@@ -29,8 +29,6 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         definesPresentationContext = true
         subscribe()
         configureNavigationBar()
@@ -67,8 +65,8 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         viewModel.biggenre
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                guard let searchArea = self?.viewModel.searchArea.value, let searchText = self?.searchController.searchBar.text else { return }
-                self?.viewModel.fetch(searchText, searchArea: searchArea)
+                guard let searchText = self?.searchController.searchBar.text else { return }
+                self?.viewModel.fetch(searchText)
                 self?.showGenres()
             }
             .store(in: &cancellables)
@@ -76,20 +74,18 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         viewModel.genre
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                guard let searchArea = self?.viewModel.searchArea.value, let searchText = self?.searchController.searchBar.text else { return }
-                self?.viewModel.fetch(searchText, searchArea: searchArea)
+                guard let searchText = self?.searchController.searchBar.text else { return }
+                self?.viewModel.fetch(searchText)
                 self?.showGenres()
             }
             .store(in: &cancellables)
-        
-        viewModel.searchArea
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                guard let searchArea = self?.viewModel.searchArea.value, let searchText = self?.searchController.searchBar.text else { return }
-                self?.viewModel.fetch(searchText, searchArea: searchArea)
-                self?.tableView.reloadData()
-            }
-            .store(in: &cancellables)
+//
+//        viewModel.searchArea
+//            .receive(on: RunLoop.main)
+//            .sink { [weak self] _ in
+//
+//            }
+//            .store(in: &cancellables)
     }
     func configureNavigationBar() {
         navigationItem.searchController = searchController
@@ -99,7 +95,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: self, action: #selector(pushSearchSetting))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartTapped))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsButtonTapped))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
@@ -108,6 +104,10 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.scopeButtonTitles = SearchArea.allCases.map { $0.name }
+        searchController.searchBar.showsCancelButton = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "検索"
+        
     }
     
     
@@ -140,8 +140,11 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         }
     }
     
-    @objc func heartTapped() {
-        self.navigationItem.leftBarButtonItem?.image = UIImage(systemName: "heart.fill")
+    @objc func settingsButtonTapped() {
+        let vm = SettingViewModel(dependency: .default)
+        let vc = SettingViewController(viewModel: vm)
+        
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -165,7 +168,30 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pushDetailView(novel: viewModel.novels.value[indexPath.row])
     }
-}
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+           
+           let addAction = UIContextualAction(style: .normal, title: "Add", handler: {
+            (action: UIContextualAction, view: UIView, completion: (Bool) -> Void) in
+                
+            if var list = UserDefaults.standard.stringArray(forKey: "novels") {
+                let ncode = self.viewModel.novels.value[indexPath.row].ncode
+                if list.filter({ $0 == ncode }) == [] {
+                    list.append(ncode)
+                }
+                UserDefaults.standard.set(list, forKey: "novels")
+            } else {
+                UserDefaults.standard.setValue([], forKey: "novels")
+            }
+                completion(true)
+           })
+        addAction.backgroundColor = .systemBlue
+        addAction.image = UIImage(systemName: "plus")
+           
+           return UISwipeActionsConfiguration(actions: [addAction])
+       }
+    
+    }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -174,7 +200,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        viewModel.fetch(searchBar.text!, searchArea: viewModel.searchArea.value)
+        viewModel.fetch(searchBar.text!)
     }
 }
 
@@ -182,7 +208,7 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         if !(searchBar.text?.isEmpty)! {
-            viewModel.fetch(searchBar.text!, searchArea: viewModel.searchArea.value)
+            self.viewModel.fetch(searchBar.text!)
         }
     }
 }

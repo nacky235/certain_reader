@@ -1,8 +1,8 @@
 import Combine
 import Foundation
-import Alamofire
 
 final class SearchViewModel: SearchViewModelProtocol {
+    
     
     struct Dependency {
         // Add dependencies here.
@@ -37,41 +37,19 @@ final class SearchViewModel: SearchViewModelProtocol {
         self.order.send(selected.order)
     }
     
-    func fetch(_ searchText: String, searchArea: SearchArea) {
+    func fetch(_ searchText: String) {
+        let searchArea = self.searchArea.value
         print("DEBUGG SearchText: \(searchText), searchArea: \(searchArea.rawValue)")
-        var parameters: Parameters {
-            switch searchArea {
-            case .all:
-                return Parameters(word: searchText, title: 1, writer: 1, keyword: 1, order: self.order.value, genre: self.genre.value, biggenre: self.biggenre.value)
-            case .title:
-                return Parameters(word: searchText, title: 1, writer: 0, keyword: 0, order: self.order.value, genre: self.genre.value, biggenre: self.biggenre.value)
-            case .writer:
-                return Parameters(word: searchText, title: 0, writer: 1, keyword: 0, order: self.order.value, genre: self.genre.value, biggenre: self.biggenre.value)
-            case .keywords:
-                return Parameters(word: searchText, title: 0, writer: 0, keyword: 1, order: self.order.value, genre: self.genre.value, biggenre: self.biggenre.value)
-            }
+        var parameters: APILoginRequest {
+            let params = searchArea.param
+            return APILoginRequest(word: searchText, title: params.title, writer: params.writer, keyword: params.keywords, order: self.order.value, genre: self.genre.value, biggenre: self.biggenre.value)
         }
-        loadNovels(parameters: parameters) { (novel) in
-            self.novels.send(novel)
+        parameters.dispatch { (novels) in
+            self.novels.send(novels.novels)
+        } onFailure: { (errorResponse, error) in
+            print(error)
         }
+
     }
     
-    func loadNovels(parameters:Parameters,completion: @escaping (([Novel]) -> Void)) {
-        let decoder = JSONDecoder()
-        AF.request("https://api.syosetu.com/novelapi/api/", method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default).responseString { response in
-            
-            switch response.result {
-            case .success:
-                do {
-                    let novels = try decoder.decode(NarouContainer.self, from: Data(response.value!.utf8))
-                    completion(novels.novels)
-                } catch let error {
-                    print("Error = \(error)")
-                }
-            case .failure:
-                print("failure")
-                
-            }
-        }
-    }
 }

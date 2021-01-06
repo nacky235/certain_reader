@@ -51,38 +51,16 @@ struct Novel: Codable {
     
 }
 
-struct Parameters: Encodable {
-    let word: String
-//    let notword: String
-    
-    let title: Int //words in title
-    let wname: Int // words in writer
-    let keyword: Int //words in keyword
-    
-    let out: String = "json"
-    let type: String = "re"
-    let lim: Int = 30 // (1- 500)
-    let order: String
-    let genre: String
-    let biggenre: String
-    
-    init(word: String, title: Int, writer: Int, keyword: Int, order: Order, genre: Genre, biggenre: BigGenre) {
-        self.word = word
-        self.title = title
-        self.wname = writer
-        self.keyword = keyword
-        self.order = order.name
-        self.genre = genre.stringGenre
-        self.biggenre = biggenre.stringBigGenre
-    }
-}
 
 
-struct AllCount: Codable {
-    var allcount: Int
-}
+
 
 struct NarouContainer: Decodable {
+    
+    struct AllCount: Codable {
+        var allcount: Int
+    }
+    
     var allCount: AllCount
     var novels: [Novel]
 
@@ -284,14 +262,26 @@ enum SearchArea: Int, CaseIterable {
     var name: String {
         switch self {
         case .all:
-            return "All"
+            return "全て"
         case .title:
-            return "Title"
+            return "タイトル"
         case .writer:
-            return "Writer"
+            return "作者"
         case .keywords:
-            return "Keywords"
+            return "キーワード"
         }
+    }
+    
+    var param: (title:Int,writer:Int,keywords:Int) {
+        switch self {
+        case .all:
+            return (1,1,1)
+        case .title:
+            return (1,0,0)
+        case .writer:
+            return (0,1,0)
+        case .keywords:
+            return (0,0,1)        }
     }
 }
 

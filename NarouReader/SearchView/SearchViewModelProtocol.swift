@@ -1,5 +1,4 @@
 import Combine
-import Alamofire
 import Foundation
 
 public enum SearchCommand {
@@ -15,6 +14,5 @@ protocol SearchViewModelProtocol {
     var biggenre: CurrentValueSubject<BigGenre, Never> { get }
     
     func pushData(selected: (biggenre: BigGenre, genre: Genre, order: Order))
-    func fetch(_ searchText: String, searchArea: SearchArea)
-    func loadNovels(parameters:Parameters,completion: @escaping (([Novel]) -> Void))
+    func fetch(_ searchText: String)
 }

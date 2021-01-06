@@ -64,6 +64,14 @@ class ChapterViewController: UIViewController {
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
+        
+        viewModel.novelTitle
+            .receive(on: RunLoop.main)
+            .sink { title in
+                self.navigationItem.title = title
+            }
+            .store(in: &cancellables)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,9 +106,9 @@ extension ChapterViewController: UITableViewDataSource {
             let chapters = viewModel.chapters.value.chapters[indexPath.section]
             if let readList = UserDefaults.standard.stringArray(forKey: "readList") {
                 let isRead: Bool = readList.filter({ $0 == chapters[indexPath.row].link }).isEmpty
-                cell.readMark.image = isRead ? .none : UIImage(systemName: "book.closed")
+                cell.accessoryType = isRead ? .none : .checkmark
             } else {
-                cell.readMark.image = .none
+                cell.accessoryType = .none
             }
             cell.title.text = chapters[indexPath.row].title
             return cell

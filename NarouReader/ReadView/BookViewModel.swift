@@ -1,6 +1,5 @@
 import Combine
 import Foundation
-import Alamofire
 
 final class BookViewModel: BookViewModelProtocol {
     
@@ -17,14 +16,26 @@ final class BookViewModel: BookViewModelProtocol {
 
     private var cancellables = Set<AnyCancellable>()
     private let dependency: Dependency
-
     init(dependency: Dependency) {
         self.dependency = dependency
     }
     
-    func loadNovels() {
-        self.getNovels { (novels) in
-            self.novels.send(novels)
+    func loadNovels(completion: @escaping () -> Void) {
+        if UserDefaults.standard.stringArray(forKey: "novels") != [] {
+            guard let novelList = UserDefaults.standard.stringArray(forKey: "novels")?.joined(separator: "-") else { return }
+            let parameter = APILoginRequest(ncode: novelList)
+            
+            parameter.dispatch { (novels) in
+                let list = UserDefaults.standard.stringArray(forKey: "novels")!
+                var sortedNovels: [Novel] = []
+                for novel in list {
+                sortedNovels.append(contentsOf: novels.novels.filter{ $0.ncode == novel })
+                }
+                self.novels.send(sortedNovels)
+                completion()
+            } onFailure: { (errorResponse, error) in
+                print(error)
+            }
         }
     }
 }

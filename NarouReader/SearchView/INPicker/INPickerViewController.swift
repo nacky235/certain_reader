@@ -16,12 +16,7 @@ class INPickerViewController: UIViewController {
             if traitCollection.userInterfaceStyle == .dark {
                 pickerView.backgroundColor = .darkGray
             }
-            
         }
-    }
-    public enum PickerTypes: String, CaseIterable {
-        case biggenre = "大ジャンル"
-        case genre = "ジャンル"
     }
     
     let genre: [BigGenre: [Genre]] = [
@@ -58,9 +53,6 @@ class INPickerViewController: UIViewController {
         Order.weekly.rawValue
     ]
     
-    
-
-    // 初期値は全部最初の要素
     private var selectedBigGenre: BigGenre = .all
     private var selectedGenre: Genre = .all
     private var selectedOrder: Order = .hyoka
@@ -80,26 +72,12 @@ class INPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTapped))
         
         let segmentedControl = UISegmentedControl(items: ordersDescription)
         segmentedControl.addTarget(self, action: #selector(segmentedValueChanged(_:)), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = 0
         navigationItem.titleView = segmentedControl
     }
-//
-//    // Addをタップしたら、completionを返してからdismiss
-//    @objc func addTapped() {
-//        completion((selectedBigGenre,selectedGenre))
-//        dismiss(animated: true)
-//    }
-//
-//    // Closeをタップしたらcompletionを返さないから反映されない
-//    @objc func closeTapped() {
-//        dismiss(animated: true)
-//    }
     
     @objc func segmentedValueChanged(_ sender: UISegmentedControl) {
         selectedOrder = orders[sender.selectedSegmentIndex]
@@ -112,12 +90,10 @@ class INPickerViewController: UIViewController {
 
 extension INPickerViewController: UIPickerViewDataSource {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        PickerTypes.allCases.count
+        return 2
     }
 
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        guard let datas = data[PickerTypes.allCases[component]] else { return 0 }
-//        return datas.count
         switch component {
         case 0:
             return data.count
@@ -138,19 +114,12 @@ extension INPickerViewController: UIPickerViewDelegate {
         case 1:
             let genreArray = genre[selectedBigGenre]!
             return genreArray[row].title
-            
         default:
             return nil
         }
     }
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        let pickerType = BigGenre.allCases[component]
-//        guard let datas = data[] else { return }
-//        let data = datas[row]
-//
-//        selectedData =
-        
         switch component {
         case 0:
             selectedBigGenre = data[row]
