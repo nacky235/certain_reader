@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var viewControllers: [UIViewController] = []
         
-        let firstTabBarButtonItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass.circle"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
-        let secondTabBarbuttonItem = UITabBarItem(title: "Read", image: UIImage(systemName: "books.vertical"), selectedImage: UIImage(systemName: "books.vertical.fill"))
+        let firstTabBarButtonItem = UITabBarItem(title: "さがす", image: UIImage(systemName: "magnifyingglass.circle"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
+        let secondTabBarbuttonItem = UITabBarItem(title: "よむ", image: UIImage(systemName: "books.vertical"), selectedImage: UIImage(systemName: "books.vertical.fill"))
         
         let firstViewModel = SearchViewModel(dependency: .default)
         let firstViewController = SearchViewController(viewModel: firstViewModel)

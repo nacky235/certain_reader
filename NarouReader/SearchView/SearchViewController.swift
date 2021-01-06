@@ -89,7 +89,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     }
     func configureNavigationBar() {
         navigationItem.searchController = searchController
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         showGenres()
         
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .done, target: self, action: #selector(pushSearchSetting))
@@ -97,6 +97,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsButtonTapped))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.title = "さがす"
     }
     
     func configureSearchController() {

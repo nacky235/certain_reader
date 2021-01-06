@@ -36,6 +36,8 @@ final class BookViewModel: BookViewModelProtocol {
             } onFailure: { (errorResponse, error) in
                 print(error)
             }
+        } else {
+            completion()
         }
     }
 }
