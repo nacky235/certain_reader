@@ -23,33 +23,19 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TdM-bf-ief">
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                 </tableView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Copyright © 2020-2021 Natsuki Inaba. All Rights Reserved." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcc-L8-gZl">
-                    <rect key="frame" x="20" y="774" width="374" height="138"/>
-                    <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="jcc-L8-gZl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="730" id="EeD-Po-MZt"/>
-                <constraint firstItem="jcc-L8-gZl" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="50" id="MHv-Iz-3Ct"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jcc-L8-gZl" secondAttribute="trailing" constant="20" id="Odq-nA-hvH"/>
-                <constraint firstItem="jcc-L8-gZl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Ojd-3a-gy9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TdM-bf-ief" secondAttribute="trailing" id="dNg-Sz-wxy"/>
                 <constraint firstItem="TdM-bf-ief" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="idV-bT-RJE"/>
                 <constraint firstAttribute="bottom" secondItem="TdM-bf-ief" secondAttribute="bottom" id="lhe-uZ-tJq"/>
-                <constraint firstItem="jcc-L8-gZl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mJO-yD-QRO"/>
                 <constraint firstItem="TdM-bf-ief" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qVl-3K-Gg9"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

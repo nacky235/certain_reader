@@ -91,8 +91,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                     return cell
                 }
             case 2:
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SwitcherCell") as? SwitcherTableViewCell {
-                    cell.textLabel?.text = "R18版を表示"
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell") as? detailTableViewCell {
+                    cell.textLabel?.text = "フォント"
                     return cell
                 }
             default:

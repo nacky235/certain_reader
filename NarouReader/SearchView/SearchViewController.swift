@@ -97,7 +97,6 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsButtonTapped))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        self.title = "さがす"
     }
     
     func configureSearchController() {

@@ -12,6 +12,7 @@ class BookViewController: UIViewController {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: "NovelTableViewCell", bundle: nil), forCellReuseIdentifier: "NovelCell")
+            tableView.register(UINib(nibName: "EmptyStateTableViewCell", bundle: nil), forCellReuseIdentifier: "GentleCell")
             tableView.refreshControl = refreshControl
             refreshControl.addTarget(self, action: #selector(fetch), for: .valueChanged)
         }
@@ -31,14 +32,16 @@ class BookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "保存済みの小説"
         
         subscribe()
     
         loadingView.isHidden = false
         DispatchQueue.main.async {
             self.viewModel.loadNovels {
-                self.loadingView.isHidden = true
+                
             }
+            self.loadingView.isHidden = true
         }
         
     }
@@ -58,8 +61,10 @@ class BookViewController: UIViewController {
         DispatchQueue.main.async {
             self.viewModel.loadNovels {
                 self.refreshControl.endRefreshing()
+                self.loadingView.isHidden = true
             }
         }
+        tableView.reloadData()
         
     }
     
@@ -87,19 +92,39 @@ class BookViewController: UIViewController {
             }
             .store(in: &cancellables)
     }
+    
+    @objc func buttonTapped(_ sender: UIButton) {
+        let vc = tabBarController?.viewControllers?[1]
+        tabBarController?.selectedViewController = vc
+    }
 }
 
 extension BookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.novels.value.isEmpty {
+            return 1
+        }
         return viewModel.novels.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as? NovelTableViewCell {
-            cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
-            guard let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) else { return cell }
-            cell.detailTextLabel?.text = genre.title
-            return cell
+        if viewModel.novels.value.isEmpty {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "GentleCell", for: indexPath) as? EmptyStateTableViewCell {
+                cell.view.bounds = CGRect(origin: CGPoint(x: 0, y: -(navigationController?.navigationBar.bounds.height)!), size: tableView.bounds.size)
+                tableView.allowsSelection = false
+                cell.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside) 
+                cell.sizeToFit()
+                return cell
+            }
+        } else {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as? NovelTableViewCell {
+                
+                tableView.allowsSelection = true
+                cell.textLabel?.text = viewModel.novels.value[indexPath.row].title
+                guard let genre: Genre = Genre(rawValue: viewModel.novels.value[indexPath.row].genre) else { return cell }
+                cell.detailTextLabel?.text = genre.title
+                return cell
+            }
         }
         return UITableViewCell()
     }
@@ -121,12 +146,54 @@ extension BookViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if let list = UserDefaults.standard.stringArray(forKey: "novels") {
-            let committedTitle = viewModel.novels.value[indexPath.row].ncode
-            let newList = list.filter({ $0 != committedTitle })
-            UserDefaults.standard.set(newList, forKey: "novels")
-            viewModel.novels.value.remove(at: indexPath.row)
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if viewModel.novels.value.isEmpty {
+//
+//            return
+//        }
+//        if let list = UserDefaults.standard.stringArray(forKey: "novels") {
+//            let committedTitle = viewModel.novels.value[indexPath.row].ncode
+//            let newList = list.filter({ $0 != committedTitle })
+//            UserDefaults.standard.set(newList, forKey: "novels")
+//            viewModel.novels.value.remove(at: indexPath.row)
+//        }
+//    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        guard let list = UserDefaults.standard.stringArray(forKey: "novels"), list != [] else {
+            return nil }
+        
+//            // シェアのアクションを設定する
+//            let shareAction = UIContextualAction(style: .normal  , title: "share") {
+//                (ctxAction, view, completionHandler) in
+//                 print("シェアを実行する")
+//                completionHandler(true)
+//            }
+//            // シェアボタンのデザインを設定する
+//            let shareImage = UIImage(systemName: "square.and.arrow.up")?.withTintColor(UIColor.white, renderingMode: .alwaysTemplate)
+//            shareAction.image = shareImage
+//            shareAction.backgroundColor = UIColor(red: 0/255, green: 125/255, blue: 255/255, alpha: 1)
+
+            // 削除のアクションを設定する
+            let deleteAction = UIContextualAction(style: .destructive, title:"delete") {
+                (ctxAction, view, completionHandler) in
+                
+                let committedTitle = self.viewModel.novels.value[indexPath.row].ncode
+                let newList = list.filter({ $0 != committedTitle })
+                UserDefaults.standard.set(newList, forKey: "novels")
+                self.viewModel.novels.value.remove(at: indexPath.row)
+                completionHandler(true)
+            }
+            // 削除ボタンのデザインを設定する
+            let trashImage = UIImage(systemName: "trash.fill")?.withTintColor(UIColor.white , renderingMode: .alwaysTemplate)
+            deleteAction.image = trashImage
+            deleteAction.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
+
+            // スワイプでの削除を無効化して設定する
+            let swipeAction = UISwipeActionsConfiguration(actions:[deleteAction])
+            swipeAction.performsFirstActionWithFullSwipe = false
+            
+            return swipeAction
+
         }
-    }
 }

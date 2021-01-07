@@ -13,25 +13,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tabBarController: UITabBarController?
 
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         
         var viewControllers: [UIViewController] = []
         
-        let firstTabBarButtonItem = UITabBarItem(title: "さがす", image: UIImage(systemName: "magnifyingglass.circle"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
-        let secondTabBarbuttonItem = UITabBarItem(title: "よむ", image: UIImage(systemName: "books.vertical"), selectedImage: UIImage(systemName: "books.vertical.fill"))
+        let searchTabBarButtonItem = UITabBarItem(title: "新しい小説を探す", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+        let readTabBarbuttonItem = UITabBarItem(title: nil, image: UIImage(systemName: "book"), selectedImage: UIImage(systemName: "book"))
+        let moreTabBarbuttonItem = UITabBarItem(title: "その他", image: UIImage(systemName: "ellipsis"), selectedImage: UIImage(systemName: "ellipsis"))
         
-        let firstViewModel = SearchViewModel(dependency: .default)
-        let firstViewController = SearchViewController(viewModel: firstViewModel)
-        let firstNavigationController = UINavigationController(rootViewController: firstViewController)
-        firstNavigationController.tabBarItem = firstTabBarButtonItem
-        viewControllers.append(firstNavigationController)
+        let readViewModel = BookViewModel(dependency: .default)
+        let readViewController = BookViewController(viewModel: readViewModel)
+        let readNavigationController = UINavigationController(rootViewController: readViewController)
+        readNavigationController.tabBarItem = readTabBarbuttonItem
+        viewControllers.append(readNavigationController)
         
-        let secondViewModel = BookViewModel(dependency: .default)
-        let secondViewController = BookViewController(viewModel: secondViewModel)
-        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
-        secondNavigationController.tabBarItem = secondTabBarbuttonItem
-        viewControllers.append(secondNavigationController)
+        let searchViewModel = SearchViewModel(dependency: .default)
+        let searchViewController = SearchViewController(viewModel: searchViewModel)
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        searchNavigationController.tabBarItem = searchTabBarButtonItem
+        viewControllers.append(searchNavigationController)
+        
+        let moreViewModel = SettingViewModel(dependency: .default)
+        let moreViewController = SettingViewController(viewModel: moreViewModel)
+        let moreNavigationController = UINavigationController(rootViewController: moreViewController)
+        moreNavigationController.tabBarItem = moreTabBarbuttonItem
+        viewControllers.append(moreNavigationController)
         
         tabBarController = UITabBarController()
         tabBarController?.setViewControllers(viewControllers, animated: true)
